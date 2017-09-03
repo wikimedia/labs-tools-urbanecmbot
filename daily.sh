@@ -5,3 +5,4 @@ bash /data/project/urbanecmbot/addPrekladCT/run.sh
 bash /data/project/urbanecmbot/wikidataCoorImport/run.sh
 python /data/project/urbanecmbot/relikty/deletethem.py
 python /data/project/urbanecmbot/orphan/to_delete_orphan.py
+/data/project/urbanecmbot/11bots/badprotecttemplates.sh
