@@ -8,3 +8,4 @@ python /data/project/urbanecmbot/orphan/to_delete_orphan.py
 /data/project/urbanecmbot/11bots/badprotecttemplates.sh
 python /data/project/urbanecmbot/ukoly/addPriority.py
 python /data/project/urbanecmbot/ukoly/bezPodstranky.py
+python /data/project/urbanecmbot/mostLinkedDisambigs/mostLinkedDisambigs.py
