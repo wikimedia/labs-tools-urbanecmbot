@@ -46,13 +46,19 @@ def find_templates(text):
 
     for match in textlib.NESTED_TEMPLATE_REGEX.finditer(text):
         name, params = match.group(1), match.group(2)
-        if name.strip().lower() != 'zajímavost':
+        if name and name.strip().lower() != 'zajímavost':
             continue
 
         if params is None:
             params = []
         else:
             params = params.split('|')
+            i = 0
+            while i < len(params)-1:
+                if params[i].count('[') != params[i].count(']'):
+                    params[i] += '|' + params.pop(i+1)
+                else:
+                    i += 1
 
         numbered_param_identifiers = iter(range(1, len(params) + 1))
 
@@ -95,6 +101,7 @@ def plain_text(text):
     text = text.replace('&nbsp;', ' ')
     while ' ' * 2 in text:
         text = text.replace(' ' * 2, ' ')
+    text = re.sub(r'\[\[([^]|]+\|)?([^]|[]+)\]\]', r'\2', text)
     text = text.replace("'" * 3, '')
     text = text.replace("'" * 2, '')
     return text.lower().strip()
@@ -116,6 +123,9 @@ def find_same(old_text, my_text, split):
         if (my_get(params, 'zajímavost')
                 and my_plain == plain_text(my_get(params, 'zajímavost'))):
             return span, params
+        if (my_get(params, 'od')
+                and plain_text(since) == plain_text(my_get(params, 'do'))):
+            return span, params
         if (my_get(params, 'do')
                 and plain_text(until) == plain_text(my_get(params, 'do'))):
             return span, params
@@ -132,8 +142,17 @@ def handle_page(page):
         titleM = titleR.search(text)
         if not titleM:
             continue
-        talkpage = pywikibot.Page(site, titleM.group(1)).toggleTalkPage()
-        text = titleR.sub(lambda m: m.group(2) or m.group(1), text, count=1).lstrip('.…')
+        article = pywikibot.Page(site, titleM.group(1))
+        if not article.exists() or article.isRedirectPage():
+            continue
+        talkpage = article.toggleTalkPage()
+        if talkpage.site != site:
+            continue
+        text = titleR.sub(lambda m: m.group(2) or m.group(1), text, count=1)
+        text = text.lstrip('.…')
+        text = text.replace(" ''(na obrázku)''", '')
+        text = text.replace(" (''na obrázku'')", '')
+        text = text.replace(' (na obrázku)', '')
         same = find_same(talkpage.text, text, split)
         if same:
             mapping = {
@@ -162,8 +181,10 @@ def handle_page(page):
             if not change:
                 continue
             start, end = span
-            new_text = (talkpage.text[:start] + pattern % data
-                        + talkpage.text[end:])
+            new = pattern % data
+            if my_get(params, 'sort'):
+                new = new[:-3] + ' | sort = %s\n}}' % my_get(params, 'sort').strip()
+            new_text = talkpage.text[:start] + new + talkpage.text[end:]
             summary = 'doplnění [[%s|zajímavosti]]' % link
         else:
             since, until = get_date(split)
