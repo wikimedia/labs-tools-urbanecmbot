@@ -12,3 +12,4 @@ python /data/project/urbanecmbot/mostLinkedDisambigs/mostLinkedDisambigs.py
 cd /data/project/urbanecmbot/autoprotect
 python daily.py
 cd $OLDPWD
+python /data/project/urbanecmbot/newarticlesPortals/newArticlesPortals.py
