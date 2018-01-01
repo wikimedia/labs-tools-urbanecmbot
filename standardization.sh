@@ -4,3 +4,4 @@ python ~/pwb/scripts/replace.py -always -ns:0 -search:'insource:/===* *Zdroje *=
 python ~/pwb/scripts/replace.py -always -ns:0 -summary:'Robot: Standardizace' -search:'insource:/===* *Externí zdroje *===*/' '== Externí zdroje ==' '== Externí odkazy =='
 python ~/pwb/scripts/replace.py -summary:'Robot: {{reflist}} => <references />' -always -ns:0 -regex -search:'insource:/\{\{[Rf]eflist\|?[^}]*\}\}/' '\{\{[Rf]eflist\|?[^}]*\}\}' '<references />'
 python ~/pwb/scripts/replace.py -summary:'Robot: Nahrazení šablony Reflist za tag <references />' -always -ns:0 -transcludes:'Reflist' -nocase '{{Reflist}}' '<references />'
+python ~/pwb/scripts/replace.py -summary:"Robot: Standardizace" -ns:0 -search:'insource:/===? ?Viz též ?===?/' -regex '(===? ?)Viz též( ?===?)' '\1Související články\2'
