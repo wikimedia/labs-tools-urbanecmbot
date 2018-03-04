@@ -10,4 +10,4 @@ python /data/project/urbanecmbot/ukoly/addPriority.py
 python /data/project/urbanecmbot/ukoly/bezPodstranky.py
 python /data/project/urbanecmbot/mostLinkedDisambigs/mostLinkedDisambigs.py
 python /data/project/urbanecmbot/newarticlesPortals/newArticlesPortals.py
-cd /data/project/urbanecmbot/autoprotect && python daily.py && cd /data/project/urbanecmbot/11bots/
+PYWIKIBOT2_DIR=/data/project/urbanecmbot/autoprotect python /data/project/urbanecmbot/autoprotect/daily.py
