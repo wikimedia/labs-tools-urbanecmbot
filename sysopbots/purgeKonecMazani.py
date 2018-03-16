@@ -4,4 +4,4 @@
 import pywikibot
 site = pywikibot.Site()
 page = pywikibot.Page(site, u"MediaWiki:Konec mazání")
-page.purge()
+page.touch()
