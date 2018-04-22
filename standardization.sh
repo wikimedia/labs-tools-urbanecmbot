@@ -5,4 +5,5 @@ python ~/pwb/scripts/replace.py -always -ns:0 -summary:'Robot: Standardizace' -s
 python ~/pwb/scripts/replace.py -summary:'Robot: {{reflist}} => <references />' -always -ns:0 -regex -search:'insource:/\{\{[Rf]eflist\|?[^}]*\}\}/' '\{\{[Rf]eflist\|?[^}]*\}\}' '<references />'
 python ~/pwb/scripts/replace.py -summary:'Robot: Nahrazení šablony Reflist za tag <references />' -always -ns:0 -transcludes:'Reflist' -nocase '{{Reflist}}' '<references />'
 python ~/pwb/scripts/replace.py -always -summary:"Robot: Standardizace" -ns:0 -search:'insource:/===? ?Viz též ?===?/' -regex '(===? ?)Viz též( ?===?)' '\1Související články\2'
+python ~/pwb/scripts/replace.py -always -summary:"Robot: Standardizace" -ns:0 -search:'insource:/===? ?Dále také ?===?/' -regex '(===? ?)Dále také( ?===?)' '\1Související články\2'
 python ~/pwb/scripts/replace.py -always -ns:0 -summary:"Robot: Standardizace" -search:'insource:/== ?Odkazy ?==..references ?../' -regex '(== ?)Odkazy( ?==)\n<references ?/>' '\1Reference\2\n<references />'
