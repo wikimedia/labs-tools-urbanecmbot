@@ -48,3 +48,4 @@ MAILTO=martin.urbanec@wikimedia.cz
 0 * * * * /usr/bin/jsub -N markStudents -once -quiet python /data/project/urbanecmbot/mark-students/cache.py \&\>\> /data/project/urbanecmbot/logs/markStudents.log
 0 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/sysopbots/purgeKonecMazani.sh \&\>\> /data/project/urbanecmbot/logs/purgeKonecMazani.log
 0 0 * * * jlocal bash /data/project/urbanecmbot/11bots/cron.sh &>> /data/project/urbanecmbot/logs/cron.log
+0 0 * * * /usr/bin/jsub -N emailNumberOfToPatrol -once -quiet bash /data/project/urbanecmbot/11bots/email-number-of-topatrol.sh
