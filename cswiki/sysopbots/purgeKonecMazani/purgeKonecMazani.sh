@@ -1,2 +1,2 @@
 #!/bin/bash
-PYWIKIBOT2_DIR=/data/project/urbanecmbot/11bots/sysopbots python /data/project/urbanecmbot/11bots/sysopbots/purgeKonecMazani.py
+PYWIKIBOT2_DIR=/data/project/urbanecmbot/11bots/cswiki/sysopbots python /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.py
