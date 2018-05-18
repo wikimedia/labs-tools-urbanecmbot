@@ -20,7 +20,7 @@ if __name__ == "__main__":
 				except ValueError:
 					continue
 				if change['wiki'] == 'cswiki':
-					users = open('users.txt').read().split('\n')
+					users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/users.txt').read().split('\n')
 					if change['user'] in users:
 						list(site.patrol(rcid=change['id']))
 	except Exception as e:
