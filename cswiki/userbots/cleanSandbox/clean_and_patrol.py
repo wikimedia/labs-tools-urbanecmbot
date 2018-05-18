@@ -7,7 +7,7 @@ import pywikibot
 site = pywikibot.Site()
 
 page = pywikibot.Page(site, u"Wikipedie:Pískoviště")
-page.text = open('vzor.txt').read()
+page.text = open('/data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/vzor.txt').read()
 page.save('Robot: Úhrad pískoviště')
 
 with conn.cursor() as cur:
