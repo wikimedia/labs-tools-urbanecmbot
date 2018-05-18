@@ -48,4 +48,4 @@ MAILTO=martin.urbanec@wikimedia.cz
 0 0 * * 1 /usr/bin/jsub -N autoprotectWeekly -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/weekly.sh \&\>\> /data/project/urbanecmbot/logs/autoprotectWeekly.log
 13 2 * * * /usr/bin/jsub -N patrolAutopatrolled -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolAutopatrolled/run.sh \&\>\> /data/project/urbanecmbot/logs/patrolAutopatrolled.log
 0 * * * * /usr/bin/jsub -N markStudents -once -quiet python /data/project/urbanecmbot/mark-students/cache.py \&\>\> /data/project/urbanecmbot/logs/markStudents.log
-0 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani.sh \&\>\> /data/project/urbanecmbot/logs/purgeKonecMazani.log
+0 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh \&\>\> /data/project/urbanecmbot/logs/purgeKonecMazani.log
