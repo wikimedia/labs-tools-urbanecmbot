@@ -29,7 +29,7 @@ if __name__ == "__main__":
 							logging.debug('Revision data=%s', change)
 							list(site.patrol(rcid=change['id']))
 						else:
-							logging.debug('Skipping %s', change['id']])
+							logging.debug('Skipping %s', change['id'])
 							logging.debug('Revision data=%s', change)
 	except Exception as e:
 		logging.exception('Unknown exception occured')
