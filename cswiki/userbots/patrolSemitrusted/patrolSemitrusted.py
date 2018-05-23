@@ -22,7 +22,7 @@ if __name__ == "__main__":
 				if change['wiki'] == 'cswiki':
 					if 'patrolled' not in change or change['patrolled']:
 						continue
-					users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/users.txt').read().split('\n')
+					users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/users.txt', encoding="utf-8").read().split('\n')
 					if 'revision' in change:
 						if change['user'] in users:
 							logging.info('Making %s as patrolled', change['id'])
