@@ -16,9 +16,8 @@ site = pywikibot.Site('cs', 'wikipedia')
 for rev in site.recentchanges(start=starttime, showBot=False, showPatrolled=True, reverse=True):
     try:
         if 'mw-undo' in rev['tags']:
-            comment = rev['comment'].split('|')
-            p = site.patrol(revid=comment[2])
+            p = site.patrol(revid=rev['revid'])
             next(p)
-	    logging.info('Marking revision revid %s as patrolled', comment[2])
+	    logging.info('Marking revision revid %s as patrolled', rev['revid'])
     except Exception as e:
         logging.exception('Exception occured')
