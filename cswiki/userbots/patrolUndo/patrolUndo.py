@@ -1,23 +1,30 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 # licensed under CC-Zero: https://creativecommons.org/publicdomain/zero/1.0
-
-import pywikibot
-from datetime import timedelta, datetime
 import logging
+import pywikibot
 
-logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolUndo.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
+from datetime import timedelta, datetime
 
-start = datetime.today() - timedelta(minutes=15)
+logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolUndo.log',
+		    level=logging.DEBUG,
+		    format='%(asctime)s %(levelname)s:%(message)s')
+
+args = pywikibot.handle_args()
+
+site = pywikibot.Site()
+
+minutes = int(args[0]) if args and args[0].isdigit() else 15
+
+start = datetime.utcnow() - timedelta(minutes=minutes)
 starttime = start.strftime('%Y%m%d%H%M%S')
 
-site = pywikibot.Site('cs', 'wikipedia')
-
-for rev in site.recentchanges(start=starttime, showBot=False, showPatrolled=True, reverse=True):
+for rev in site.recentchanges(
+        start=starttime, showBot=False, showPatrolled=True, reverse=True,
+        tag='mw-undo'):
     try:
-        if 'mw-undo' in rev['tags']:
-            p = site.patrol(revid=rev['old_revid'])
-            next(p)
-	    logging.info('Marking revision revid %s as patrolled', rev['old_revid'])
+	p = site.patrol(revid=rev.parent_id)
+	next(p)
+	logging.info('Marking revision %s as patrolled', rev.parent_id)
     except Exception as e:
         logging.exception('Exception occured')
