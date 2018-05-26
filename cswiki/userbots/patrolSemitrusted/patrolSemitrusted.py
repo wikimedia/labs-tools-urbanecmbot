@@ -25,7 +25,7 @@ if __name__ == "__main__":
 					users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/users.txt', encoding="utf-8").read().split('\n')
 					if 'revision' in change:
 						if change['user'] in users:
-							logging.info('Making %s as patrolled', change['id'])
+							logging.info('Marking %s as patrolled', change['id'])
 							logging.debug('Revision data=%s', change)
 							list(site.patrol(rcid=change['id']))
 						else:
