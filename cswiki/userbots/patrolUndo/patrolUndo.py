@@ -23,8 +23,8 @@ for rev in site.recentchanges(
         start=starttime, showBot=False, showPatrolled=True, reverse=True,
         tag='mw-undo'):
     try:
-	p = site.patrol(revid=rev.parent_id)
-	next(p)
-	logging.info('Marking revision %s as patrolled', rev.parent_id)
+	p = site.patrol(revid=rev['old_revid'])
+	list(p)
+	logging.info('Marking revision %s as patrolled', rev['old_revid'])
     except Exception as e:
         logging.exception('Exception occured')
