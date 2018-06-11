@@ -20,7 +20,7 @@ if __name__ == "__main__":
 				except ValueError:
 					continue
 				if change['wiki'] == 'cswiki':
-					if 'patrolled' not in change or change['patrolled']:
+					if 'patrolled' not in change or change['patrolled'] or change['length']['old'] == None:
 						continue
 					users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/users.txt', encoding="utf-8").read().split('\n')
 					if 'revision' in change:
