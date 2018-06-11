@@ -26,6 +26,6 @@ for user in users:
 
 for id in ids:
 	try:
-		list(site.patrol(rcid=id))
+		list(site.patrol(rcid=int(id)))
 	except:
 		pass
