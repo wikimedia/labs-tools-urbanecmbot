@@ -10,7 +10,7 @@ import logging
 stream = 'https://stream.wikimedia.org/v2/stream/recentchange'
 
 if __name__ == "__main__":
-	logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolSemitrusted.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
+	logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolTrusted.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
 	try:
 		site = pywikibot.Site()
 		for event in EventSource(stream):
@@ -23,8 +23,8 @@ if __name__ == "__main__":
 					if 'patrolled' not in change or change['patrolled']:
 						continue
 					if 'revision' in change:
-						editpatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/editpatrol.txt', encoding="utf-8").read().split('\n')
-						autopatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/pagepatrol.txt', encoding="utf-8").read().split('\n')
+						editpatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/editpatrol.txt', encoding="utf-8").read().split('\n')
+						autopatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/pagepatrol.txt', encoding="utf-8").read().split('\n')
 						if change['user'] in editpatrol and change['length']['old'] != None:
 							logging.info('Marking %s as patrolled, because it was made by editpatrol', change['id'])
 							list(site.patrol(rcid=change['id']))
