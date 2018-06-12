@@ -20,16 +20,16 @@ if __name__ == "__main__":
 				except ValueError:
 					continue
 				if change['wiki'] == 'cswiki':
-					if 'patrolled' not in change or change['patrolled'] or change['length']['old'] == None:
+					if 'patrolled' not in change or change['patrolled']:
 						continue
-					users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/users.txt', encoding="utf-8").read().split('\n')
 					if 'revision' in change:
-						if change['user'] in users:
-							logging.info('Marking %s as patrolled', change['id'])
-							logging.debug('Revision data=%s', change)
+						editpatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/editpatrol.txt', encoding="utf-8").read().split('\n')
+						autopatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/pagepatrol.txt', encoding="utf-8").read().split('\n')
+						if change['user'] in editpatrol and change['length']['old'] != None:
+							logging.info('Marking %s as patrolled, because it was made by editpatrol', change['id'])
 							list(site.patrol(rcid=change['id']))
-						else:
-							logging.debug('Skipping %s', change['id'])
-							logging.debug('Revision data=%s', change)
+						if change['user'] in autopatrol and change['length']['old'] == None:
+							logging.info('Marking %s as patrolled, because it was made by manual autopatrol', change['id'])
+							list(site.patrol(rcid=change['id']))
 	except Exception as e:
 		logging.exception('Unknown exception occured')
