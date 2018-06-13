@@ -15,7 +15,7 @@ with conn.cursor() as cur:
 	for row in data:
 		ids.append(row[0])
 
-users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/editpatrol.txt', 'r').read().split('\n')
+users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/editpatrol.txt', 'r').read().split('\n')
 for user in users:
 	with conn.cursor() as cur:
 		sql = 'select rc_id from recentchanges where rc_namespace!=8 and rc_patrolled=0 and rc_user_text="%s" and rc_new=0' % user
@@ -24,7 +24,7 @@ for user in users:
 		for row in data:
 			ids.append(row[0])
 
-users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolSemitrusted/pagepatrol.txt', 'r').read().split('\n')
+users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/pagepatrol.txt', 'r').read().split('\n')
 for user in users:
 	with conn.cursor() as cur:
 		sql = 'select rc_id from recentchanges where rc_namespace!=8 and rc_patrolled=0 and rc_user_text="%s"' % user
