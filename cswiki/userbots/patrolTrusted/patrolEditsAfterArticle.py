@@ -44,6 +44,7 @@ if __name__ == "__main__":
 				if change['wiki'] == 'cswiki':
 					if change.get('log_type') == 'patrol' and change['log_params']['previd'] == '0':
 						queue.put(change['log_id'])
+						logging.info('Scheduling log No %s to be examined&patrolled', change['log_id'])
 	except Exception as e:
 		logging.exception('Unknown error occured')
 		queue.put(None)
