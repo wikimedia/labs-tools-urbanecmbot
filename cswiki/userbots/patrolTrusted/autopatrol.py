@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+import logging
 from wmflabs import db
 conn = db.connect('cswiki')
 import pywikibot
 site = pywikibot.Site()
 
+logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAutopatrol.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
 
 ids = []
 with conn.cursor() as cur:
@@ -36,5 +38,6 @@ for user in users:
 for id in ids:
 	try:
 		list(site.patrol(rcid=int(id)))
+		logging.info("Making revision %s as patrolled", id)
 	except:
-		pass
+		logging.exception('Unknown exception occured')
