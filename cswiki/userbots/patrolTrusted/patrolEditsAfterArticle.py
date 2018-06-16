@@ -32,7 +32,6 @@ if __name__ == "__main__":
 	logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAfterPatrol.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
 	queue = Queue()
 	thread = Thread(target=work, args=[queue])
-	thread.daemon = True
 	thread.start()
 	try:
 		for event in EventSource(stream):
