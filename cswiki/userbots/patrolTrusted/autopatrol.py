@@ -2,8 +2,8 @@
 #-*- coding: utf-8 -*-
 
 import logging
-from wmflabs import db
-conn = db.connect('cswiki')
+import toolforge
+conn = toolforge.connect('cswiki')
 import pywikibot
 site = pywikibot.Site()
 
