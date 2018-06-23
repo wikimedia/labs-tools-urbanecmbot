@@ -20,11 +20,11 @@ start = datetime.utcnow() - timedelta(minutes=minutes)
 starttime = start.strftime('%Y%m%d%H%M%S')
 
 for rev in site.recentchanges(
-        start=starttime, showBot=False, showPatrolled=True, reverse=True,
+        start=starttime, showBot=False, showPatrolled=False, reverse=True,
         tag='OAuth CID: 1024'):
     try:
-	p = site.patrol(revid=rev['old_revid'])
+	p = site.patrol(revid=rev['revid'])
 	list(p)
-	logging.info('Marking revision %s as patrolled', rev['old_revid'])
+	logging.info('Marking revision %s as patrolled', rev['revid'])
     except Exception as e:
         logging.exception('Exception occured')
