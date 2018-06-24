@@ -28,14 +28,11 @@ if __name__ == "__main__":
 						if change['user'] in editpatrol and change['length']['old'] != None:
 							logging.info('Marking %s as patrolled, because it was made by editpatrol', change['id'])
 							list(site.patrol(rcid=change['id']))
-							continue
 						if change['user'] in autopatrol and change['length']['old'] == None:
 							logging.info('Marking %s as patrolled, because it was made by manual autopatrol', change['id'])
 							list(site.patrol(rcid=change['id']))
-							continue
 						if change['comment'].startswith('([[:c:GR|GR]])'):
 							logging.info('Marking %s as patrolled, because it is a part of global rename coming from Commons', change['id'])
 							list(site.patrol(rcid=change['id']))
-							continue
 	except Exception as e:
 		logging.exception('Unknown exception occured')
