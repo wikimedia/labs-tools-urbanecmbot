@@ -27,9 +27,9 @@
 # 
 # m h  dom mon dow   command
 MAILTO=martin.urbanec@wikimedia.cz
-0 5 * * * jlocal rm -rf /home/urbanecm/tmp/*
-0 5 * * * jlocal rm -rf /data/project/urbanecmbot/tmp/*
-0 0 * * * jlocal bash /data/project/urbanecmbot/11bots/cron.sh &>> /data/project/urbanecmbot/logs/cron.log
+32 5 * * * jlocal rm -rf /home/urbanecm/tmp/*
+43 5 * * * jlocal rm -rf /data/project/urbanecmbot/tmp/*
+56 20 * * * jlocal bash /data/project/urbanecmbot/11bots/cron.sh &>> /data/project/urbanecmbot/logs/cron.log
 */5 * * * * /usr/bin/jsub -N afdNoticesZlobot -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/afdHelper/zlobot-afd-notices.py
 */5 * * * * /usr/bin/jsub -N cleanSandbox -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/clean_and_patrol.sh
 54 23 * * * /usr/bin/jsub -N standardization -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/standardization/standardization.sh \&\>\> /data/project/urbanecmbot/logs/standardization.log
@@ -50,7 +50,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 7 * * * * /usr/bin/jsub -N trustedPatrolGetUsers -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/getUsers.sh \&\>\> /data/project/urbanecmbot/logs/trustedPatrolGetUsers.log
 */2 * * * * /usr/bin/jsub -N patrolUndo -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
 */2 * * * * /usr/bin/jsub -N patrolDashboard -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
-0 * * * * /usr/bin/jsub -N markStudents -once -quiet python /data/project/urbanecmbot/mark-students/cache.py \&\>\> /data/project/urbanecmbot/logs/markStudents.log
-0 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh \&\>\> /data/project/urbanecmbot/logs/purgeKonecMazani.log
+23 * * * * /usr/bin/jsub -N markStudents -once -quiet python /data/project/urbanecmbot/mark-students/cache.py \&\>\> /data/project/urbanecmbot/logs/markStudents.log
+13 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh \&\>\> /data/project/urbanecmbot/logs/purgeKonecMazani.log
 47 23 * * * /usr/bin/jsub -N emptyTalkpages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyTalkpages/emptyTalkpages.sh \&\>\> /data/project/urbanecmbots/logs/emptyTalkpages.log
 50 23 * * * /usr/bin/jsub -N emptyCoursePages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyCoursePages/emptyCoursePages.sh \&\>\> /data/project/urbanecmbots/logs/emptyCoursePages.log
