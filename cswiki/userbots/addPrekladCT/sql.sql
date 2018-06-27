@@ -14,4 +14,5 @@ and rev_page not in
 (select tl_from from templatelinks where tl_title="Překlad")
 and page_namespace=0
 and rev_parent_id=0
-and rev_page not in (select tl_from from templatelinks where tl_title like "Rozcestník%");
+and rev_page not in (select tl_from from templatelinks where tl_title like "Rozcestník%")
+and page_is_redirect=0;
