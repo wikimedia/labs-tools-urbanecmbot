@@ -41,4 +41,7 @@ for row in data:
 		page.text = textlib.replaceExcept(page.text, r'(?i)\s*\[\[Kategorie:([^\]]*)\]\]', r'\n\n== Reference ==\n' + row[1].decode('utf-8') + r'\n\n[[Kategorie:\1]]', exceptions, count=1)
 	else:
 		page.text = page.text + '\n\n== Reference ==\n' + row[1].decode('utf-8')
-	page.save('Robot: Přidání šablony Překlad')
+	try:
+		page.save('Robot: Přidání šablony Překlad')
+	except:
+		pass
