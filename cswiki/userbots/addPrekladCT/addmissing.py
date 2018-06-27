@@ -24,7 +24,9 @@ with conn.cursor() as cur:
 	data = cur.fetchall()
 
 for row in data:
-	if row[0] in not_edit: continue # Skip page if in exeptions
+	if row[0].decode('utf-8') in not_edit:
+		print('Skipping %s' % row[0].decode('utf-8'))
+		continue # Skip page if in exeptions
 	page = pywikibot.Page(site, row[0].decode('utf-8'))
 	if '{{překlad' in page.text.lower(): continue # Skip page if contain translation template
 	if re.search(r'(?i)== *Reference *==', page.text):
