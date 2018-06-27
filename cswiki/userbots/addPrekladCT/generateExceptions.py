@@ -9,4 +9,4 @@ definition = pywikibot.Page(site, u'Wikipedista:UrbanecmBot/Nepřidávat šablon
 exceptions = definition.linkedPages()
 
 for page in exceptions:
-	print page.title().replace(u' ', u'_')
+	print(page.title().replace(u' ', u'_'))
