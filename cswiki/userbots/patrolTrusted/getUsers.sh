@@ -1,3 +1,2 @@
 #!/bin/bash
-source ~/11bots/cswiki/userbots/patrolTrusted/venv/bin/activate
-python ~/11bots/cswiki/userbots/patrolTrusted/getUsers.py
+curl 'https://cs.wikipedia.org/wiki/Wikipedista:UrbanecmBot/EditPatrol?action=raw' > /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/editpatrol.txt
