@@ -36,7 +36,7 @@ for row in data:
 						if param_name == param.name.strip():
 							to_merge.append(str(param.value))
 							template.remove(param.name)
-				if len(to_merge) != 0:
+				if to_merge:
 					template.add(param_to_merge['order'][0], param_to_merge['delimiter'].join(to_merge))
 	page.text = str(code)
 
