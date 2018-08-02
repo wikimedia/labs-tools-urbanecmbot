@@ -34,5 +34,8 @@ if __name__ == "__main__":
 						if change['comment'].startswith('([[:c:GR|GR]])'):
 							logging.info('Marking %s as patrolled, because it is a part of global rename coming from Commons', change['id'])
 							list(site.patrol(rcid=change['id']))
+						if '([[Commons:Commons:GlobalReplace|' in change['comment']:
+							logging.info('Marking %s as patrolled, because it is a part of global replace coming from Commons user', change['id'])
+							list(site.patrol(rcid=change['id']))
 	except Exception as e:
 		logging.exception('Unknown exception occured')
