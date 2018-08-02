@@ -35,6 +35,18 @@ for user in users:
 		for row in data:
 			ids.append(row[0])
 
+with conn.cursor() as cur:
+	cur.execute('select rc_id from recentchanges where rc_comment like "%([[:c:GR|GR]])" and rc_patrolled=0;')
+	data = cur.fetchall()
+	for row in data:
+		ids.append(row[0])
+
+with conn.cursor() as cur:
+	cur.execute('select rc_id from recentchanges where rc_comment like "%GlobalReplace v0.6.5%" and rc_patrolled=0;')
+	data = cur.fetchall()
+	for row in data:
+		ids.append(row[0])
+
 for id in ids:
 	try:
 		list(site.patrol(rcid=int(id)))
