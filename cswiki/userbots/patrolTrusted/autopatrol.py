@@ -7,7 +7,7 @@ conn = toolforge.connect('cswiki')
 import pywikibot
 site = pywikibot.Site()
 
-logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAutopatrol.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
+logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAutopatrol.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
 
 ids = []
 with conn.cursor() as cur:

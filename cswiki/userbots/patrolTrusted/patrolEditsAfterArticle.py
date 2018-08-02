@@ -11,7 +11,7 @@ import toolforge
 stream = 'https://stream.wikimedia.org/v2/stream/recentchange'
 
 if __name__ == "__main__":
-	logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAfterPatrol.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s:%(message)s')
+	logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAfterPatrol.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
 	try:
 		site = pywikibot.Site()
 		for event in EventSource(stream):
