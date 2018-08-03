@@ -21,6 +21,6 @@ for row in data:
 	res += rowres + '\n'
 
 
-page = pywikibot.Page(site, u"Wikipedie:Seznam nejvíce odkazovaných rozcestníků/Odkazy")
+page = pywikibot.Page(site, u"Wikipedie:Údržbové seznamy/Nejvíce odkazované rozcestníky/seznam")
 page.text = res
 page.save(u'Robot: Aktualizace seznamu nejodkazovanějších rozcestníků')
