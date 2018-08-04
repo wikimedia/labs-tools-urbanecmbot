@@ -10,7 +10,7 @@ import mwparserfromhell
 site = pywikibot.Site()
 conn = toolforge.connect('cswiki')
 
-templates = json.loads(pywikibot.Page(site, "Wikipedista:UrbanecmBot/Citační šablony.json").text)
+templates = json.loads(pywikibot.Page(site, "Wikipedie:Citace/Anglické citační šablony.json").text)
 
 template_names = []
 template_names_query = []
