@@ -40,8 +40,9 @@ MAILTO=martin.urbanec@wikimedia.cz
 26 3 * * * /usr/bin/jsub -N badprotecttemplates -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/badProtectTemplates/badprotecttemplates.sh \&\>\> /data/project/urbanecmbot/logs/badProtectTemplates.log
 54 14 * * * /usr/bin/jsub -N ukolyAddPriority -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/addPriority.py \&\>\> /data/project/urbanecmbot/logs/ukolyAddPriority.log
 3 6 * * * /usr/bin/jsub -N ukolyBezPodstranky -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/bezPodstranky.py \&\>\> /data/project/urbanecmbot/logs/ukolyBezPodstranky.log
-42 16 * * * /usr/bin/jsub -N mostLinkedDisambigs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py \&\>\> /data/project/urbanecmbot/logs/mostLinkedDisambigs.log
 14 12 * * * /usr/bin/jsub -N newArticlesPortals -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/newarticlesPortals/newArticlesPortals.py \&\>\> /data/project/urbanecmbot/logs/newArticlesPortals.log
+42 16 * * * /usr/bin/jsub -N mostLinkedDisambigs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py \&\>\> /data/project/urbanecmbot/logs/mostLinkedDisambigs.log
+42 16 1 * * /usr/bin/jsub -N mostLinkedRedirs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedRedirs/mostLinkedRedirs.py \&\>\> /data/project/urbanecmbot/logs/mostLinkedRedirs.log
 14 22 * * 1 /usr/bin/jsub -N archivePagres -once -quiet python /shared/pywikipedia/core/scripts/archivebot.py Archivace \&\>\> /data/project/urbanecmbot/logs/archivePages.log
 18 23 * * 1 /usr/bin/jsub -N didYouknow -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/didYouKnow/did_you_know.py -current \&\>\> /data/project/urbanecmbot/logs/did_you_know.log
 0 0 * * * /usr/bin/jsub -N autoprotectDaily -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/daily.sh \&\>\> /data/project/urbanecmbot/logs/autoprotectDaily.log
