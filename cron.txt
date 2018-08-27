@@ -57,3 +57,4 @@ MAILTO=martin.urbanec@wikimedia.cz
 13 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh \&\>\> /data/project/urbanecmbot/logs/purgeKonecMazani.log
 47 23 * * * /usr/bin/jsub -N emptyTalkpages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyTalkpages/emptyTalkpages.sh \&\>\> /data/project/urbanecmbots/logs/emptyTalkpages.log
 50 23 * * * /usr/bin/jsub -N emptyCoursePages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyCoursePages/emptyCoursePages.sh \&\>\> /data/project/urbanecmbots/logs/emptyCoursePages.log
+40 14 * * * /usr/bin/jsub -N faDeadlink -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/faDeadlink/faDeadlink.sh \&\>\> /data/project/urbanecmbots/logs/faDeadlink.log
