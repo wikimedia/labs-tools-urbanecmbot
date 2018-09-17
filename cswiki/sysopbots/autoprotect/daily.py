@@ -25,4 +25,5 @@ day = d.day
 month = monthword[d.month]
 page_title = u"Wikipedie:Vybraná výročí dne/%d. %s" % (day, month)
 page = pywikibot.Page(site, page_title)
-page.protect(reason='automatizovany zamek neceho dne', protections={'edit': 'autoconfirmed', 'move': 'sysop'}, expiry="26 hours")
+if page.exists():
+	page.protect(reason='automatizovany zamek neceho dne', protections={'edit': 'autoconfirmed', 'move': 'sysop'}, expiry="26 hours")
