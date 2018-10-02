@@ -28,8 +28,10 @@ def get_listed_afd(site):
 def get_unclosed_afd(site):
     out = []
     for subpage in site.allpages(namespace=4, prefix="Diskuse o smazání/"):
+        if subpage.isRedirectPage():
+            continue
         close = RE_CLOSE.search(subpage.get())
-        if close.group('custom') != "uzavřeno":
+        if close.group('custom') != u"uzavřeno":
             out.append(subpage.title())
     return out
 
