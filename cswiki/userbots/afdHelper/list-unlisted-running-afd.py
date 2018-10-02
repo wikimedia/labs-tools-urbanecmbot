@@ -31,6 +31,8 @@ def get_unclosed_afd(site):
         if subpage.isRedirectPage():
             continue
         close = RE_CLOSE.search(subpage.get())
+        if close is None:
+            continue
         if close.group('custom') != u"uzavřeno":
             out.append(subpage.title())
     return out
