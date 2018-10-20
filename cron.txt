@@ -33,7 +33,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 */5 * * * * /usr/bin/jsub -N afdNoticesZlobot -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/afdHelper/zlobot-afd-notices.py
 */5 * * * * /usr/bin/jsub -N cleanSandbox -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/clean_and_patrol.sh
 54 23 * * * /usr/bin/jsub -N standardization -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/standardization/standardization.sh \&\>\> /data/project/urbanecmbot/logs/standardization.log
-54 9 * * * /usr/bin/jsub -N exportWD -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.py \&\>\> /data/project/urbanecmbot/logs/exportWD.log
+54 9 * * * /usr/bin/jsub -N exportWD -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.sh \&\>\> /data/project/urbanecmbot/logs/exportWD.log
 14 12 * * * /usr/bin/jsub -N addPrekladCT -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/addPrekladCT/run.sh \&\>\> /data/project/urbanecmbot/logs/addPrekladCT.log
 6 3 * * * /usr/bin/jsub -N wikidataCoorImport -once -quiet bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/wikidataCoorImport/run.sh \&\>\> /data/project/urbanecmbot/logs/wikidataCoorImport.log
 59 8 * * * /usr/bin/jsub -N relikty -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/relikty/deletethem.sh \&\>\> /data/project/urbanecmbot/logs/relikty.log

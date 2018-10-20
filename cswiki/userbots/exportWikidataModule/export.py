@@ -2,17 +2,17 @@
 #-*- coding: utf-8 -*-
 
 import pywikibot
-from wmflabs import db
+import toolforge
 
 # Connect to database
-conn = db.connect('cswiki')
+conn = toolforge.connect('cswiki')
 
 # Get all relevant page titles from the database
 cur = conn.cursor()
 with cur:
-	sql = 'select page_title from page where page_namespace=828 and page_title like "Wikidata/%" and page_title not like "%/testcases%" and page_title not like "%/Dokumentace%" and page_title not like "%/sandbox%" and page_title!="Wikidata/";'
-	cur.execute(sql)
-	data = cur.fetchall()
+    sql = 'select page_title from page where page_namespace=828 and page_title like "Wikidata/%" and page_title not like "%/testcases%" and page_title not like "%/sandbox%" and page_title!="Wikidata/";'
+    cur.execute(sql)
+    data = cur.fetchall()
 
 # Create site objects
 siteour = pywikibot.Site()
@@ -29,9 +29,12 @@ pageforegin.save(summary)
 
 # Export all other Modul:Wikidata subpages
 for row in data:
-	pagetitle = 'Modul:' + row[0]
-	pageour = pywikibot.Page(siteour, pagetitle)
-	pageforegin = pywikibot.Page(siteforegin, pagetitle)
-	newtext = '-- Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii. \n\n' + pageour.text
-	pageforegin.text = newtext
-	pageforegin.save(summary)
+    pagetitle = 'Modul:' + row[0].decode('utf-8')
+    pageour = pywikibot.Page(siteour, pagetitle)
+    pageforegin = pywikibot.Page(siteforegin, pagetitle)
+    if "Dokumentace" in pagetitle:
+        newtext = "Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii.\n\n" + pageour.text.replace('[[', '[[:w:cs:')
+    else:
+        newtext = '-- Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii. \n\n' + pageour.text
+    pageforegin.text = newtext
+    pageforegin.save(summary)
