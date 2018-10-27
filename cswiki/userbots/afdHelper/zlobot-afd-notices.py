@@ -10,7 +10,8 @@ import logging
 logger = logging.getLogger("pywiki")
 logger.setLevel(logging.WARNING)
 
-AFD = u'Wikipedie:Diskuse o smazání'
+AFD_PREFIX = u'Wikipedie:Diskuse o smazání'
+AFD_LIST = u'Wikipedie:Diskuse o smazání/seznam'
 RE_SECTION = re.compile(r'^==[^=\n]+(|.*[^=\n]+)==\s*$', re.MULTILINE)
 RE_SUBPAGE = re.compile(r'\{\{/(?P<subpage>[^\}\n]+)\}\}')
 #RE_LINK = re.compile(r'\[\[(?P<link>[^\]\n\|]+)(\|[^\]\n]+)?\]\]')
@@ -18,12 +19,12 @@ RE_SINCE = re.compile(r'^;\s*Diskus.{0,2}otev.{0,20}:\s*\n:.*\s+(?P<date>\d{1,2}
 RE_CLOSE = re.compile(r'^;\s*Uzav.{1,3}en.{1,3} diskuse:\s*\n:\s*(?:(?P<default>standardn.{1,3}: t.{1,3}den po zah.{1,3}jen.{1,3}))|(?:.*<!--\s*(?P<custom>.*\S)\s*-->)', re.MULTILINE)
 
 def get_afd_candidates(site):
-	afd = pywikibot.Page(site, AFD)
+	afd = pywikibot.Page(site, AFD_LIST)
 	last_section = re.split(RE_SECTION, afd.get())[-1]
 	out = []
 	for candidate in RE_SUBPAGE.finditer(last_section):
 		subpage_name = candidate.group('subpage')
-		subpage = pywikibot.Page(site, u'%s/%s' % (AFD, subpage_name))
+		subpage = pywikibot.Page(site, u'%s/%s' % (AFD_PREFIX, subpage_name))
 		since = RE_SINCE.search(subpage.get())
 		close = RE_CLOSE.search(subpage.get())
 		
@@ -45,7 +46,7 @@ def get_afd_candidates(site):
 				close_text = u'do&nbsp;%d.&nbsp;%d.' % (close_ts.day, close_ts.month)
 		
 		out.append({
-			'AFD': AFD,
+			'AFD': AFD_PREFIX,
 			'subpage_name': subpage_name,
 			'close': close_text,
 		})
