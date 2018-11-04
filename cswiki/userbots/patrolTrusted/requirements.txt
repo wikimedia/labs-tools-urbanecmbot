@@ -1,8 +1,12 @@
-certifi==2018.4.16
+PyMySQL==0.8.1
+certifi==2018.10.15
 chardet==3.0.4
 idna==2.7
+oauthlib==2.1.0
 pywikibot==3.0.20180612.dev0
-requests==2.19.0
+requests==2.20.0
+requests-oauthlib==1.0.0
 six==1.11.0
 sseclient==0.0.19
-urllib3==1.23
+toolforge==4.1.0
+urllib3==1.24.1
