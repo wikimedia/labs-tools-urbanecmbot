@@ -59,6 +59,6 @@ MAILTO=martin.urbanec@wikimedia.cz
 40 14 * * * /usr/bin/jsub -N faDeadlink -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/faDeadlink/faDeadlink.sh \&\>\> /data/project/urbanecmbot/logs/faDeadlink.log
 
 # Ensure continuous jobs are running
-*/5 * * * * /data/project/urbanecmbot/11bots/bigbrother.sh patrolTrusted /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolTrusted.sh
-*/5 * * * * /data/project/urbanecmbot/11bots/bigbrother.sh patrolAfterPatrol /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolEditsAfterArticle.sh
-*/5 * * * * /data/project/urbanecmbot/11bots/bigbrother.sh patrolSandbox /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolSandbox.sh
+*/5 * * * * jlocal /data/project/urbanecmbot/11bots/bigbrother.sh patrolTrusted /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolTrusted.sh
+*/5 * * * * jlocal /data/project/urbanecmbot/11bots/bigbrother.sh patrolAfterPatrol /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolEditsAfterArticle.sh
+*/5 * * * * jlocal /data/project/urbanecmbot/11bots/bigbrother.sh patrolSandbox /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolSandbox.sh
