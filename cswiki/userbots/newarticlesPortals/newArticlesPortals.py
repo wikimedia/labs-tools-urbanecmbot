@@ -19,6 +19,10 @@ EXCEPTIONS = {
 BASEURL = 'https://petscan.wmflabs.org/'
 BASESQL = 'select left(rev_timestamp, 8) from revision where rev_page in (select page_id from page where page_title="@@TITLE@@" and page_namespace=0) and rev_parent_id=0;'
 
+BEFORE_DAYS = 30
+
+AFTER_DATE = (datetime.date.today() - datetime.timedelta(days=BEFORE_DAYS)).strftime('%Y%m%d')
+
 # Code
 conn = db.connect('cswiki')
 site = pywikibot.Site()
@@ -31,7 +35,7 @@ for portal in PORTALS:
 		'depth': DEPTH,
 		'categories': category,
 		'ns[0]': 1,
-		'after': 20171210,
+		'after': AFTER_DATE,
 		'only_new': 'on',
 		'show_redirects': 'no',
 		'interface_language': 'en',
