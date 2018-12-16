@@ -21,7 +21,7 @@ function log {
 }
 
 function restart_needed {
-  if ! /usr/bin/qstat | cut -d' ' -f3 | grep "${JOBNAME:0:10}" >/dev/null 2>&1; then
+  if ! /usr/bin/qstat | awk '{ print $3 }' | grep "${JOBNAME:0:10}" >/dev/null 2>&1; then
     return 0
   else
     return 1
