@@ -4,8 +4,8 @@
 import pywikibot
 import re
 site = pywikibot.Site()
-from wmflabs import db
-conn = db.connect('cswiki')
+import toolforge
+conn = toolforge.connect('cswiki', cluster='analytics')
 
 cur = conn.cursor()
 with cur:

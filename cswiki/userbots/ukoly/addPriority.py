@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import re
-from wmflabs import db
+import toolforge
 import pywikibot
 site = pywikibot.Site()
-conn = db.connect('cswiki')
+conn = toolforge.connect('cswiki', cluster='analytics')
 
 def getPriority(links):
 	if links >= 500:
@@ -36,11 +36,11 @@ with cur:
 for row in data:
 	cur = conn.cursor()
 	with cur:
-		sql = 'select count(*) from pagelinks where pl_title="' + row[0] + '"'
+		sql = 'select count(*) from pagelinks where pl_title="' + row[0].decode('utf-8') + '"'
 		cur.execute(sql)
 		links = cur.fetchall()[0][0]
 	priority = getPriority(links)
 	page = pywikibot.Page(site, row[0].decode('utf-8'), ns=int(row[1]))
-	text = page.text.encode('utf-8')
-	page.text = re.sub(r'{{Úkoly}}', '{{Úkoly|' + str(priority) + '}}', text, flags=re.IGNORECASE).decode('utf-8')
+	text = page.text
+	page.text = re.sub(r'{{Úkoly}}', '{{Úkoly|' + str(priority) + '}}', text, flags=re.IGNORECASE)
 	page.save('Robot: Doplnění priority k šabloně úkoly')
