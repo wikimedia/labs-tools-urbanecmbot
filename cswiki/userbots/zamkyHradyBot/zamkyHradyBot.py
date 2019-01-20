@@ -1,15 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf 8')
 import pywikibot
 site = pywikibot.Site()
-from wmflabs import db
-conn = db.connect('cswiki')
+import toolforge
+conn = toolforge.connect('cswiki', cluster='analytics')
 
-words = [u'zámek', u'hrad']
+words = ['zámek', 'hrad']
 for word in words:
 	firstupperword = word[0].upper() + word[1:]
 	cur = conn.cursor()
@@ -18,6 +15,6 @@ for word in words:
 		cur.execute(sql)
 		data = cur.fetchall()
 	for row in data:
-		page = pywikibot.Page(site, row[1])
-		page.text = u"#REDIRECT [[@@TARGET@@]]".replace(u'@@TARGET@@', row[0].replace('_', ' '))
-		page.save(u'Robot: Založení přesměrování z dalšího standardního tvaru')
+		page = pywikibot.Page(site, row[1].decode('utf-8'))
+		page.text = "#REDIRECT [[@@TARGET@@]]".replace('@@TARGET@@', row[0].decode('utf-8').replace('_', ' '))
+		page.save('Robot: Založení přesměrování z dalšího standardního tvaru')
