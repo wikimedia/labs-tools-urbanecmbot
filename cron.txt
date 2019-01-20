@@ -32,32 +32,32 @@ MAILTO=martin.urbanec@wikimedia.cz
 56 20 * * * jlocal bash /data/project/urbanecmbot/11bots/cron.sh &>> /data/project/urbanecmbot/logs/cron.log
 */5 * * * * /usr/bin/jsub -N afdNoticesZlobot -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/afdHelper/zlobot-afd-notices.py
 */5 * * * * /usr/bin/jsub -N cleanSandbox -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/clean_and_patrol.sh
-54 23 * * * /usr/bin/jsub -N standardization -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/standardization/standardization.sh \&\>\> /data/project/urbanecmbot/logs/standardization.log
-54 9 * * * /usr/bin/jsub -N exportWD -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.sh \&\>\> /data/project/urbanecmbot/logs/exportWD.log
-14 12 * * * /usr/bin/jsub -N addPrekladCT -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/addPrekladCT/run.sh \&\>\> /data/project/urbanecmbot/logs/addPrekladCT.log
-6 3 * * * /usr/bin/jsub -N wikidataCoorImport -once -quiet bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/wikidataCoorImport/run.sh \&\>\> /data/project/urbanecmbot/logs/wikidataCoorImport.log
-59 8 * * * /usr/bin/jsub -N relikty -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/relikty/deletethem.sh \&\>\> /data/project/urbanecmbot/logs/relikty.log
-26 3 * * * /usr/bin/jsub -N badprotecttemplates -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/badProtectTemplates/badprotecttemplates.sh \&\>\> /data/project/urbanecmbot/logs/badProtectTemplates.log
-54 14 * * * /usr/bin/jsub -N ukolyAddPriority -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/addPriority.sh \&\>\> /data/project/urbanecmbot/logs/ukolyAddPriority.log
-3 6 * * * /usr/bin/jsub -N ukolyBezPodstranky -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/bezPodstranky.sh \&\>\> /data/project/urbanecmbot/logs/ukolyBezPodstranky.log
-14 12 * * * /usr/bin/jsub -N newArticlesPortals -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/newarticlesPortals/newArticlesPortals.py \&\>\> /data/project/urbanecmbot/logs/newArticlesPortals.log
-42 16 * * * /usr/bin/jsub -N mostLinkedDisambigs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py \&\>\> /data/project/urbanecmbot/logs/mostLinkedDisambigs.log
-42 16 1 * * /usr/bin/jsub -N mostLinkedRedirs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedRedirs/mostLinkedRedirs.py \&\>\> /data/project/urbanecmbot/logs/mostLinkedRedirs.log
-14 22 * * 1 /usr/bin/jsub -N archivePagres -once -quiet python3 /shared/pywikipedia/core/scripts/archivebot.py Archivace \&\>\> /data/project/urbanecmbot/logs/archivePages.log
-18 23 * * 1 /usr/bin/jsub -N didYouknow -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/didYouKnow/did_you_know.py -current \&\>\> /data/project/urbanecmbot/logs/did_you_know.log
-0 0 * * * /usr/bin/jsub -N autoprotectDaily -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/daily.sh \&\>\> /data/project/urbanecmbot/logs/autoprotectDaily.log
-0 0 * * 1 /usr/bin/jsub -N autoprotectWeekly -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/weekly.sh \&\>\> /data/project/urbanecmbot/logs/autoprotectWeekly.log
-13 2 * * * /usr/bin/jsub -N patrolAutopatrolled -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/autopatrol.sh \&\>\> /data/project/urbanecmbot/logs/patrolAutopatrolled.log
-7 * * * * /usr/bin/jsub -N trustedPatrolGetUsers -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/getUsers.sh \&\>\> /data/project/urbanecmbot/logs/trustedPatrolGetUsers.log
+54 23 * * * /usr/bin/jsub -N standardization -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/standardization/standardization.sh
+54 9 * * * /usr/bin/jsub -N exportWD -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.sh
+14 12 * * * /usr/bin/jsub -N addPrekladCT -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/addPrekladCT/run.sh
+6 3 * * * /usr/bin/jsub -N wikidataCoorImport -once -quiet bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/wikidataCoorImport/run.sh
+59 8 * * * /usr/bin/jsub -N relikty -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/relikty/deletethem.sh
+26 3 * * * /usr/bin/jsub -N badprotecttemplates -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/badProtectTemplates/badprotecttemplates.sh
+54 14 * * * /usr/bin/jsub -N ukolyAddPriority -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/addPriority.sh
+3 6 * * * /usr/bin/jsub -N ukolyBezPodstranky -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/bezPodstranky.sh
+14 12 * * * /usr/bin/jsub -N newArticlesPortals -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/newarticlesPortals/newArticlesPortals.py
+42 16 * * * /usr/bin/jsub -N mostLinkedDisambigs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py
+42 16 1 * * /usr/bin/jsub -N mostLinkedRedirs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedRedirs/mostLinkedRedirs.py
+14 22 * * 1 /usr/bin/jsub -N archivePagres -once -quiet python3 /shared/pywikipedia/core/scripts/archivebot.py Archivace
+18 23 * * 1 /usr/bin/jsub -N didYouknow -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/didYouKnow/did_you_know.py -current
+0 0 * * * /usr/bin/jsub -N autoprotectDaily -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/daily.sh
+0 0 * * 1 /usr/bin/jsub -N autoprotectWeekly -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/weekly.sh
+13 2 * * * /usr/bin/jsub -N patrolAutopatrolled -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/autopatrol.sh
+7 * * * * /usr/bin/jsub -N trustedPatrolGetUsers -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/getUsers.sh
 */3 * * * * /usr/bin/jsub -N patrolUndo -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
 */3 * * * * /usr/bin/jsub -N patrolRollback -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolRollback.py
 */3 * * * * /usr/bin/jsub -N patrolDashboard -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
-23 * * * * /usr/bin/jsub -N markStudents -once -quiet python /data/project/urbanecmbot/mark-students/cache.py \&\>\> /data/project/urbanecmbot/logs/markStudents.log
-13 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh \&\>\> /data/project/urbanecmbot/logs/purgeKonecMazani.log
-47 23 * * * /usr/bin/jsub -N emptyTalkpages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyTalkpages/emptyTalkpages.sh \&\>\> /data/project/urbanecmbots/logs/emptyTalkpages.log
-50 23 * * * /usr/bin/jsub -N emptyCoursePages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyCoursePages/emptyCoursePages.sh \&\>\> /data/project/urbanecmbots/logs/emptyCoursePages.log
-40 14 * * * /usr/bin/jsub -N faDeadlink -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/faDeadlink/faDeadlink.sh \&\>\> /data/project/urbanecmbot/logs/faDeadlink.log
-57 13 * * * /usr/bin/jsub -N senioriArticles -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/senioriArticles/senioriArticles.sh \&\>\> /data/project/urbanecmbot/logs/senioriArticles.log
+23 * * * * /usr/bin/jsub -N markStudents -once -quiet python /data/project/urbanecmbot/mark-students/cache.py
+13 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh
+47 23 * * * /usr/bin/jsub -N emptyTalkpages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyTalkpages/emptyTalkpages.sh
+50 23 * * * /usr/bin/jsub -N emptyCoursePages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/emptyCoursePages/emptyCoursePages.sh
+40 14 * * * /usr/bin/jsub -N faDeadlink -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/faDeadlink/faDeadlink.sh
+57 13 * * * /usr/bin/jsub -N senioriArticles -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/senioriArticles/senioriArticles.sh
 17 8 * * * /usr/bin/jsub -N zamkyHradyBot -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/zamkyHradyBot/zamkyHradyBot.sh
 17 9 * * * /usr/bin/jsub -N neklavesoveZnakyBot -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/neklavesoveZnakyBot/neklavesoveZnakyBot.sh
 
