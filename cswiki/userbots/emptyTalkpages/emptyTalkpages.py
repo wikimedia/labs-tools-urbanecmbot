@@ -16,4 +16,5 @@ exceptions = pywikibot.Page(site, "User:UrbanecmBot/Záměrně prázdné diskusn
 for row in data:
 	page = pywikibot.Page(site, row[0].decode('utf-8'), ns=row[1])
 	if page.title() in exceptions: continue
+	if not page.exists(): continue
 	page.delete("prázdná diskusní stránka", mark=True)

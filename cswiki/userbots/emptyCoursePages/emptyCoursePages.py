@@ -13,4 +13,5 @@ with conn.cursor() as cur:
 
 for row in data:
 	page = pywikibot.Page(site, row[0].decode('utf-8'), ns=4)
+	if not page.exists(): continue
 	page.delete("prázdná stránka kurzu, kurz byl smazán na nástěnce", mark=True)
