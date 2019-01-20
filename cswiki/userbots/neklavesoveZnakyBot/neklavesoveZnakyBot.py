@@ -2,8 +2,11 @@
 #-*- coding: utf-8 -*-
 
 import os
-from wmflabs import db
-conn = db.connect('cswiki')
+import pywikibot
+import toolforge
+
+conn = toolforge.connect('cswiki', cluster='analytics')
+site = pywikibot.Site()
 
 chars = {'—': '-', '…': '...'}
 #Generate SQLs
@@ -21,14 +24,8 @@ for sql in sqls:
 	for row in d:
 		data.append(row)
 
-#Create file with cmds
-f = open("/tmp/pywikibotToCreate_Urbanecm.txt", 'w')
+# Create the redirects
 for row in data:
-	f.write('{{-start-}}\n')
-	f.write("'''" + row[0] + "'''\n")
-	f.write('#REDIRECT [[' + row[1] + ']]\n')
-	f.write('{{-stop-}}\n\n')
-f.close()
-
-print "python ~/pwb/scripts/pagefromfile.py -notitle -file:'/tmp/pywikibotToCreate_Urbanecm.txt' -summary:'Robot: Přidání redirectu'"
-print "rm /tmp/pywikibotToCreate_Urbanecm.txt"
+	page = pywikibot.Page(site, row[0].decode('utf-8'))
+	page.text = '#REDIRECT [[' + row[1].decode('utf-8') + ']]'
+	page.save('Robot: Přidání přesměrování')
