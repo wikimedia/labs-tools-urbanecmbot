@@ -11,7 +11,7 @@ for word in words:
 	firstupperword = word[0].upper() + word[1:]
 	cur = conn.cursor()
 	with cur:
-		sql = 'select page_title, concat("' + word + '_", replace(page_title, "_(' + word + ')", "")) from page where page_title like "%_(' + word + ')" and concat("' + firstupperword + '_", replace(page_title, "_(' + word + ')", "")) not in (select page_title from page) and page_is_redirect=0;'
+		sql = 'select page_title, concat("' + word + '_", replace(page_title, "_(' + word + ')", "")) from page where page_title like "%_(' + word + ')" and concat("' + firstupperword + '_", replace(page_title, "_(' + word + ')", "")) not in (select page_title from page) and page_is_redirect=0 and page_namespace=0;'
 		cur.execute(sql)
 		data = cur.fetchall()
 	for row in data:
