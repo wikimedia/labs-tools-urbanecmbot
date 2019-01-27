@@ -6,7 +6,7 @@ site = pywikibot.Site()
 import toolforge
 conn = toolforge.connect('cswiki', cluster='analytics')
 
-words = ['zámek', 'hrad']
+words = ['zámek', 'hrad', 'tvrz']
 for word in words:
 	firstupperword = word[0].upper() + word[1:]
 	cur = conn.cursor()
