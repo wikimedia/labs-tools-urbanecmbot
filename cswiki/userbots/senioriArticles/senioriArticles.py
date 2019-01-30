@@ -20,7 +20,8 @@ for campaign in campaigns:
     tree = html.fromstring(r.content)
     users_ = tree.xpath('//*[@id="users"]/table/tbody/tr/td/a/text()')
     for user in users_:
-        users.append('"' + user.encode('latin1').decode('utf8') + '"')
+        if user not in ('Gampe', 'Vojtěch Veselý', 'Frettie', 'Gabriela Boková (WMCZ)'):
+            users.append('"' + user.encode('latin1').decode('utf8') + '"')
 
 
 conn = toolforge.connect('cswiki')
