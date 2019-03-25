@@ -33,5 +33,5 @@ for row in data:
 	if text.strip() == '':
 		page.delete(reason=u"Robot: Úkoly vyřešeny", mark=True)
 	else:
-		page.text = text.decode('utf-8')
-		page.save('Robot: Odebrání šablony úkoly')
+		page.text = text
+		page.save('Robot: Odebrání šablony úkoly', force=True)
