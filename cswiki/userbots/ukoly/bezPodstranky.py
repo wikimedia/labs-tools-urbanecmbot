@@ -16,6 +16,8 @@ with cur:
 
 for row in data:
 	page = pywikibot.Page(site, row[0].decode('utf-8'), ns=row[1])
+	if not page.exists():
+		continue
 	text = page.text
 	text = re.sub(r'{{Úkoly\|?[\d]*}}', '', text, flags=re.IGNORECASE)
 	if text.strip() == '':
