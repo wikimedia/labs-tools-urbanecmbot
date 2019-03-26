@@ -23,6 +23,7 @@ if __name__ == "__main__":
 				if change['wiki'] == 'cswiki':
 					if 'log_type' not in change: continue
 					if change['log_type'] == "patrol" and change["log_params"]["previd"] == "0":
+						logging.info("Processing patrol action id %s", change['log_id'])
 						conn = toolforge.connect('cswiki', cluster='analytics')
 						with conn.cursor() as cur:
 							cur.execute('select rc_id from recentchanges join revision on rev_id=rc_this_oldid where rev_page=(select log_page from logging where log_id=%s) and rc_patrolled=0 and rc_new=0;', change['log_id'])

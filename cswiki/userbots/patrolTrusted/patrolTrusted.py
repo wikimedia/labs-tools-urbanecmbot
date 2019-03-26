@@ -23,6 +23,7 @@ if __name__ == "__main__":
 					if 'patrolled' not in change or change['patrolled']:
 						continue
 					if 'revision' in change:
+						logging.info("Processing change %s", json.dumps(change))
 						editpatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/editpatrol.txt', encoding="utf-8").read().split('\n')
 						autopatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/pagepatrol.txt', encoding="utf-8").read().split('\n')
 						if change['user'] in editpatrol and change['length']['old'] != None:

@@ -21,6 +21,7 @@ if __name__ == "__main__":
 				except ValueError:
 					continue
 				if change['wiki'] == 'cswiki' and 'revision' in change and not change['patrolled']:
+					logging.info("Processing change %s", json.dumps(change))
 					if change["title"].startswith("Wikipedista:%s" % change['user']) and change['length']['old'] != None:
 						logging.info('Marking %s as patrolled, because it was made in personal user space', change['id'])
 						list(site.patrol(rcid=change['id']))
