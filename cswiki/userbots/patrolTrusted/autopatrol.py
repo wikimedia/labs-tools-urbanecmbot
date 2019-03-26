@@ -36,13 +36,13 @@ for user in users:
 			ids.append(row[0])
 
 with conn.cursor() as cur:
-	cur.execute('select rc_id from recentchanges where rc_comment like "%([[:c:GR|GR]])" and rc_patrolled=0;')
+	cur.execute('select rc_id from recentchanges join comment on comment_id=rc_comment_id where comment_text like "%([[:c:GR|GR]])" and rc_patrolled=0;')
 	data = cur.fetchall()
 	for row in data:
 		ids.append(row[0])
 
 with conn.cursor() as cur:
-	cur.execute('select rc_id from recentchanges where rc_comment like "%GlobalReplace v0.6.5%" and rc_patrolled=0;')
+	cur.execute('select rc_id from recentchanges join comment on comment_id=rc_comment_id where comment_text like "%GlobalReplace v0.6.5%" and rc_patrolled=0;')
 	data = cur.fetchall()
 	for row in data:
 		ids.append(row[0])
