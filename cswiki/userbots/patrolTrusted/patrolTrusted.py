@@ -26,7 +26,7 @@ if __name__ == "__main__":
 						logging.info("Processing change %s", json.dumps(change))
 						editpatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/editpatrol.txt', encoding="utf-8").read().split('\n')
 						autopatrol = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/pagepatrol.txt', encoding="utf-8").read().split('\n')
-						if change['user'] in editpatrol and change['length']['old'] != None:
+						if change['user'] in editpatrol and 'old' not in change['length']:
 							logging.info('Marking %s as patrolled, because it was made by editpatrol', change['id'])
 							list(site.patrol(rcid=change['id']))
 						elif change['user'] in autopatrol:
