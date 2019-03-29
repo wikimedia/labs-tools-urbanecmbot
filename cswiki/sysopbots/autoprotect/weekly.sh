@@ -1,2 +1,2 @@
 #!/bin/bash
-PYWIKIBOT2_DIR=/data/project/urbanecmbot/11bots/cswiki/sysopbots python /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/weekly.py
+sysopbot /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/weekly.py
