@@ -35,7 +35,7 @@ with cur:
 
 for row in data:
 	page = pywikibot.Page(site, row[0].decode('utf-8'), ns=int(row[1]))
-        if not page.exists():
+	if not page.exists():
 		continue
 	cur = conn.cursor()
 	with cur:
