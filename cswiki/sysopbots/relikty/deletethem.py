@@ -23,4 +23,4 @@ with cur:
 
 for row in data:
 	page = pywikibot.Page(site, row[1].decode('utf-8'), ns=row[0])
-	page.delete(reason=u"Robot: Relikt po přesunu", mark=True)
+	page.delete(reason=u"Robot: Relikt po přesunu", mark=True, prompt=False)
