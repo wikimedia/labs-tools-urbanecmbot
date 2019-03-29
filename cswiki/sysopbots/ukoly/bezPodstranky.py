@@ -21,7 +21,7 @@ for row in data:
 	text = page.text
 	text = re.sub(r'{{Úkoly\|?[\d]*}}', '', text, flags=re.IGNORECASE)
 	if text.strip() == '':
-		page.delete(reason=u"Robot: Úkoly vyřešeny", mark=True)
+		page.delete(reason=u"Robot: Úkoly vyřešeny", prompt=False)
 	else:
 		page.text = text
 		page.save('Robot: Odebrání šablony úkoly', force=True)
