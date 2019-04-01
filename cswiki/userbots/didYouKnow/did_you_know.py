@@ -5,10 +5,9 @@ import pywikibot
 import re
 
 from datetime import date, timedelta
-from time import strftime, strptime
 
 from pywikibot import textlib
-from pywikibot.pagegenerators import PrefixingPageGenerator
+from pywikibot.pagegenerators import GeneratorFactory, PrefixingPageGenerator
 from pywikibot.tools import OrderedDict
 
 args = pywikibot.handle_args()
@@ -25,20 +24,21 @@ pattern = '''{{Zajímavost
  | do = %(until)s
 }}'''
 
-months = {
-    1: 'ledna',
-    2: 'února',
-    3: 'března',
-    4: 'dubna',
-    5: 'května',
-    6: 'června',
-    7: 'července',
-    8: 'srpna',
-    9: 'září',
-    10: 'října',
-    11: 'listopadu',
-    12: 'prosince',
-}
+months = (
+    '',
+    'ledna',
+    'února',
+    'března',
+    'dubna',
+    'května',
+    'června',
+    'července',
+    'srpna',
+    'září',
+    'října',
+    'listopadu',
+    'prosince',
+)
 
 def find_templates(text):
     '''From textlib.extract_templates_and_params_regex_simple'''
@@ -73,22 +73,26 @@ def find_templates(text):
     return result
 
 
-def localized(date, upto=None):
+def localized(date, omit=None):
+    '''Localize given date, possibly omit some parts of it.'''
     ret = str(date.day) + '.'
-    if upto != 'month':
+    if omit != 'month':
         ret += ' ' + str(months[date.month])
-        if upto != 'year':
+        if omit != 'year':
             ret += ' ' + str(date.year)
     return ret
 
 
 def get_date(split):
+    '''Get localized date span for given ISO week.'''
     _, year, week = split
-    my_time = strptime(year, '%Y')  # 1. ledna
-    week_delta = int(week) - int(strftime('%W', my_time))  # o kolik týdnů
-    monday = date(int(year), 1, 1) + timedelta(days=week_delta * 7)
-    monday -= timedelta(days=my_time.tm_wday)  # skok na pondělí
-    sunday = monday + timedelta(days=6)  # ... a neděli
+    # ISO week 01 is the one with 4th January
+    fourth_Jan = date(int(year), 1, 4)
+    week_delta = int(week) - 1
+    monday = fourth_Jan + timedelta(days=week_delta * 7)
+    if monday.weekday():
+        monday -= timedelta(days=monday.weekday())  # adjust to Monday
+    sunday = monday + timedelta(days=6)  # ... then compute Sunday
     if monday.year != sunday.year:
         return localized(monday), localized(sunday)
     elif monday.month != sunday.month:
@@ -108,9 +112,9 @@ def plain_text(text):
 
 
 def my_get(data, my_key):
-    for key in data:
+    for key, value in data.items():
         if key.strip() == my_key.strip():
-            return data[key]
+            return value
     return None
 
 
@@ -124,7 +128,7 @@ def find_same(old_text, my_text, split):
                 and my_plain == plain_text(my_get(params, 'zajímavost'))):
             return span, params
         if (my_get(params, 'od')
-                and plain_text(since) == plain_text(my_get(params, 'do'))):
+                and plain_text(since) == plain_text(my_get(params, 'od'))):
             return span, params
         if (my_get(params, 'do')
                 and plain_text(until) == plain_text(my_get(params, 'do'))):
@@ -132,11 +136,11 @@ def find_same(old_text, my_text, split):
     return None
 
 
-def handle_page(page):
-    split = page.title().split('/')
+def handle_page(page, force=False):
+    link = page.title()
+    split = link.split('/')
     if len(split) != 3:
         return
-    link = '/'.join(split)
     for match in lineR.finditer(page.text):
         text = match.group(1)
         titleM = titleR.search(text)
@@ -163,27 +167,29 @@ def handle_page(page):
             }
             span, params = same
             data = {}
-            for key in mapping.keys():
+            for key in mapping:
                 val = my_get(params, key)
                 if val:
                     data[mapping[key]] = val.strip()
             change = False
-            if not set(['since', 'until']) <= set(data.keys()):
+            if force or ('since' not in data or 'until' not in data):
                 since, until = get_date(split)
                 data.update({
                     'since': since,
                     'until': until,
                 })
                 change = True
-            if 'link' not in data:
+            if force or 'link' not in data:
                 data['link'] = link
                 change = True
             if not change:
                 continue
             start, end = span
             new = pattern % data
-            if my_get(params, 'sort'):
-                new = new[:-3] + ' | sort = %s\n}}' % my_get(params, 'sort').strip()
+            old_sort = my_get(params, 'sort')
+            if old_sort:
+                new = (new[:-3]  # 3 chars: newline and two end braces
+                       + ' | sort = %s\n}}' % old_sort.strip())
             new_text = talkpage.text[:start] + new + talkpage.text[end:]
             summary = 'doplnění [[%s|zajímavosti]]' % link
         else:
@@ -196,16 +202,30 @@ def handle_page(page):
         talkpage.put(new_text, summary=summary, apply_cosmetic_changes=False)
 
 
-def run(gen):
+def run(gen, force=False):
     for page in gen:
-        handle_page(page)
+        handle_page(page, force=force)
 
 
-if '-current' in args:
-    suffix = strftime('%Y/%W')
-    pywikibot.output('Doing week: %s' % suffix)
-    handle_page(pywikibot.Page(site, 'Wikipedie:Zajímavosti/%s' % suffix))
-else:
-    gen = PrefixingPageGenerator(
-        'Wikipedie:Zajímavosti/201', includeredirects=False, site=site, content=True)
-    run(gen)
+if __name__ == '__main__':
+    if '-current' in args:
+        # ISO week is the one with 4th January
+        # workaround needed for < 3.6
+        # XXX: what happens before 4th January?
+        day = date.today()
+        if day.replace(month=1, day=4).strftime('%W') == '00':
+            day += timedelta(days=7)
+        suffix = day.strftime('%Y/%W')
+        pywikibot.output('Doing week: ' + suffix)
+        handle_page(pywikibot.Page(site, 'Wikipedie:Zajímavosti/' + suffix),
+                    force='-force' in args)
+    else:
+        genFactory = GeneratorFactory(site=site)
+        for arg in args:
+            genFactory.handleArg(arg)
+        gen = genFactory.getCombinedGenerator(preload=True)
+        if not gen:
+            gen = PrefixingPageGenerator(
+                'Wikipedie:Zajímavosti/201', includeredirects=False, site=site,
+                content=True)
+        run(gen, force='-force' in args)
