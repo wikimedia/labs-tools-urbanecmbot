@@ -1,0 +1,2 @@
+#!/bin/bash
+PYWIKIBOT2_DIR=$HOME/.pywikibot/oznamovatel python3 "$@"
