@@ -10,8 +10,6 @@ import logging
 logger = logging.getLogger("pywiki")
 logger.setLevel(logging.WARNING)
 
-PAGE_CONTROL = "User:UrbanecmBot/ŽOO-Control"
-
 class ZOO:
 	PAGE_PREFIX = "Wikipedie:Žádost o opatření"
 	PAGE_LIST = "Wikipedie:Žádost o opatření"
