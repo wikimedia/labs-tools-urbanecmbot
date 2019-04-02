@@ -32,8 +32,8 @@ def get_candidates(site):
 	return out
 
 ANNOUNCES = [
-	{'page':u'User:UrbanecmBot/ŽOPS-OznámeníRC', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Zadost-o-prava-spravce"\n! [[Wikipedie:Žádost o práva správce|Žádosti o&nbsp;práva správce]]:\n| %s\n', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není -->'},
-	{'page':u'User:UrbanecmBot/ŽOPS-PortálWP', 'big_tl':u'%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page':u'Šablona:OznámeníRC/ŽOPS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Zadost-o-prava-spravce"\n! [[Wikipedie:Žádost o práva správce|Žádosti o&nbsp;práva správce]]:\n| %s\n', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Žádosti o práva správce', 'big_tl':u'%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
 ]
 
 def announce_candidates(site, candidates):
