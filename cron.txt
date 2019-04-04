@@ -42,8 +42,8 @@ MAILTO=martin.urbanec@wikimedia.cz
 59 8 * * * /usr/bin/jsub -N relikty -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/relikty/deletethem.sh
 26 3 * * * /usr/bin/jsub -N badprotecttemplates -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/badProtectTemplates/badprotecttemplates.sh
 54 14 * * * /usr/bin/jsub -N ukolyAddPriority -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/addPriority.sh
-3 6 * * * /usr/bin/jsub -N ukolyBezPodstranky -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/bezPodstranky.sh
-0 8 * * * /usr/bin/jsub -N ukolyResolved -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/resolved.sh
+30 0 * * * /usr/bin/jsub -N ukolyBezPodstranky -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/bezPodstranky.sh
+0 0 * * * /usr/bin/jsub -N ukolyResolved -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/resolved.sh
 14 12 * * * /usr/bin/jsub -N newArticlesPortals -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/newarticlesPortals/newArticlesPortals.py
 42 16 * * * /usr/bin/jsub -N mostLinkedDisambigs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py
 42 16 1 * * /usr/bin/jsub -N mostLinkedRedirs -once -quiet python /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedRedirs/mostLinkedRedirs.py
