@@ -66,7 +66,7 @@ def announce_candidates(site, candidates_sets):
 			new_text = announce["empty"]
 		page = pywikibot.Page(site, announce['page'])
 		if not page.exists() or new_text.strip() != page.get().strip():
-			page.text = new_text
+			page.text = '<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n' + new_text
 			page.save('hlásič sporů hlásá')
 
 if __name__ == '__main__':
