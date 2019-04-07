@@ -53,8 +53,8 @@ def get_afd_candidates(site):
 	return out
 
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/DoS', 'big_tl':u'<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'small_tl':u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, prosím, needitujte ji ručně --><noinclude>{{Dlouhodobě polozamčeno}}</noinclude>'},
-		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Diskuse o smazání', 'big_tl':u'<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n%s\n', 'small_tl':u"* [[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, prosím, needitujte ji ručně -->'},
+		{'page':u'Šablona:OznámeníRC/DoS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s\n', 'small_tl':u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Diskuse o smazání', 'big_tl':u'%s\n', 'small_tl':u"* [[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
 ]
 
 def announce_afd_candidates(site, candidates):

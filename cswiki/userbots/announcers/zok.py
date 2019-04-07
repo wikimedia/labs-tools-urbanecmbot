@@ -28,8 +28,8 @@ def get_candidates(site):
 	return out
 
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/ŽOK', 'big_tl':u'<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n|- id="Sablona--OznameniRC__Oznameni_Diskuse"\n! [[Wikipedie:Žádost o komentář|Žádost o komentář]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, needitujte ji, prosím, ručně --><noinclude>{{Dlouhodobě polozamčeno}}</noinclude>'},
-		{'page':u'User:UrbanecmBot/ŽOK-PortálWP', 'big_tl':u'<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, needitujte ji, prosím, ručně -->'},
+		{'page':u'Šablona:OznámeníRC/ŽOK', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Diskuse"\n! [[Wikipedie:Žádost o komentář|Žádost o komentář]]:\n| %s\n', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page':u'User:UrbanecmBot/ŽOK-PortálWP', 'big_tl':u'%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
 ]
 
 def announce_candidates(site, candidates):
