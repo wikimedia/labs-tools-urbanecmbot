@@ -91,7 +91,6 @@ def announce_candidates(site, candidates_sets):
 if __name__ == '__main__':
 	site = pywikibot.Site()
 	candidates = get_candidates(site)
-	print(candidates)
 	announce_candidates(site, [
 		{'type': 'discussion', 'data': candidates['discussion']},
 		{'type': 'voting', 'data': candidates['voting']}
