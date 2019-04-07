@@ -85,7 +85,7 @@ def announce_candidates(site, candidates_sets):
 		page = pywikibot.Page(site, announce['page'])
 		if not page.exists() or new_text.strip() != page.get().strip():
 			page.text = new_text
-			page.save('hlásič NNČ hlásá (počet: %s)' % len(candidates))
+			page.save('hlásič NNČ hlásá')
 		
 
 if __name__ == '__main__':
