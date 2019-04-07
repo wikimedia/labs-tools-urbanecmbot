@@ -53,7 +53,7 @@ def get_afd_candidates(site):
 	return out
 
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/DoS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'small_tl':u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page':u'Šablona:OznámeníRC/DoS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'small_tl':u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není --><noinclude>{{Dlouhodobě polozamčeno}}</noinclude>'},
 		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Diskuse o smazání', 'big_tl':u'%s\n', 'small_tl':u"* [[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
 ]
 
