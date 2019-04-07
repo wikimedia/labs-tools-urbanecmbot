@@ -35,8 +35,8 @@ def get_candidates(site, conf):
 	return out
 
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/Spory', 'big_separator': "", 'big_big_big_tl': '|- id="Sablona--Sablona--OznameniRC__Oznameni_Reseni-sporu"\n! [[Wikipedie:Řešení sporů|Řešení sporů]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'big_big_tl': "<div>'''%(description)s''': %(data)s</div>", 'big_tl':"%s", 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u' • ', 'empty': '<!-- momentálně tu nic není --><noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'inner_empty':u'<div></div>'},
-		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Arbitráže', 'big_separator': '\n', 'big_big_big_tl': '%s', 'big_big_tl': "'''%(description)s''': %(data)s", 'big_tl':u'\n%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u'\n', 'empty': '<!-- momentálně tu nic není -->', 'inner_empty':u'<div></div>'},
+		{'page':u'Šablona:OznámeníRC/Spory', 'big_separator': "", 'big_big_big_tl': '<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n|- id="Sablona--Sablona--OznameniRC__Oznameni_Reseni-sporu"\n! [[Wikipedie:Řešení sporů|Řešení sporů]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'big_big_tl': "<div>'''%(description)s''': %(data)s</div>", 'big_tl':"%s", 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u' • ', 'empty': '<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, prosím, needitujte ji ručně --><noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'inner_empty':u'<div></div>'},
+		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Arbitráže', 'big_separator': '\n', 'big_big_big_tl': '<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n%s', 'big_big_tl': "'''%(description)s''': %(data)s", 'big_tl':u'\n%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u'\n', 'empty': '<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, prosím, needitujte ji ručně -->', 'inner_empty':u'<div></div>'},
 ]
 
 DESCRIPTIONS = {
@@ -66,7 +66,7 @@ def announce_candidates(site, candidates_sets):
 			new_text = announce["empty"]
 		page = pywikibot.Page(site, announce['page'])
 		if not page.exists() or new_text.strip() != page.get().strip():
-			page.text = '<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n' + new_text
+			page.text = new_text
 			page.save('hlásič sporů hlásá')
 
 if __name__ == '__main__':

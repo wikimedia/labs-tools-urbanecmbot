@@ -32,8 +32,8 @@ def get_candidates(site):
 	return out
 
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/ŽOPS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Zadost-o-prava-spravce"\n! [[Wikipedie:Žádost o práva správce|Žádosti o&nbsp;práva správce]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není --><noinclude>{{Dlouhodobě polozamčeno}}</noinclude>'},
-		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Žádosti o práva správce', 'big_tl':u'%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page':u'Šablona:OznámeníRC/ŽOPS', 'big_tl':u'<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n|- id="Sablona--OznameniRC__Oznameni_Zadost-o-prava-spravce"\n! [[Wikipedie:Žádost o práva správce|Žádosti o&nbsp;práva správce]]:\n| %s<noinclude>{{Dlouhodobě polozamčeno}}</noinclude>', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, prosím, needitujte ji ručně --><noinclude>{{Dlouhodobě polozamčeno}}</noinclude>'},
+		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Žádosti o práva správce', 'big_tl':u'<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není; tato stránka je pravidelně aktualizována botem, prosím, needitujte ji ručně -->'},
 ]
 
 def announce_candidates(site, candidates):
@@ -47,7 +47,7 @@ def announce_candidates(site, candidates):
 		page = pywikibot.Page(site, announce['page'])
 		if not page.exists() or new_text.strip() != page.get().strip():
 			comment = u'hlásič ŽOPS hlásá (počet: %s)' % len(candidates)
-			page.put('<!-- Tato stránka je pravidelně aktualizována botem. Needitujte ji ručně, vaše změny by byly brzy přepsány. -->\n' + new_text, comment=comment)
+			page.put(new_text, comment=comment)
 		
 
 if __name__ == '__main__':
