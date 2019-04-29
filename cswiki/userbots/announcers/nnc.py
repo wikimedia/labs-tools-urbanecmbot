@@ -53,7 +53,7 @@ def get_candidates(site):
 	return out
 
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/NNČ', 'big_separator': "", 'big_big_big_tl': '|- id="Sablona--OznameniRC__Oznameni_Nejlepsi-clanky"\n![[Wikipedie:Nominace nejlepších článků|Nejlepší články]]:\n| %s\n', 'big_big_tl': "<div>'''%(description)s''': %(data)s</div>", 'big_tl':"%s", 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(date)s)", 'separator':u' • ', 'empty': '<!-- momentálně tu nic není -->', 'inner_empty':u'<div></div>'},
+		{'page':u'Šablona:OznámeníRC/NNČ', 'big_separator': "", 'big_big_big_tl': '|- id="Sablona--OznameniRC__Oznameni_Nejlepsi-clanky"\n![[Wikipedie:Nominace nejlepších článků|Nejlepší články]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'big_big_tl': "<div>'''%(description)s''': %(data)s</div>", 'big_tl':"%s", 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(date)s)", 'separator':u' • ', 'empty': '<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>', 'inner_empty':u'<div></div>'},
 		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Nominace nejlepších článků', 'big_separator': '\n', 'big_big_big_tl': '%s', 'big_big_tl': "'''%(description)s''': %(data)s", 'big_tl':u'\n%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(date)s)", 'separator':u'\n', 'empty': '<!-- momentálně tu nic není -->', 'inner_empty':u'<div></div>'},
 ]
 

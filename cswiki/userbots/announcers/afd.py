@@ -53,7 +53,7 @@ def get_afd_candidates(site):
 	return out
 
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/DoS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s\n', 'small_tl':u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page':u'Šablona:OznámeníRC/DoS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl':u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
 		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Diskuse o smazání', 'big_tl':u'%s\n', 'small_tl':u"* [[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
 ]
 
@@ -66,8 +66,6 @@ def announce_afd_candidates(site, candidates):
 		else:
 			new_text = announce['empty']
 		page = pywikibot.Page(site, announce['page'])
-		if page.namespace() == site.namespaces.TEMPLATE:
-			new_text += u'<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'
 		if not page.exists() or new_text.strip() != page.get().strip():
 			comment = u'hlásič AfD hlásá (počet: %s)' % len(candidates)
 			page.put(new_text, comment=comment)
