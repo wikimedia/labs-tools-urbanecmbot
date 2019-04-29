@@ -65,6 +65,7 @@ def announce_afd_candidates(site, candidates):
 			new_text = announce['big_tl'] % inner_text
 		else:
 			new_text = announce['empty']
+		new_text += u'<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'
 		page = pywikibot.Page(site, announce['page'])
 		if not page.exists() or new_text.strip() != page.get().strip():
 			comment = u'hlásič AfD hlásá (počet: %s)' % len(candidates)

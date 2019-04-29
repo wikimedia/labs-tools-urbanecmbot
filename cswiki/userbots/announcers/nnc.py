@@ -82,6 +82,7 @@ def announce_candidates(site, candidates_sets):
 			new_text = announce['big_big_big_tl'] % announce["big_separator"].join(params)
 		else:
 			new_text = announce["empty"]
+		new_text += u'<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'
 		page = pywikibot.Page(site, announce['page'])
 		if not page.exists() or new_text.strip() != page.get().strip():
 			page.text = new_text
