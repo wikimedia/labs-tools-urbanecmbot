@@ -83,8 +83,6 @@ def announce_candidates(site, candidates_sets):
 		else:
 			new_text = announce["empty"]
 		page = pywikibot.Page(site, announce['page'])
-		if page.namespace() == site.namespaces.TEMPLATE:
-			new_text += u'<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'
 		if not page.exists() or new_text.strip() != page.get().strip():
 			page.text = new_text
 			page.save('hlásič NNČ hlásá')
