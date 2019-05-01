@@ -34,7 +34,7 @@ def get_candidates(site):
 			out["discussion"].append({
 				"PREFIX": PAGE_PREFIX,
 				"subpage_name": subpage_name,
-				"date": "od %s. %s." % (first_signature.group(3), first_signature.group(4))
+				"date": "od %s. %s." % (first_signature.group(4), first_signature.group(5))
 			})
 		else:
 			unusual_close = RE_UNUSUAL_CLOSE.search(subpage.text)
