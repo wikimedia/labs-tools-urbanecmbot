@@ -3,5 +3,7 @@
 
 import pywikibot
 site = pywikibot.Site()
-page = pywikibot.Page(site, u"MediaWiki:Konec mazání")
-page.touch()
+
+for page_title in ["MediaWiki:Konec mazání", "Wikipedie:Porušení práv/Články zřejmě porušující autorská práva"]:
+	page = pywikibot.Page(site, page_title)
+	page.purge()
