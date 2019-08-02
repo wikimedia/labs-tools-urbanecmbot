@@ -65,6 +65,13 @@ AND CASE WHEN p1.page_namespace = 101
                    WHERE p2.page_namespace = 100
                    AND p1.page_title = p2.page_title)
   ELSE 1 END
+AND CASE WHEN p1.page_namespace = 103
+  THEN NOT EXISTS (SELECT
+                     1
+                  FROM page AS p2
+                  WHERE p2.page_namespace=102
+                  AND p1.page_title = p2.page_title)
+  ELSE 1 END
 AND CASE WHEN p1.page_namespace = 109
   THEN NOT EXISTS (SELECT
                      1
