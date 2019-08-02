@@ -18,7 +18,7 @@ namespaces = r.json()['query']['namespaces']
 
 cur = conn.cursor()
 with cur:
-	sql = open('sql.sql').read()
+	sql = open('/data/project/urbanecmbot/11bots/cswiki/sysopbots/orphan/sql.sql').read()
 	cur.execute(sql)
 	data = cur.fetchall()
 
