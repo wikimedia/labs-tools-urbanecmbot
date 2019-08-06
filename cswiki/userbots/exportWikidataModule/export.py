@@ -16,20 +16,35 @@ with cur:
 
 # Create site objects
 siteour = pywikibot.Site()
-sitesforegin = [
-    pywikibot.Site('cs', 'wikiversity'),
-    pywikibot.Site('cs', 'wikibooks'),
+sites = [
+    {
+        "site": pywikibot.Site('cs', 'wikiversity'),
+        "dependencies": [],
+    },
+    {
+        "site": pywikibot.Site('cs', 'wikibooks'),
+        "dependencies": [
+            "Module:No globals"
+        ],
+    },
 ]
 
 # Create summary constant
 summary = u'Robot: Aktualizace Wikidata modulů'
 
-for siteforegin in sitesforegin:
+for site in sites:
     # Export Modul:Wikidata
+    siteforegin = site["site"]
     pageour = pywikibot.Page(siteour, u'Modul:Wikidata')
     pageforegin = pywikibot.Page(siteforegin, u'Modul:Wikidata')
     pageforegin.text = pageour.text
     pageforegin.save(summary)
+
+    for dependency in site["dependencies"]:
+        pageour = pywikibot.Page(siteour, dependency)
+        pageforegin = pywikibot.Page(siteforegin, dependency)
+        pageforegin.text = pageour.text
+        pageforegin.save(summary)
 
     docpageour = pywikibot.Page(siteour, 'MediaWiki:Scribunto-doc-page-name')
     docpageforegin = pywikibot.Page(siteforegin, 'MediaWiki:Scribunto-doc-page-name')
