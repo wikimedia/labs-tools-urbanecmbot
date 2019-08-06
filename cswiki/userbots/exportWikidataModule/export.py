@@ -31,9 +31,15 @@ for siteforegin in sitesforegin:
     pageforegin.text = pageour.text
     pageforegin.save(summary)
 
+    docpageour = pywikibot.Page(siteour, 'MediaWiki:Scribunto-doc-page-name')
+    docpageforegin = pywikibot.Page(siteforegin, 'MediaWiki:Scribunto-doc-page-name')
+    doDoc = docpageour.text == docpageforegin.text
+
     # Export all other Modul:Wikidata subpages
     for row in data:
         pagetitle = 'Modul:' + row[0].decode('utf-8')
+        if 'Dokumentace' in pagetitle and not doDoc:
+            continue
         pageour = pywikibot.Page(siteour, pagetitle)
         pageforegin = pywikibot.Page(siteforegin, pagetitle)
         if "Dokumentace" in pagetitle:
