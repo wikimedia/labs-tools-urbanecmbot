@@ -37,7 +37,7 @@ summary = u'Robot: Aktualizace Wikidata modulů'
 def syncPage(siteforegin, page_title):
     pageour = pywikibot.Page(siteour, page_title)
     pageforegin = pywikibot.Page(siteforegin, page_title)
-    if "Dokumentace" in pagetitle:
+    if "Dokumentace" in page_title:
             newtext = "Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii.\n\n" + pageour.text.replace('[[', '[[:w:cs:')
     else:
         newtext = '-- Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii. \n\n' + pageour.text
