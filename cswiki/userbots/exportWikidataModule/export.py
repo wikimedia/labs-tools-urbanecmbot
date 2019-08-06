@@ -24,7 +24,9 @@ sites = [
     {
         "site": pywikibot.Site('cs', 'wikibooks'),
         "dependencies": [
-            "Module:No globals"
+            "Module:No globals",
+            'Module:Functions',
+            'Module:Arguments',
         ],
     },
 ]
