@@ -16,25 +16,29 @@ with cur:
 
 # Create site objects
 siteour = pywikibot.Site()
-siteforegin = pywikibot.Site('cs', 'wikiversity')
+sitesforegin = [
+    pywikibot.Site('cs', 'wikiversity'),
+    pywikibot.Site('cs', 'wikibooks'),
+]
 
 # Create summary constant
 summary = u'Robot: Aktualizace Wikidata modulů'
 
-# Export Modul:Wikidata
-pageour = pywikibot.Page(siteour, u'Modul:Wikidata')
-pageforegin = pywikibot.Page(siteforegin, u'Modul:Wikidata')
-pageforegin.text = pageour.text
-pageforegin.save(summary)
-
-# Export all other Modul:Wikidata subpages
-for row in data:
-    pagetitle = 'Modul:' + row[0].decode('utf-8')
-    pageour = pywikibot.Page(siteour, pagetitle)
-    pageforegin = pywikibot.Page(siteforegin, pagetitle)
-    if "Dokumentace" in pagetitle:
-        newtext = "Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii.\n\n" + pageour.text.replace('[[', '[[:w:cs:')
-    else:
-        newtext = '-- Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii. \n\n' + pageour.text
-    pageforegin.text = newtext
+for siteforegin in sitesforegin:
+    # Export Modul:Wikidata
+    pageour = pywikibot.Page(siteour, u'Modul:Wikidata')
+    pageforegin = pywikibot.Page(siteforegin, u'Modul:Wikidata')
+    pageforegin.text = pageour.text
     pageforegin.save(summary)
+
+    # Export all other Modul:Wikidata subpages
+    for row in data:
+        pagetitle = 'Modul:' + row[0].decode('utf-8')
+        pageour = pywikibot.Page(siteour, pagetitle)
+        pageforegin = pywikibot.Page(siteforegin, pagetitle)
+        if "Dokumentace" in pagetitle:
+            newtext = "Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii.\n\n" + pageour.text.replace('[[', '[[:w:cs:')
+        else:
+            newtext = '-- Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii. \n\n' + pageour.text
+        pageforegin.text = newtext
+        pageforegin.save(summary)
