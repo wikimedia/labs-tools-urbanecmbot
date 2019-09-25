@@ -33,6 +33,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 */5 * * * * /usr/bin/jsub -N afdAnnouncer -once -quiet ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/afd.py
 */5 * * * * /usr/bin/jsub -N sporyAnnouncer -once -quiet ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/spory.py
 */5 * * * * /usr/bin/jsub -N zopsAnnouncer -once -quiet ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/zops.py
+*/5 * * * * /usr/bin/jsub -N parAnnouncer -once -quiet ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/par.py
 */5 * * * * /usr/bin/jsub -N zokAnnouncer -once -quiet ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/zok.py
 */5 * * * * /usr/bin/jsub -N nncAnnouncer -once -quiet ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/nnc.py
 */10 * * * * /usr/bin/jsub -N cleanSandbox -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/clean_and_patrol.sh
