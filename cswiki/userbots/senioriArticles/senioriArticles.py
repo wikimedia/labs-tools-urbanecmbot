@@ -29,7 +29,8 @@ with conn.cursor() as cur:
     cur.execute('''SELECT page_title
         FROM revision_userindex
         JOIN page ON page_id=rev_page
-        WHERE rev_user_text IN (%s)
+        JOIN actor ON actor_id=rev_actor
+        WHERE actor_name IN (%s)
         AND rev_parent_id=0
         AND page_namespace=0
         AND page_is_redirect=0
