@@ -25,5 +25,5 @@ if __name__ == "__main__":
 					if change["title"].startswith("Wikipedista:%s" % change['user']) and 'old' in change['length']:
 						logging.info('Marking %s as patrolled, because it was made in personal user space', change['id'])
 						list(site.patrol(rcid=change['id']))
-	except Exception as e:
+	except Exception:
 		logging.exception('Unknown error occured')

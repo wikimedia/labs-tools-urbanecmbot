@@ -7,6 +7,7 @@ import pywikibot
 site = pywikibot.Site()
 conn = toolforge.connect('cswiki', cluster='analytics')
 
+
 def getPriority(links):
 	if links >= 500:
 		return 1
@@ -26,6 +27,7 @@ def getPriority(links):
 		return 8
 	else:
 		return 9
+
 
 cur = conn.cursor()
 with cur:

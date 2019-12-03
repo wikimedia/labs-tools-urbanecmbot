@@ -22,5 +22,5 @@ for rev in site.recentchanges(start=starttime, showBot=False, showPatrolled=True
 		p = site.patrol(revid=rev['old_revid'])
 		list(p)
 		logging.info('Marking revision %s as patrolled', rev['old_revid'])
-	except Exception as e:
+	except Exception:
 		logging.exception('Exception occured')

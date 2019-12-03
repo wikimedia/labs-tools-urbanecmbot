@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 import datetime
 
@@ -15,6 +16,7 @@ PAGE_LIST = "Wikipedie:Žádost o komentář"
 RE_SECTION = re.compile(r'^==[^=\n]+(|.*[^=\n]+)==\s*$', re.MULTILINE)
 RE_SUBPAGE = re.compile(r'\[\[/(?P<subpage>[^\}\n]+)/\]\]')
 
+
 def get_candidates(site):
 	page = pywikibot.Page(site, PAGE_LIST)
 	last_section = re.split(RE_SECTION, page.get())[-1]
@@ -27,10 +29,12 @@ def get_candidates(site):
 		})
 	return out
 
+
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/ŽOK', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Diskuse"\n! [[Wikipedie:Žádost o komentář|Žádost o komentář]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
-		{'page':u'User:UrbanecmBot/ŽOK-PortálWP', 'big_tl':u'%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page': u'Šablona:OznámeníRC/ŽOK', 'big_tl': u'|- id="Sablona--OznameniRC__Oznameni_Diskuse"\n! [[Wikipedie:Žádost o komentář|Žádost o komentář]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl': u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator': u' • ', 'empty': u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
+		{'page': u'User:UrbanecmBot/ŽOK-PortálWP', 'big_tl': u'%s\n', 'small_tl': u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator': u'\n', 'empty': u'<!-- momentálně tu nic není -->'},
 ]
+
 
 def announce_candidates(site, candidates):
 	for announce in ANNOUNCES:

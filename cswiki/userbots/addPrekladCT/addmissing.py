@@ -2,10 +2,10 @@
 #-*- coding: utf-8 -*-
 
 import toolforge
-conn = toolforge.connect('cswiki')
 from pywikibot import textlib
 import re
 import pywikibot
+conn = toolforge.connect('cswiki')
 site = pywikibot.Site()
 
 
@@ -28,7 +28,8 @@ for row in data:
 		print('Skipping %s' % row[0].decode('utf-8'))
 		continue # Skip page if in exeptions
 	page = pywikibot.Page(site, row[0].decode('utf-8'))
-	if '{{překlad' in page.text.lower(): continue # Skip page if contain translation template
+	if '{{překlad' in page.text.lower():
+		continue # Skip page if contain translation template
 	if re.search(r'(?i)== *Reference *==', page.text):
 		page.text = textlib.replaceExcept(page.text, r'(?i)==(=?) *Reference *===?\s*', r'==\1 Reference ==\1\n' + row[1].decode('utf-8') + r'\n', exceptions)
 	elif re.search(r'(?i)== *Poznámky *==', page.text):
@@ -43,5 +44,5 @@ for row in data:
 		page.text = page.text + '\n\n== Reference ==\n' + row[1].decode('utf-8')
 	try:
 		page.save('Robot: Přidání šablony Překlad')
-	except:
+	except Exception:
 		pass

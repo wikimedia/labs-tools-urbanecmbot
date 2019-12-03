@@ -34,6 +34,7 @@ sites = [
 # Create summary constant
 summary = u'Robot: Aktualizace Wikidata modulů'
 
+
 def syncPage(siteforegin, page_title):
     pageour = pywikibot.Page(siteour, page_title)
     pageforegin = pywikibot.Page(siteforegin, page_title)
@@ -43,6 +44,7 @@ def syncPage(siteforegin, page_title):
         newtext = '-- Tato stránka je pravidelně aktualizována robotem. Jakákoliv modifikace bude při příští aktualizaci přepsána a je třeba ji provádět na Wikipedii. \n\n' + pageour.text
     pageforegin.text = newtext
     pageforegin.save(summary)
+
 
 for site in sites:
     # Export Modul:Wikidata

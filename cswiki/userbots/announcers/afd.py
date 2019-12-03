@@ -14,9 +14,10 @@ AFD_PREFIX = u'Wikipedie:Diskuse o smazání'
 AFD_LIST = u'Wikipedie:Diskuse o smazání/seznam'
 RE_SECTION = re.compile(r'^==[^=\n]+(|.*[^=\n]+)==\s*$', re.MULTILINE)
 RE_SUBPAGE = re.compile(r'\{\{[^\}\n/]+/(?P<subpage>[^\}\n]+)\}\}')
-#RE_LINK = re.compile(r'\[\[(?P<link>[^\]\n\|]+)(\|[^\]\n]+)?\]\]')
+# RE_LINK = re.compile(r'\[\[(?P<link>[^\]\n\|]+)(\|[^\]\n]+)?\]\]')
 RE_SINCE = re.compile(r'^;\s*Diskus.{0,2}otev.{0,20}:\s*\n:.*\s+(?P<date>\d{1,2}\.\s*\d{1,2}\.\s\d{2,4}, \d{1,2}:\d{2} \([^\)]+\))', re.MULTILINE)
 RE_CLOSE = re.compile(r'^;\s*Uzav.{1,3}en.{1,3} diskuse:\s*\n:\s*(?:(?P<default>standardn.{1,3}: t.{1,3}den po zah.{1,3}jen.{1,3}))|(?:.*<!--\s*(?P<custom>.*\S)\s*-->)', re.MULTILINE)
+
 
 def get_afd_candidates(site):
 	afd = pywikibot.Page(site, AFD_LIST)
@@ -28,13 +29,13 @@ def get_afd_candidates(site):
 		since = RE_SINCE.search(subpage.get())
 		close = RE_CLOSE.search(subpage.get())
 		
-		if close == None or (close.group('default') == None and close.group('custom') == None):
+		if close is None or (close.group('default') is None and close.group('custom') is None):
 			# fail
 			close_text = u'konec?'
-		elif close.group('custom') != None:
+		elif close.group('custom') is not None:
 			# custom close
 			close_text = close.group('custom')
-		elif since == None:
+		elif since is None:
 			close_text = u'začátek?'
 		else:
 			# default close: one week
@@ -52,10 +53,12 @@ def get_afd_candidates(site):
 		})
 	return out
 
+
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/DoS', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl':u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
-		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Diskuse o smazání', 'big_tl':u'%s\n', 'small_tl':u"* [[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page': u'Šablona:OznámeníRC/DoS', 'big_tl': u'|- id="Sablona--OznameniRC__Oznameni_Hlasovani_o_smazani"\n! [[Wikipedie:Diskuse o smazání|Diskuse o&nbsp;smazání]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl': u"[[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator': u' • ', 'empty': u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
+		{'page': u'Wikipedie:Portál Wikipedie/Co se děje/Diskuse o smazání', 'big_tl': u'%s\n', 'small_tl': u"* [[%(AFD)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator': u'\n', 'empty': u'<!-- momentálně tu nic není -->'},
 ]
+
 
 def announce_afd_candidates(site, candidates):
 	for announce in ANNOUNCES:

@@ -21,7 +21,8 @@ if __name__ == "__main__":
 				except ValueError:
 					continue
 				if change['wiki'] == 'cswiki':
-					if 'log_type' not in change: continue
+					if 'log_type' not in change:
+						continue
 					if change['log_type'] == "patrol" and change["log_params"]["previd"] == "0":
 						logging.info("Processing patrol action id %s", change['log_id'])
 						conn = toolforge.connect('cswiki', cluster='analytics')
@@ -31,5 +32,5 @@ if __name__ == "__main__":
 						for row in data:
 							logging.info("Marking revision %s as patrolled", int(row[0]))
 							list(site.patrol(rcid=int(row[0])))
-	except Exception as e:
+	except Exception:
 		logging.exception('Unknown error occured')

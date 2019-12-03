@@ -38,5 +38,5 @@ if __name__ == "__main__":
 						elif '([[Commons:Commons:GlobalReplace|' in change['comment']:
 							logging.info('Marking %s as patrolled, because it is a part of global replace coming from Commons user', change['id'])
 							list(site.patrol(rcid=change['id']))
-	except Exception as e:
+	except Exception:
 		logging.exception('Unknown exception occured')

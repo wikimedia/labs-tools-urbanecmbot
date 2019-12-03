@@ -3,8 +3,8 @@
 
 import logging
 import toolforge
-conn = toolforge.connect('cswiki')
 import pywikibot
+conn = toolforge.connect('cswiki')
 site = pywikibot.Site()
 
 logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAutopatrol.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
@@ -60,5 +60,5 @@ for id in ids:
 	try:
 		list(site.patrol(rcid=int(id)))
 		logging.info("Making revision %s as patrolled", id)
-	except:
+	except Exception:
 		logging.exception('Unknown exception occured')

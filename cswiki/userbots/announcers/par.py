@@ -16,6 +16,7 @@ RE_SECTION = re.compile(r'^==[^=\n]+(|.*[^=\n]+)==\s*$', re.MULTILINE)
 RE_SUBPAGE = re.compile(r'\{\{[^\}\n]*/(?P<subpage>[^\}\n]+)\}\}')
 RE_CLOSE = re.compile(r"\* '''Lhůta pro vyjádření:''' ([0-9]+\. [0-9]+\.) [0-9]+")
 
+
 def get_candidates(site):
 	page = pywikibot.Page(site, PAGE_LIST)
 	last_section = re.split(RE_SECTION, page.get())[-1]
@@ -32,10 +33,12 @@ def get_candidates(site):
 			})
 	return out
 
+
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/PAR', 'big_tl':u'|- id="Sablona--OznameniRC__Oznameni_PAR"\n! [[Wikipedie:Patroláři a revertéři|Patrolář/revertér]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u' • ', 'empty':u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
-		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Žádosti o PAR', 'big_tl':u'%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator':u'\n', 'empty':u'<!-- momentálně tu nic není -->'},
+		{'page': u'Šablona:OznámeníRC/PAR', 'big_tl': u'|- id="Sablona--OznameniRC__Oznameni_PAR"\n! [[Wikipedie:Patroláři a revertéři|Patrolář/revertér]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl': u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator': u' • ', 'empty': u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
+		{'page': u'Wikipedie:Portál Wikipedie/Co se děje/Žádosti o PAR', 'big_tl': u'%s\n', 'small_tl': u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator': u'\n', 'empty': u'<!-- momentálně tu nic není -->'},
 ]
+
 
 def announce_candidates(site, candidates):
 	for announce in ANNOUNCES:

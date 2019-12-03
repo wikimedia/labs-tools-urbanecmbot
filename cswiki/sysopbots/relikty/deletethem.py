@@ -2,10 +2,10 @@
 #-*- coding: utf-8 -*-
 
 import toolforge
-conn = toolforge.connect('cswiki')
 import pywikibot
-site = pywikibot.Site()
 import requests
+conn = toolforge.connect('cswiki')
+site = pywikibot.Site()
 
 
 params = {

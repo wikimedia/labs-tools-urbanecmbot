@@ -40,6 +40,7 @@ months = (
     'prosince',
 )
 
+
 def find_templates(text):
     '''From textlib.extract_templates_and_params_regex_simple'''
     result = []

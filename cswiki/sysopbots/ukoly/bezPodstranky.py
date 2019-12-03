@@ -4,8 +4,8 @@
 import time
 import pywikibot
 import re
-site = pywikibot.Site()
 import toolforge
+site = pywikibot.Site()
 conn = toolforge.connect('cswiki', cluster='analytics')
 
 cur = conn.cursor()

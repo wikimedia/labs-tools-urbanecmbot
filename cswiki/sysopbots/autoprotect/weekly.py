@@ -15,7 +15,7 @@ pages = [ # různé články pro tento týden
 site = pywikibot.getSite()
 for pgname in pages: # pro každou stránku ze seznamu
         page = pywikibot.Page(site, pgname) # najdu ji na wiki
-	if page.exists():
+        if page.exists():
 	        page.protect( # a zamknu...
 	            reason='automatizovany zamek neceho tydne', # popis editace
 		    protections={'edit': 'autoconfirmed', 'move': 'sysop'},

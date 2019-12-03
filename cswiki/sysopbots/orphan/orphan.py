@@ -2,9 +2,9 @@
 #-*- coding: utf-8 -*-
 
 import pywikibot
-site = pywikibot.Site()
 import requests
 import toolforge
+site = pywikibot.Site()
 conn = toolforge.connect('cswiki', cluster='analytics')
 
 params = {

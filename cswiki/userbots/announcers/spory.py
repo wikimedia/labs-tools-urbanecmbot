@@ -10,17 +10,20 @@ import logging
 logger = logging.getLogger("pywiki")
 logger.setLevel(logging.WARNING)
 
+
 class ZOO:
 	PAGE_PREFIX = "Wikipedie:Žádost o opatření"
 	PAGE_LIST = "Wikipedie:Žádost o opatření"
 	RE_SECTION = re.compile(r'=== Projednávané žádosti ===\n[^=]*')
 	RE_SUBPAGE = re.compile(r'\* ?\[\[/([^/]*)/\]\]')
 
+
 class ZOA:
 	PAGE_PREFIX = "Wikipedie:Žádost o arbitráž"
 	PAGE_LIST = "Wikipedie:Žádost o arbitráž"
 	RE_SECTION = re.compile(r'== Aktuální žádosti ==\n[^=]*')
 	RE_SUBPAGE = re.compile(r'\* ?\[\[/([^/]*)/\]\]')
+
 
 def get_candidates(site, conf):
 	page_list = pywikibot.Page(site, conf.PAGE_LIST)
@@ -34,15 +37,17 @@ def get_candidates(site, conf):
 		})
 	return out
 
+
 ANNOUNCES = [
-		{'page':u'Šablona:OznámeníRC/Spory', 'big_separator': "", 'big_big_big_tl': '|- id="Sablona--Sablona--OznameniRC__Oznameni_Reseni-sporu"\n! [[Wikipedie:Řešení sporů|Řešení sporů]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'big_big_tl': "<div>'''%(description)s''': %(data)s</div>", 'big_tl':"%s", 'small_tl':u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u' • ', 'empty': '<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>', 'inner_empty':u'<div></div>'},
-		{'page':u'Wikipedie:Portál Wikipedie/Co se děje/Arbitráže', 'big_separator': '\n', 'big_big_big_tl': '%s', 'big_big_tl': "'''%(description)s''': %(data)s", 'big_tl':u'\n%s\n', 'small_tl':u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator':u'\n', 'empty': '<!-- momentálně tu nic není -->', 'inner_empty':u'<div></div>'},
+		{'page': u'Šablona:OznámeníRC/Spory', 'big_separator': "", 'big_big_big_tl': '|- id="Sablona--Sablona--OznameniRC__Oznameni_Reseni-sporu"\n! [[Wikipedie:Řešení sporů|Řešení sporů]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'big_big_tl': "<div>'''%(description)s''': %(data)s</div>", 'big_tl': "%s", 'small_tl': u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator': u' • ', 'empty': '<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>', 'inner_empty': u'<div></div>'},
+		{'page': u'Wikipedie:Portál Wikipedie/Co se děje/Arbitráže', 'big_separator': '\n', 'big_big_big_tl': '%s', 'big_big_tl': "'''%(description)s''': %(data)s", 'big_tl': u'\n%s\n', 'small_tl': u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]]", 'separator': u'\n', 'empty': '<!-- momentálně tu nic není -->', 'inner_empty': u'<div></div>'},
 ]
 
 DESCRIPTIONS = {
 	'zoos': 'Opatření',
 	'zoas': 'Arbitráže'
 }
+
 
 def announce_candidates(site, candidates_sets):
 	for announce in ANNOUNCES:
@@ -68,6 +73,7 @@ def announce_candidates(site, candidates_sets):
 		if not page.exists() or new_text.strip() != page.get().strip():
 			page.text = new_text
 			page.save('hlásič sporů hlásá')
+
 
 if __name__ == '__main__':
 	site = pywikibot.Site()
