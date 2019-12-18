@@ -12,6 +12,7 @@ from wmflabs import db
 DEPTH = 5
 PORTALS = {
 	u'Portál:Ptáci/Nové články': 'Ptáci',
+	u'Portál:Obojživelníci/Nové články': 'Obojživelníci'
 }
 EXCEPTIONS = {
 	'SOME': ['SOME']
