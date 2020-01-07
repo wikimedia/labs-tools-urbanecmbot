@@ -29,6 +29,7 @@ def get_candidates(site):
 		subpage = pywikibot.Page(site, u'%s/%s' % (PAGE_PREFIX, subpage_name))
 		if not subpage.exists():
 			continue # workaround, {{/Velký modrák}} and similar guiding things in the page
+		print('Processing %s' % subpage.title())
 		voting = RE_VOTING.search(subpage.text)
 		if voting is None:
 			first_signature = RE_SIGNATURE.search(subpage.text)
