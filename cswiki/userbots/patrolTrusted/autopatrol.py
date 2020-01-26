@@ -19,6 +19,7 @@ with conn.cursor() as cur:
 
 users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/editpatrol.txt', 'r').read().split('\n')
 for user in users:
+	user = user.strip()
 	with conn.cursor() as cur:
 		sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s" and rc_new=0' % user
 		cur.execute(sql)
@@ -28,6 +29,7 @@ for user in users:
 
 users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/trustedpatrol.txt', 'r').read().split('\n')
 for user in users:
+	user = user.strip()
 	with conn.cursor() as cur:
 		sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s" and (rc_new=0 or rc_namespace!=0)' % user
 		cur.execute(sql)
@@ -37,6 +39,7 @@ for user in users:
 
 users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/pagepatrol.txt', 'r').read().split('\n')
 for user in users:
+	user = user.strip()
 	with conn.cursor() as cur:
 		sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s"' % user
 		cur.execute(sql)
@@ -57,8 +60,5 @@ with conn.cursor() as cur:
 		ids.append(row[0])
 
 for id in ids:
-	try:
-		list(site.patrol(rcid=int(id)))
-		logging.info("Making revision %s as patrolled", id)
-	except Exception:
-		logging.exception('Unknown exception occured')
+	list(site.patrol(rcid=int(id)))
+	logging.info("Making revision %s as patrolled", id)
