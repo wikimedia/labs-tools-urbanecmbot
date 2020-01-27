@@ -1,7 +1,7 @@
 python3 ~/pwb/scripts/replace.py -always -ns:0 -summary:'Robot: Odebrání odrážky před šablonou překlad' -search:'insource:/\* ?\{\{[Pp]řeklad/' -regex '\* ?\{\{[Pp]řeklad' '{{Překlad'
 python3 ~/pwb/scripts/replace.py -always -ns:0 -search:'insource:/===* *Zdroj *===*.\{\{[Pp]řeklad/' -summary:'Robot: Standardizace' '== Zdroj ==' '== Reference =='
 python3 ~/pwb/scripts/replace.py -always -ns:0 -search:'insource:/===* *Zdroje *===*.\{\{[Pp]řeklad/' -summary:'Robot: Standardizace' '== Zdroje ==' '== Reference =='
-python3 ~/pwb/scripts/replace.py -always -ns:0 -summary:'Robot: Standardizace' -search:'insource:/===* *Externí zdroje *===*/' '== Externí zdroje ==' '== Externí odkazy =='
+#python3 ~/pwb/scripts/replace.py -always -ns:0 -summary:'Robot: Standardizace' -search:'insource:/===* *Externí zdroje *===*/' '== Externí zdroje ==' '== Externí odkazy =='
 python3 ~/pwb/scripts/replace.py -summary:'Robot: {{reflist}} => <references />' -always -ns:0 -regex -search:'insource:/\{\{[Rf]eflist\|?[^}]*\}\}/' '\{\{[Rf]eflist\|?[^}]*\}\}' '<references />'
 python3 ~/pwb/scripts/replace.py -summary:'Robot: Nahrazení šablony Reflist za tag <references />' -always -ns:0 -transcludes:'Reflist' -nocase '{{Reflist}}' '<references />'
 python3 ~/pwb/scripts/replace.py -always -summary:"Robot: Standardizace" -ns:0 -search:'insource:/===? ?Viz (též|také) ?===?/' -regex '(===? ?)Viz (též|také)( ?===?)' '\1Související články\3'
