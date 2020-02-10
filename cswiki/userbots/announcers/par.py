@@ -52,7 +52,7 @@ def announce_candidates(site, candidates):
 		if not page.exists() or new_text.strip() != page.get().strip():
 			comment = u'hlásič ŽOPS hlásá (počet: %s)' % len(candidates)
 			page.put(new_text, comment=comment)
-		
+
 
 if __name__ == '__main__':
 	site = pywikibot.Site()

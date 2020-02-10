@@ -90,7 +90,7 @@ def announce_candidates(site, candidates_sets):
 		if not page.exists() or new_text.strip() != page.get().strip():
 			page.text = new_text
 			page.save('hlásič NNČ hlásá')
-		
+
 
 if __name__ == '__main__':
 	site = pywikibot.Site()

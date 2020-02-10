@@ -28,7 +28,7 @@ def get_afd_candidates(site):
 		subpage = pywikibot.Page(site, u'%s/%s' % (AFD_PREFIX, subpage_name))
 		since = RE_SINCE.search(subpage.get())
 		close = RE_CLOSE.search(subpage.get())
-		
+
 		if close is None or (close.group('default') is None and close.group('custom') is None):
 			# fail
 			close_text = u'konec?'
@@ -45,7 +45,7 @@ def get_afd_candidates(site):
 				close_text = u'zralé'
 			else:
 				close_text = u'do&nbsp;%d.&nbsp;%d.' % (close_ts.day, close_ts.month)
-		
+
 		out.append({
 			'AFD': AFD_PREFIX,
 			'subpage_name': subpage_name,
@@ -72,7 +72,7 @@ def announce_afd_candidates(site, candidates):
 		if not page.exists() or new_text.strip() != page.get().strip():
 			comment = u'hlásič AfD hlásá (počet: %s)' % len(candidates)
 			page.put(new_text, comment=comment)
-		
+
 
 if __name__ == '__main__':
 	site = pywikibot.Site()
