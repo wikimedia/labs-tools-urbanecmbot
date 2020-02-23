@@ -68,6 +68,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 17 8 * * * /usr/bin/jsub -N zamkyHradyBot -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/zamkyHradyBot/zamkyHradyBot.sh
 17 9 * * * /usr/bin/jsub -N neklavesoveZnakyBot -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/neklavesoveZnakyBot/neklavesoveZnakyBot.sh
 50 16 * * * /usr/bin/jsub -N orphan -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/orphan/orphan.sh
+10 2 * * * /usr/bin/jsub -N restartPatrollingJobs -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/restartContinuousJobs.sh
 
 # Ensure continuous jobs are running
 */5 * * * * jlocal /data/project/urbanecmbot/11bots/bigbrother.sh patrolTrusted /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolTrusted.sh
