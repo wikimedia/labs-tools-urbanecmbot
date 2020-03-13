@@ -22,6 +22,10 @@ with cur:
 	cur.execute(sql)
 	data = cur.fetchall()
 
+exceptions = pywikibot.Page(site, "User:UrbanecmBot/Záměrně osiřelé diskusní stránky").text.split('\n')
+
 for row in data:
 	page = pywikibot.Page(site, namespaces[str(row[0])]['*'] + u':' + row[1].decode('utf-8'))
+	if page.title() in exceptions:
+		continue
 	page.delete(reason=u"Robot: Osiřelá diskusní stránka", mark=True, prompt=False)
