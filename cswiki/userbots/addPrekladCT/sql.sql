@@ -14,6 +14,7 @@ and ct_rev_id is not null
 and rev_page not in
 (select tl_from from templatelinks where tl_title="Překlad")
 and page_namespace=0
-and rev_parent_id=0
+/*and rev_parent_id=0*/
 and rev_page not in (select tl_from from templatelinks where tl_title like "Rozcestník%")
+and left(replace(comment_text, "Vytvořeno překladem stránky „[[:", ""), 2)!="cs"
 and page_is_redirect=0;
