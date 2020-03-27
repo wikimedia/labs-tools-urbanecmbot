@@ -15,7 +15,7 @@ class ZOO:
 	PAGE_PREFIX = "Wikipedie:Žádost o opatření"
 	PAGE_LIST = "Wikipedie:Žádost o opatření"
 	RE_SECTION = re.compile(r'=== Projednávané žádosti ===\n[^=]*')
-	RE_SUBPAGE = re.compile(r'\* ?\[\[/([^/]*)/\]\]')
+	RE_SUBPAGE = re.compile(r'\* ?\[\[[^/]*/([^/]*)/?\]\]')
 
 
 class ZOA:
@@ -77,6 +77,7 @@ def announce_candidates(site, candidates_sets):
 
 if __name__ == '__main__':
 	site = pywikibot.Site()
+	print(get_candidates(site, ZOO))
 	announce_candidates(site, [
 		{'type': 'zoas', 'data': get_candidates(site, ZOA)},
 		{'type': 'zoos', 'data': get_candidates(site, ZOO)}
