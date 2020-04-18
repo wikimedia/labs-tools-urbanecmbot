@@ -6,27 +6,27 @@ import requests
 import csv
 import pywikibot
 import datetime
-from wmflabs import db
+import toolforge
 
 # Config
 DEPTH = 5
 PORTALS = {
-	u'Portál:Ptáci/Nové články': 'Ptáci',
-	u'Portál:Obojživelníci/Nové články': 'Obojživelníci',
-	u'Portál:Živočichové/Nové články': 'Živočichové'
+	'Portál:Ptáci/Nové články': 'Ptáci',
+	'Portál:Obojživelníci/Nové články': 'Obojživelníci',
+	'Portál:Živočichové/Nové články': 'Živočichové'
 }
 EXCEPTIONS = {
 	'SOME': ['SOME']
 }
 BASEURL = 'https://petscan.wmflabs.org/'
-BASESQL = 'select left(rev_timestamp, 8) from revision where rev_page in (select page_id from page where page_title="@@TITLE@@" and page_namespace=0) and rev_parent_id=0;'
+BASESQL = 'select left(rev_timestamp, 8) from revision where rev_page in (select page_id from page where page_title=%s and page_namespace=0) and rev_parent_id=0;'
 
 BEFORE_DAYS = 30
 
 AFTER_DATE = (datetime.date.today() - datetime.timedelta(days=BEFORE_DAYS)).strftime('%Y%m%d')
 
 # Code
-conn = db.connect('cswiki')
+conn = toolforge.connect('cswiki')
 site = pywikibot.Site()
 for portal in PORTALS:
 	pages = {}
@@ -48,19 +48,17 @@ for portal in PORTALS:
 	data = r.json()
 	for page in data['*'][0]['a']['*']:
 		with conn.cursor() as cur:
-			sql = BASESQL.replace('@@TITLE@@', page['title'])
-			cur.execute(sql)
-			dayofcreation = cur.fetchall()[0][0]
+			cur.execute(BASESQL, (page['title'], ))
+			dayofcreation = cur.fetchall()[0][0].decode('utf-8')
 		pages[dayofcreation] = page['title']
-	dateofcreations = pages.keys()
+	dateofcreations = list(pages.keys())
 	dateofcreations.sort()
-	wikicode = u"<!-- Prosím, nepřepisujte tuto stránku, příští noc budou změny přepsány botem -->\n\n"
+	wikicode = "<!-- Prosím, nepřepisujte tuto stránku, příští noc budou změny přepsány botem -->\n\n"
 	for dateofcreationraw in dateofcreations:
 		page = pages[dateofcreationraw]
 		dateofcreation = datetime.datetime.strptime(dateofcreationraw, '%Y%m%d')
 		dateofcreationhuman = "{0}. {1}. {2}".format(dateofcreation.day, dateofcreation.month, dateofcreation.year)
-		wikicode += u"* " + dateofcreationhuman + u": [[" + page.replace('_', ' ') + u"]]\n"
+		wikicode += "* " + dateofcreationhuman + u": [[" + page.replace('_', ' ') + u"]]\n"
 	portalpage = pywikibot.Page(site, portal)
 	portalpage.text = wikicode
-	portalpage.save(u"Robot: Aktualizace novinek")
-	break
+	portalpage.save("Robot: Aktualizace novinek")
