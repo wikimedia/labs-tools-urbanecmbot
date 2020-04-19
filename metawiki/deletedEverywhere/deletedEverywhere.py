@@ -34,9 +34,9 @@ for speedy_item in speedy_items:
 		url = cur.fetchall()[0][0]
 	result += "|-\n"
 	result += "|%s\n" % speedy_item[0].decode('utf-8')
-	result += "|%d\n" % numOfSysops
+	result += "|{{subst:formatnum:%d}}\n" % numOfSysops
 	result += "|[%s/wiki/%s %s]\n" % (url, speedy_item[1].decode('utf-8').replace(' ', '_'), speedy_item[1].decode('utf-8'))
-	result += "|%d\n" % numOfItems
+	result += "|{{subst:formatnum:%d}}\n" % numOfItems
 	totalCSD += numOfItems
 
 result += """|+
