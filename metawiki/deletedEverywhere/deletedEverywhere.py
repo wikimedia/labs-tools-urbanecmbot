@@ -19,6 +19,7 @@ result = """{| class="wikitable sortable"
 !Number of items
 """
 
+totalCSD = 0
 for speedy_item in speedy_items:
 	conn = toolforge.connect(speedy_item[0].decode('utf-8'))
 	with conn.cursor() as cur:
@@ -36,7 +37,12 @@ for speedy_item in speedy_items:
 	result += "|%d\n" % numOfSysops
 	result += "|[%s/wiki/%s %s]\n" % (url, speedy_item[1].decode('utf-8').replace(' ', '_'), speedy_item[1].decode('utf-8'))
 	result += "|%d\n" % numOfItems
+	totalCSD += numOfItems
 
+result += """|+
+! colspan="3" |Total
+!{{subst:formatnum:%d}}
+""" % totalCSD
 result += "|}"
 
 page = pywikibot.Page(site, "User:UrbanecmBot/Wiki speedy delete")
