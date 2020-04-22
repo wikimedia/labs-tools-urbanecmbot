@@ -20,10 +20,11 @@ monthword = {
 	11: u"listopad",
 	12: u"prosinec"
 }
-d = datetime.date.today()
+d = datetime.date.today() + datetime.timedelta(days=1)
 day = d.day
 month = monthword[d.month]
+expiry = d + datetime.timedelta(days=1)
 page_title = u"Wikipedie:Vybraná výročí dne/%d. %s" % (day, month)
 page = pywikibot.Page(site, page_title)
 if page.exists():
-	page.protect(reason='automatizovany zamek neceho dne', protections={'edit': 'autoconfirmed', 'move': 'sysop'}, expiry="26 hours")
+	page.protect(reason='automatizovany zamek neceho dne', protections={'edit': 'autoconfirmed', 'move': 'sysop'}, expiry=expiry.strftime('%Y-%m-%d 07:00:00'))
