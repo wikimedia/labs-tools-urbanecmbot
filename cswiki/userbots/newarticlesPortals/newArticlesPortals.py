@@ -13,6 +13,7 @@ DEPTH = 5
 PORTALS = {
 	'Portál:Ptáci/Nové články': 'Ptáci',
 	'Portál:Obojživelníci/Nové články': 'Obojživelníci',
+	'Portál:Živočichové/Nové články/Auto': 'Živočichové'
 }
 EXCEPTIONS = {
 	'SOME': ['SOME']
