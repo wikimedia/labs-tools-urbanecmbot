@@ -11,6 +11,11 @@ with conn.cursor() as cur:
 	cur.execute('select ips_site_id, ips_site_page from wb_items_per_site where ips_item_id=5964')
 	speedy_items = cur.fetchall()
 
+conn = toolforge.connect('centralauth')
+with conn.cursor() as cur:
+	cur.execute('select ws_wikis from wikiset where ws_id=7')
+	non_gs_wikis = cur.fetchall()[0][0].decode('utf-8').split(',')
+
 result = """{| class="wikitable sortable"
 |+
 !Project
@@ -21,7 +26,8 @@ result = """{| class="wikitable sortable"
 
 totalCSD = 0
 for speedy_item in speedy_items:
-	conn = toolforge.connect(speedy_item[0].decode('utf-8'))
+	dbname = speedy_item[0].decode('utf-8')
+	conn = toolforge.connect(dbname)
 	with conn.cursor() as cur:
 		cur.execute('select count(*) from categorylinks where cl_to=%s', speedy_item[1].decode('utf-8').split(':')[1].replace(' ', '_'))
 		numOfItems = cur.fetchall()[0][0]
@@ -32,7 +38,10 @@ for speedy_item in speedy_items:
 	with conn.cursor() as cur:
 		cur.execute('select url from wiki where dbname=%s', speedy_item[0].decode('utf-8'))
 		url = cur.fetchall()[0][0]
-	result += "|-\n"
+	if dbname in non_gs_wikis:
+		result += "|-\n"
+	else:
+		result += '|- style="background-color: #BBFFBB;"\n'
 	result += "|%s\n" % speedy_item[0].decode('utf-8')
 	result += "|{{subst:formatnum:%d}}\n" % numOfSysops
 	result += "|[%s/wiki/%s %s]\n" % (url, speedy_item[1].decode('utf-8').replace(' ', '_'), speedy_item[1].decode('utf-8'))
