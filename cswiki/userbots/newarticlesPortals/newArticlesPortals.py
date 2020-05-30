@@ -7,38 +7,36 @@ import csv
 import pywikibot
 import datetime
 import toolforge
+import simplejson as json
+
+# Init
+site = pywikibot.Site()
+conn = toolforge.connect('cswiki')
 
 # Config
-DEPTH = 5
-PORTALS = {
-	'Portál:Ptáci/Nové články': 'Ptáci',
-	'Portál:Obojživelníci/Nové články': 'Obojživelníci',
-	'Portál:Živočichové/Nové články/Auto': 'Živočichové'
-}
-EXCEPTIONS = {
-	'SOME': ['SOME']
-}
+CONFIG_PAGE = "Wikipedista:UrbanecmBot/Nové články na portálech.json"
+config = json.loads(pywikibot.Page(site, CONFIG_PAGE).text)
+
 BASEURL = 'https://petscan.wmflabs.org/'
 BASESQL = 'select left(rev_timestamp, 8) from revision where rev_page in (select page_id from page where page_title=%s and page_namespace=0) and rev_parent_id=0;'
 
-BEFORE_DAYS = 30
-
-AFTER_DATE = (datetime.date.today() - datetime.timedelta(days=BEFORE_DAYS)).strftime('%Y%m%d')
-
 # Code
-conn = toolforge.connect('cswiki')
-site = pywikibot.Site()
-for portal in PORTALS:
+for portal in config['portals']:
+	portal_config = {**config['defaults'], **config['portals'][portal]}
 	pages = {}
-	category = PORTALS[portal]
 	payload = {
 		'language': 'cs',
 		'project': 'wikipedia',
-		'depth': DEPTH,
-		'categories': category,
+		'depth': portal_config['depth'],
+		'combination': 'union',
+		'categories': '\n'.join(portal_config['categories']),
+		'negcats': '\n'.join(portal_config['negative_categories']),
 		'ns[0]': 1,
-		'after': AFTER_DATE,
+		'after': (datetime.date.today() - datetime.timedelta(days=portal_config['before_days'])).strftime('%Y%m%d'),
 		'only_new': 'on',
+		'sortorder': 'descending',
+		'sortby': 'none',
+		"output_limit": portal_config["output_limit"],
 		'show_redirects': 'no',
 		'interface_language': 'en',
 		'format': 'json',
@@ -59,6 +57,6 @@ for portal in PORTALS:
 		dateofcreation = datetime.datetime.strptime(dateofcreationraw, '%Y%m%d')
 		dateofcreationhuman = "{0}. {1}. {2}".format(dateofcreation.day, dateofcreation.month, dateofcreation.year)
 		wikicode += "* " + dateofcreationhuman + u": [[" + page.replace('_', ' ') + u"]]\n"
-	portalpage = pywikibot.Page(site, portal)
+	portalpage = pywikibot.Page(site, portal_config.get('target_page', 'Portál:%s/Nové články' % portal))
 	portalpage.text = wikicode
 	portalpage.save("Robot: Aktualizace novinek")
