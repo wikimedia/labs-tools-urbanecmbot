@@ -14,7 +14,7 @@ site = pywikibot.Site()
 conn = toolforge.connect('cswiki')
 
 # Config
-CONFIG_PAGE = "Wikipedista:UrbanecmBot/Nové články na portálech.json"
+CONFIG_PAGE = "Wikipedie:Automatická aktualizace nových článků portálu/konfigurace.json"
 config = json.loads(pywikibot.Page(site, CONFIG_PAGE).text)
 
 BASEURL = 'https://petscan.wmflabs.org/'
