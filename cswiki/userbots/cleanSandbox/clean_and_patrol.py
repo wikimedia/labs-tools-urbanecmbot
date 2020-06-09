@@ -8,12 +8,12 @@ conn = toolforge.connect('cswiki')
 site = pywikibot.Site()
 
 page = pywikibot.Page(site, u"Wikipedie:Pískoviště")
-if (datetime.now() - page.editTime()).seconds / 60 / 60 > 2:
+if (datetime.utcnow() - page.editTime()).seconds / 60 / 60 > 2:
 	page.text = open('/data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/vzor.txt').read()
 	page.save('Robot: Úhrab pískoviště')
 
 page = pywikibot.Page(site, u"Šablona:Test")
-if (datetime.now() - page.editTime()).seconds / 60 / 60 > 8:
+if (datetime.utcnow() - page.editTime()).seconds / 60 / 60 > 8:
 	page.text = open('/data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/vzor_sablona.txt').read()
 	page.save('Robot: Úhrab pískoviště')
 
