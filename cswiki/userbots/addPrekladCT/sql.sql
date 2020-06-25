@@ -1,10 +1,5 @@
 select page_title,
-concat(
-	"{{Překlad|",
-	left(replace(comment_text, "Vytvořeno překladem stránky „[[:", ""), 2), "|",
-	replace(replace(replace(comment_text, substring_index(comment_text, "|", 1), ""), "|", ""), "]]“", ""), "|",
-	SUBSTRING_INDEX(replace(substr(replace(comment_text, "Vytvořeno překladem stránky „[[:", ""), 4), "Special:Redirect/revision/", ""), "|", 1), "}}"
-) as template
+comment_text
 from change_tag
 join revision on ct_rev_id=rev_id
 join page on rev_page=page_id
