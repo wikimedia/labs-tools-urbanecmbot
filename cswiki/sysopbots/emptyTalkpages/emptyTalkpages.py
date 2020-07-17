@@ -19,4 +19,4 @@ for row in data:
 		continue
 	if not page.exists():
 		continue
-	page.delete("prázdná diskusní stránka", mark=True)
+	page.delete("Robot: prázdná diskusní stránka", mark=True, prompt=False)
