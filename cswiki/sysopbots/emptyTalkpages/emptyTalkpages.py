@@ -4,7 +4,7 @@
 import pywikibot
 import toolforge
 
-conn = toolforge.connect('cswiki')
+conn = toolforge.connect('cswiki', cluster='analytics')
 site = pywikibot.Site()
 
 with conn.cursor() as cur:
