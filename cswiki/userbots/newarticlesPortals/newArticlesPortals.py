@@ -51,6 +51,8 @@ for portal in config['portals']:
 		pages[dayofcreation] = page['title']
 	dateofcreations = list(pages.keys())
 	dateofcreations.sort()
+	if portal_config['ordering'] == 'desc':
+		dateofcreations.reverse()
 	wikicode = "<!-- Prosím, nepřepisujte tuto stránku, příští noc budou změny přepsány botem -->\n\n"
 	for dateofcreationraw in dateofcreations:
 		page = pages[dateofcreationraw]
