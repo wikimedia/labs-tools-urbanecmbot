@@ -18,7 +18,7 @@ CONFIG_PAGE = "Wikipedie:Automatická aktualizace nových článků portálu/kon
 config = json.loads(pywikibot.Page(site, CONFIG_PAGE).text)
 
 BASEURL = 'https://petscan.wmflabs.org/'
-BASESQL = 'select left(rev_timestamp, 8) from revision where rev_page in (select page_id from page where page_title=%s and page_namespace=0) and rev_parent_id=0;'
+BASESQL = 'select rev_timestamp from revision where rev_page in (select page_id from page where page_title=%s and page_namespace=0) and rev_parent_id=0;'
 
 # Code
 for portal in config['portals']:
@@ -56,7 +56,7 @@ for portal in config['portals']:
 	wikicode = "<!-- Prosím, nepřepisujte tuto stránku, příští noc budou změny přepsány botem -->\n\n"
 	for dateofcreationraw in dateofcreations:
 		page = pages[dateofcreationraw]
-		dateofcreation = datetime.datetime.strptime(dateofcreationraw, '%Y%m%d')
+		dateofcreation = datetime.datetime.strptime(dateofcreationraw, '%Y%m%d%H%M%S')
 		dateofcreationhuman = "{0}. {1}. {2}".format(dateofcreation.day, dateofcreation.month, dateofcreation.year)
 		wikicode += "* " + dateofcreationhuman + u": [[" + page.replace('_', ' ') + u"]]\n"
 	portalpage = pywikibot.Page(site, portal_config.get('target_page', 'Portál:%s/Nové články' % portal))
