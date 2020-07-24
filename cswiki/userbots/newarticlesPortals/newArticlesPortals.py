@@ -58,7 +58,11 @@ for portal in config['portals']:
 		page = pages[dateofcreationraw]
 		dateofcreation = datetime.datetime.strptime(dateofcreationraw, '%Y%m%d%H%M%S')
 		dateofcreationhuman = "{0}. {1}. {2}".format(dateofcreation.day, dateofcreation.month, dateofcreation.year)
-		wikicode += "* " + dateofcreationhuman + u": [[" + page.replace('_', ' ') + u"]]\n"
+		wikicode += portal_config['row_format'] % {
+			"date": dateofcreationhuman,
+			"title": page.replace('_', ' ')
+		}
+		wikicode += '\n'
 	portalpage = pywikibot.Page(site, portal_config.get('target_page', 'Portál:%s/Nové články' % portal))
 	portalpage.text = wikicode
 	portalpage.save("Robot: Aktualizace novinek")
