@@ -60,6 +60,7 @@ for portal in config['portals']:
 		dateofcreationhuman = "{0}. {1}. {2}".format(dateofcreation.day, dateofcreation.month, dateofcreation.year)
 		wikicode += portal_config['row_format'] % {
 			"date": dateofcreationhuman,
+			"datetime_raw": dateofcreationraw,
 			"title": page.replace('_', ' ')
 		}
 		wikicode += '\n'
