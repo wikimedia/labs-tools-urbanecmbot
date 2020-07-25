@@ -57,8 +57,8 @@ MAILTO=martin.urbanec@wikimedia.cz
 7 * * * * /usr/bin/jsub -N trustedPatrolGetUsers -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/getUsers.sh
 */3 * * * * /usr/bin/jsub -N patrolUndo -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
 */3 * * * * /usr/bin/jsub -N patrolRollback -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolRollback.py
-*/3 * * * * /usr/bin/jsub -N patrolDashboard -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
-*/3 * * * * /usr/bin/jsub -N patrolFountain -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolFountain.py
+*/5 * * * * /usr/bin/jsub -N patrolDashboard -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
+*/5 * * * * /usr/bin/jsub -N patrolFountain -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolFountain.py
 23 * * * * /usr/bin/jsub -N markStudents -once -quiet python3 /data/project/urbanecmbot/mark-students/cache.py
 13 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh
 47 23 * * * /usr/bin/jsub -N emptyTalkpages -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/emptyTalkpages/emptyTalkpages.sh
