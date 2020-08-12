@@ -8,7 +8,7 @@ site = pywikibot.Site('meta', 'meta')
 
 conn = toolforge.connect('wikidatawiki')
 with conn.cursor() as cur:
-	cur.execute('select ips_site_id, ips_site_page from wb_items_per_site where ips_item_id=5964')
+	cur.execute('select ips_site_id, ips_site_page from wb_items_per_site where ips_item_id=5964 order by ips_site_id')
 	speedy_items = cur.fetchall()
 
 conn = toolforge.connect('centralauth')
