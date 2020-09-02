@@ -227,6 +227,6 @@ if __name__ == '__main__':
         gen = genFactory.getCombinedGenerator(preload=True)
         if not gen:
             gen = PrefixingPageGenerator(
-                'Wikipedie:Zajímavosti/201', includeredirects=False, site=site,
+                'Wikipedie:Zajímavosti/20', includeredirects=False, site=site,
                 content=True)
         run(gen, force='-force' in args)
