@@ -8,7 +8,7 @@ from datetime import date, timedelta
 
 from pywikibot import textlib
 from pywikibot.pagegenerators import GeneratorFactory, PrefixingPageGenerator
-from pywikibot.tools import OrderedDict
+from collections import OrderedDict
 
 args = pywikibot.handle_args()
 
