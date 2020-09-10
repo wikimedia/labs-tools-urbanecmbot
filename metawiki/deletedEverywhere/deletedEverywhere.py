@@ -54,6 +54,6 @@ result += """|+
 """ % totalCSD
 result += "|}"
 
-page = pywikibot.Page(site, "User:UrbanecmBot/Wiki speedy delete")
+page = pywikibot.Page(site, "Global sysops/Speedy delete requests/Data")
 page.text = result
 page.save('Bot: Publish wiki speedy delete report')
