@@ -17,10 +17,10 @@ minutes = int(args[0]) if args and args[0].isdigit() else 15
 start = datetime.utcnow() - timedelta(minutes=minutes)
 starttime = start.strftime('%Y%m%d%H%M%S')
 
-for rev in site.recentchanges(start=starttime, showBot=False, showPatrolled=True, reverse=True, tag='mw-undo'):
+for rev in site.recentchanges(start=starttime, showBot=False, showPatrolled=False, reverse=True, tag='mw-reverted'):
 	try:
-		p = site.patrol(revid=rev['old_revid'])
+		p = site.patrol(revid=rev['revid'])
 		list(p)
-		logging.info('Marking revision %s as patrolled', rev['old_revid'])
+		logging.info('Marking revision %s as patrolled', rev['revid'])
 	except Exception:
 		logging.exception('Exception occured')
