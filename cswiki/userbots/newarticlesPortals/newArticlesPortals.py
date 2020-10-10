@@ -23,6 +23,7 @@ BASESQL = 'select rev_timestamp from revision where rev_page in (select page_id 
 # Code
 for portal in config['portals']:
 	portal_config = {**config['defaults'], **config['portals'][portal]}
+	print("Processing %s" % portal)
 	pages = {}
 	payload = {
 		'language': 'cs',
