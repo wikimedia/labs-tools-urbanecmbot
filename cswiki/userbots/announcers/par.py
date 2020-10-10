@@ -35,8 +35,8 @@ def get_candidates(site):
 
 
 ANNOUNCES = [
-		{'page': u'Šablona:OznámeníRC/PAR', 'big_tl': u'|- id="Sablona--OznameniRC__Oznameni_PAR"\n! [[Wikipedie:Patroláři a revertéři|Patrolář/revertér]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl': u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator': u' • ', 'empty': u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
-		{'page': u'Wikipedie:Portál Wikipedie/Co se děje/Žádosti o PAR', 'big_tl': u'%s\n', 'small_tl': u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (%(close)s)", 'separator': u'\n', 'empty': u'<!-- momentálně tu nic není -->'},
+		{'page': u'Šablona:OznámeníRC/PAR', 'big_tl': u'|- id="Sablona--OznameniRC__Oznameni_PAR"\n! [[Wikipedie:Patroláři a revertéři|Patrolář/revertér]]:\n| %s<noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>\n', 'small_tl': u"[[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (do %(close)s)", 'separator': u' • ', 'empty': u'<!-- momentálně tu nic není --><noinclude>\n[[Kategorie:Šablony:Části šablon]]\n[[Kategorie:Šablony:MediaWiki]]\n</noinclude>'},
+		{'page': u'Wikipedie:Portál Wikipedie/Co se děje/Žádosti o PAR', 'big_tl': u'%s\n', 'small_tl': u"* [[%(PREFIX)s/%(subpage_name)s|%(subpage_name)s]] (do %(close)s)", 'separator': u'\n', 'empty': u'<!-- momentálně tu nic není -->'},
 ]
 
 
