@@ -36,8 +36,12 @@ for speedy_item in speedy_items:
 		numOfSysops = cur.fetchall()[0][0]
 	conn = toolforge.connect('meta')
 	with conn.cursor() as cur:
-		cur.execute('select url from wiki where dbname=%s', speedy_item[0].decode('utf-8'))
-		url = cur.fetchall()[0][0]
+		cur.execute('select url, is_closed from wiki where dbname=%s', speedy_item[0].decode('utf-8'))
+		data = cur.fetchall()
+		url = data[0][0]
+		is_closed = data[0][1]
+	if is_closed:
+		continue # do not process closed wikis
 	if dbname in non_gs_wikis:
 		result += "|-\n"
 	else:
