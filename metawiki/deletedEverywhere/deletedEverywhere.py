@@ -27,9 +27,12 @@ result = """{| class="wikitable sortable"
 totalCSD = 0
 for speedy_item in speedy_items:
 	dbname = speedy_item[0].decode('utf-8')
+	tmp = speedy_item[1].decode('utf-8').replace(' ', '_').split(':')
+	tmp.pop(0)
+	cat = ":".join(tmp)
 	conn = toolforge.connect(dbname)
 	with conn.cursor() as cur:
-		cur.execute('select count(*) from categorylinks where cl_to=%s', speedy_item[1].decode('utf-8').split(':')[1].replace(' ', '_'))
+		cur.execute('select count(*) from categorylinks where cl_to=%s', cat)
 		numOfItems = cur.fetchall()[0][0]
 	with conn.cursor() as cur:
 		cur.execute('select count(*) from user_groups where ug_group="sysop";')
