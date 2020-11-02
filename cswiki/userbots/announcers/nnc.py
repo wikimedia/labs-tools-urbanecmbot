@@ -14,7 +14,7 @@ PAGE_PREFIX = "Wikipedie:Nominace nejlepších článků"
 PAGE_LIST = "Wikipedie:Nominace nejlepších článků"
 RE_SUBPAGE = re.compile(r'\{\{[^\}\n]*/(?P<subpage>[^\}\n]+)\}\}')
 RE_VOTING = re.compile(r'==== ?Hlasování ?====\s*\n.*(?!==)')
-RE_SIGNATURE = re.compile(r'\[\[(Wikipedista|Wikipedistka):[^|]+\|[^]]+\]\]( \(|, )\[\[Diskuse s (wikipedistou|wikipedistkou):[^|]+\|[dD]iskuse\]\]\)? ([0-9]+)\. ([0-9]+)\. ([0-9]{4}), ([0-9]+):([0-9]+) \((CET|CEST)')
+RE_SIGNATURE = re.compile(r'\[\[(Wikipedista|Wikipedistka):[^|]+\|[^]]+\]\]( \(|, )\[\[Diskuse s (wikipedistou|wikipedistkou):[^|]+\|[dD]iskuse\]\]\)?[^\d]*([0-9]+)\. ([0-9]+)\. ([0-9]{4}), ([0-9]+):([0-9]+) \((CET|CEST)')
 RE_UNUSUAL_CLOSE = re.compile(r'==== ?Hlasování ?====\s*\n<!--([^-]+)-->')
 
 
