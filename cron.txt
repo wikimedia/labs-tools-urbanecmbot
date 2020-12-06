@@ -54,6 +54,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 5 12 * * * /usr/bin/jsub -N autoprotectDaily -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/daily.sh
 10 12 * * 0 /usr/bin/jsub -N autoprotectWeekly -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/weekly.sh
 13 * * * * /usr/bin/jsub -N patrolAutopatrolled -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/autopatrol.sh
+13 * * * * /usr/bin/jsub -N patrolAutopatrolledMeta -once -quiet bash /data/project/urbanecmbot/11bots/metawiki/patrolAutopatrolled/autopatrol.sh
 7 * * * * /usr/bin/jsub -N trustedPatrolGetUsers -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/getUsers.sh
 */3 * * * * /usr/bin/jsub -N patrolUndo -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
 */5 * * * * /usr/bin/jsub -N patrolDashboard -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
