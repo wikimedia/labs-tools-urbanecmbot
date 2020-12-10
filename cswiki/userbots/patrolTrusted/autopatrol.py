@@ -21,7 +21,7 @@ users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/edi
 for user in users:
 	user = user.strip()
 	with conn.cursor() as cur:
-		sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s" and rc_new=0' % user
+		sql = 'select rc_id from recentchanges_userindex join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s" and rc_new=0' % user
 		cur.execute(sql)
 		data = cur.fetchall()
 		for row in data:
@@ -31,7 +31,7 @@ users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/tru
 for user in users:
 	user = user.strip()
 	with conn.cursor() as cur:
-		sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s" and (rc_new=0 or rc_namespace!=0)' % user
+		sql = 'select rc_id from recentchanges_userindex join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s" and (rc_new=0 or rc_namespace!=0)' % user
 		cur.execute(sql)
 		data = cur.fetchall()
 		for row in data:
@@ -41,20 +41,20 @@ users = open('/data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/pag
 for user in users:
 	user = user.strip()
 	with conn.cursor() as cur:
-		sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s"' % user
+		sql = 'select rc_id from recentchanges_userindex join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name="%s"' % user
 		cur.execute(sql)
 		data = cur.fetchall()
 		for row in data:
 			ids.append(row[0])
 
 with conn.cursor() as cur:
-	cur.execute('select rc_id from recentchanges join comment on comment_id=rc_comment_id where comment_text like "%([[:c:GR|GR]])" and rc_patrolled=0;')
+	cur.execute('select rc_id from recentchanges_userindex join comment on comment_id=rc_comment_id where comment_text like "%([[:c:GR|GR]])" and rc_patrolled=0;')
 	data = cur.fetchall()
 	for row in data:
 		ids.append(row[0])
 
 with conn.cursor() as cur:
-	cur.execute('select rc_id from recentchanges join comment on comment_id=rc_comment_id where comment_text like "%GlobalReplace v0.6.5%" and rc_patrolled=0;')
+	cur.execute('select rc_id from recentchanges_userindex join comment on comment_id=rc_comment_id where comment_text like "%GlobalReplace v0.6.5%" and rc_patrolled=0;')
 	data = cur.fetchall()
 	for row in data:
 		ids.append(row[0])
