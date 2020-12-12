@@ -15,7 +15,7 @@ class ZOO:
 	PAGE_PREFIX = "Wikipedie:Žádost o opatření"
 	PAGE_LIST = "Wikipedie:Žádost o opatření"
 	RE_SECTION = re.compile(r'=== Projednávané žádosti ===\n[^=]*')
-	RE_SUBPAGE = re.compile(r'\* ?\[\[[^/]*/([^/]*)/?\]\]')
+	RE_SUBPAGE = re.compile(r'\[\[(Wikipedie:Žádost o opatření/|/[^/]*)([^/|]*)/?(|)?[^]/]+\]\]')
 
 
 class ZOA:
@@ -33,7 +33,7 @@ def get_candidates(site, conf):
 	for candidate in candidates:
 		out.append({
 			'PREFIX': conf.PAGE_PREFIX,
-			'subpage_name': candidate
+			'subpage_name': candidate[1]
 		})
 	return out
 
