@@ -20,7 +20,10 @@ with conn.cursor() as cur:
 
 for title in titles:
 	cswikiPage = pywikibot.Page(cswikiSite, title)
-	item = pywikibot.ItemPage.fromPage(cswikiPage)
+	try:
+		item = pywikibot.ItemPage.fromPage(cswikiPage)
+	except pywikibot.exceptions.NoPage:
+		continue
 	if item.get().get('labels', {}).get('cs') is not None:
 		continue
 
