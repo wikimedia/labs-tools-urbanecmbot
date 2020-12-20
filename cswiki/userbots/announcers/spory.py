@@ -15,7 +15,7 @@ class ZOO:
 	PAGE_PREFIX = "Wikipedie:Žádost o opatření"
 	PAGE_LIST = "Wikipedie:Žádost o opatření"
 	RE_SECTION = re.compile(r'=== Projednávané žádosti ===\n[^=]*')
-	RE_SUBPAGE = re.compile(r'\[\[(Wikipedie:Žádost o opatření/|/[^/]*)([^/|]*)/?(|)?[^]/]+\]\]')
+	RE_SUBPAGE = re.compile(r'\[\[(Wikipedie:Žádost o opatření/|/[^/]*)([^/|\]]*)/?(|[^]/]+)?\]\]')
 
 
 class ZOA:
