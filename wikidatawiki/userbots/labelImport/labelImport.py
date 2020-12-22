@@ -27,4 +27,5 @@ for title in titles:
 	if item.get().get('labels', {}).get('cs') is not None:
 		continue
 
-	item.editLabels(labels={'cs': RE_BRACKETS.sub('', title).strip()}, summary='TRIAL: Add Czech label')
+	label = RE_BRACKETS.sub('', title).strip()
+	item.editLabels(labels={'cs': label}, summary='Add Czech label: %s' % label)
