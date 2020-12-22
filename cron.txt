@@ -41,6 +41,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 54 9 * * * /usr/bin/jsub -N exportWD -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.sh
 14 12 * * * /usr/bin/jsub -N addPrekladCT -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/addPrekladCT/run.sh
 6 3 * * * /usr/bin/jsub -N wikidataCoorImport -once -quiet bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/wikidataCoorImport/run.sh
+3 4 * * * /usr/bin/jsub -N wikidataLabelImport -once -quiet bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/labelImport/labelImport.sh
 59 8 * * * /usr/bin/jsub -N relikty -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/relikty/deletethem.sh
 26 3 * * * /usr/bin/jsub -N badprotecttemplates -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/badProtectTemplates/badprotecttemplates.sh
 54 14 * * 1 /usr/bin/jsub -N ukolyAddPriority -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/addPriority.sh
