@@ -19,13 +19,10 @@ with conn.cursor() as cur:
 
 for row in data:
 	page = pywikibot.Page(site, row[0].decode('utf-8'), ns=row[1])
-	print(page.title())
 	code = mwparserfromhell.parse(page.text)
 	cat_exists = None
 	for tmpl in code.filter_templates():
 		if tmpl.name.lower() == 'commonscat':
-			print(tmpl)
-			print(tmpl.params)
 			cat_name = row[0].decode('utf-8')
 			for param in tmpl.params:
 				if param.name == '1':
@@ -33,7 +30,6 @@ for row in data:
 						cat_name = param.value.strip()
 					break
 			commonsCat = pywikibot.Page(commonsSite, cat_name, ns=14)
-			print(commonsCat.title())
 			cat_exists = commonsCat.exists()
 			break
 	if cat_exists is None:
