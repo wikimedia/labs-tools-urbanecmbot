@@ -5,6 +5,7 @@ import toolforge
 import pywikibot
 import mwparserfromhell
 import re
+import time
 
 site = pywikibot.Site()
 commonsSite = pywikibot.Site('commons', 'commons')
@@ -42,5 +43,6 @@ for row in data:
 		if numOfFiles == 0:
 			page.text = RE_COMMONSCAT.sub('', page.text)
 			page.save('Robot: Smazání šablony Commonscat odkazující na neexistující Commons kategorii', minor=False, botflag=False)
+			time.sleep(5)
 	else:
 		print('Not in Wikidata for %s' % page.title())
