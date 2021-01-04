@@ -20,7 +20,7 @@ for campaign in campaigns:
     tree = html.fromstring(r.content)
     users_ = tree.xpath('//*[@id="users"]/table/tbody/tr/td/a/text()')
     for user in users_:
-        if user.encode('latin1').decode('utf8') not in ('Gampe', 'Vojtěch Veselý', 'Frettie', 'Gabriela Boková (WMCZ)', 'Ikcur', 'Czeva'):
+        if user.encode('latin1').decode('utf8') not in ('Gampe', 'Vojtěch Veselý', 'Frettie', 'Gabriela Boková (WMCZ)', 'Ikcur', 'Czeva', 'Janbery'):
             users.append('"' + user.encode('latin1').decode('utf8') + '"')
 
 
