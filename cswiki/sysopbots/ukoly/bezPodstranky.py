@@ -20,6 +20,7 @@ for row in data:
 		continue
 	text = page.text
 	text = re.sub(r'{{Úkoly\|?[\d]*}}', '', text, flags=re.IGNORECASE)
+	print(page)
 	if text.strip() == '':
 		page.delete(reason=u"Robot: Úkoly vyřešeny", prompt=False)
 	else:
