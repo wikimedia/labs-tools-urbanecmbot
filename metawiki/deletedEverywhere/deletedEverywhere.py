@@ -41,6 +41,9 @@ for speedy_item in speedy_items:
 	with conn.cursor() as cur:
 		cur.execute('select url, is_closed from wiki where dbname=%s', speedy_item[0].decode('utf-8'))
 		data = cur.fetchall()
+		if len(data) == 0:
+			# wiki is not yet in toolforge's database, skipping
+			continue
 		url = data[0][0]
 		is_closed = data[0][1]
 	if is_closed:
