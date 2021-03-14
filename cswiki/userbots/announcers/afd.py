@@ -13,7 +13,7 @@ logger.setLevel(logging.WARNING)
 AFD_PREFIX = u'Wikipedie:Diskuse o smazání'
 AFD_LIST = u'Wikipedie:Diskuse o smazání/seznam'
 RE_SECTION = re.compile(r'^==[^=\n]+(|.*[^=\n]+)==\s*$', re.MULTILINE)
-RE_SUBPAGE = re.compile(r'\{\{[^\}\n/]+/(?P<subpage>[^\}\n]+)\}\}')
+RE_SUBPAGE = re.compile(r'\{Wikipedie:Diskuse o smazání/(?P<subpage>[^\}\n]+)\}\}')
 # RE_LINK = re.compile(r'\[\[(?P<link>[^\]\n\|]+)(\|[^\]\n]+)?\]\]')
 RE_SINCE = re.compile(r'^;\s*Diskus.{0,2}otev.{0,20}:\s*\n:.*\s+(?P<date>\d{1,2}\.\s*\d{1,2}\.\s\d{2,4}, \d{1,2}:\d{2} \([^\)]+\))', re.MULTILINE)
 RE_CLOSE = re.compile(r'^;\s*Uzav.{1,3}en.{1,3} diskuse:\s*\n:\s*(?:(?P<default>standardn.{1,3}: t.{1,3}den po zah.{1,3}jen.{1,3}))|(?:.*<!--\s*(?P<custom>.*\S)\s*-->)', re.MULTILINE)
