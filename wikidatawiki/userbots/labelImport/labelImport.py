@@ -22,7 +22,7 @@ for title in titles:
 	cswikiPage = pywikibot.Page(cswikiSite, title)
 	try:
 		item = pywikibot.ItemPage.fromPage(cswikiPage)
-	except pywikibot.exceptions.NoPage:
+	except pywikibot.exceptions.NoPageError:
 		continue
 	if item.get().get('labels', {}).get('cs') is not None:
 		continue
