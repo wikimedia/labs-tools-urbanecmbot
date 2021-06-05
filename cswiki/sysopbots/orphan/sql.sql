@@ -3,7 +3,7 @@ SELECT
   p1.page_title
 FROM page AS p1
 WHERE p1.page_title NOT LIKE "%/%"
-AND p1.page_namespace NOT IN (0,2,3,4,6,8,9,10,12,14,16,18,100,102,104,108, 118, 710, 828, 2300, 2600)
+AND p1.page_namespace NOT IN (0,2,3,4,6,7,8,9,10,12,14,16,18,100,102,104,108, 118, 710, 828, 2300, 2600)
 AND CASE WHEN p1.page_namespace = 1
   THEN NOT EXISTS (SELECT
                      1
@@ -17,18 +17,6 @@ AND CASE WHEN p1.page_namespace = 5
                    FROM page AS p2
                    WHERE p2.page_namespace = 4
                    AND p1.page_title = p2.page_title)
-  ELSE 1 END
-AND CASE WHEN p1.page_namespace = 7
-  THEN NOT EXISTS (SELECT
-                     1
-                   FROM page AS p2
-                   WHERE p2.page_namespace = 6
-                   AND p1.page_title = p2.page_title)
-  AND NOT EXISTS (SELECT
-                    1
-                  FROM commonswiki_p.page AS p2
-                  WHERE p2.page_namespace = 6
-                  AND p1.page_title = p2.page_title)
   ELSE 1 END
 AND CASE WHEN p1.page_namespace = 11
   THEN NOT EXISTS (SELECT
