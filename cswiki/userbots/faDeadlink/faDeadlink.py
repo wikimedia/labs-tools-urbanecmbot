@@ -16,4 +16,4 @@ page.text = ""
 for row in data:
 	page.text += "# [[%s]]\n" % row[1].decode('utf-8')
 
-page.save("Robot: Aktualizace seznamu dobrých či nejlepších článnků s nedostupnými zdroji")
+page.save("Robot: Aktualizace seznamu dobrých či nejlepších článků s nedostupnými zdroji")
