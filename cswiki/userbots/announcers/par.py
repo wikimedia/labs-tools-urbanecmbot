@@ -28,7 +28,7 @@ def get_candidates(site):
 			close = RE_CLOSE.search(subpage.text)
 			out.append({
 				'PREFIX': PAGE_PREFIX,
-				'subpage_name': subpage_name,
+				'subpage_name': subpage_name.replace('_', ' '),
 				'close': close.group(1),
 			})
 	return out
