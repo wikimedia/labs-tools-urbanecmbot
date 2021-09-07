@@ -11,7 +11,7 @@ logging.basicConfig(filename='/data/project/urbanecmbot/logs/patrolAutopatrol.lo
 
 ids = []
 with conn.cursor() as cur:
-	sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user!=0 and actor_name in (select distinct ug_user from user_groups where ug_group in ("autopatrolled", "bot", "sysop")) order by rc_timestamp desc'
+	sql = 'select rc_id from recentchanges join actor on rc_actor=actor_id where rc_namespace!=8 and rc_patrolled=0 and actor_user in (select distinct ug_user from user_groups where ug_group in ("autopatrolled", "bot", "sysop")) order by rc_timestamp desc'
 	cur.execute(sql)
 	data = cur.fetchall()
 	for row in data:
