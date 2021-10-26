@@ -21,11 +21,10 @@ campaigns = [
 ]
 
 # Clean data
-if os.path.isdir('/data/project/urbanecmbot/mark-students/public/data'):
-	shutil.rmtree('/data/project/urbanecmbot/mark-students/public/data')
-	os.mkdir('/data/project/urbanecmbot/mark-students/public/data')
-else:
-	os.mkdir('/data/project/urbanecmbot/mark-students/public/data')
+if os.path.isdir('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data'):
+	shutil.rmtree('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data')
+os.mkdir('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data')
+open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/.gitkeep', 'w').write('')
 
 # Regenerate files campaign-users.txt in public iface
 rules = []
@@ -48,11 +47,11 @@ for campaign in campaigns:
 		user = user.encode('latin1').decode('utf-8')
 		if user in autopatrolled: continue
 		users.append(user)
-	f = open('/data/project/urbanecmbot/mark-students/public/data/' + campaign + '-users.txt', 'w')
+	f = open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/' + campaign + '-users.txt', 'w')
 	users.sort()
 	f.write("\n".join(users))
 	f.close()
-	f = open('/data/project/urbanecmbot/mark-students/public/data/' + campaign + '-users.txt', 'r')
+	f = open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/' + campaign + '-users.txt', 'r')
 	page = pywikibot.Page(site, "Wikipedista:UrbanecmBot/Zvýrazňování studentů/%s-users.txt" % campaign)
 	page.text = f.read()
 	page.save('Robot: Aktualizace seznamu studentů')
@@ -63,12 +62,12 @@ for campaign in campaigns:
 		rules.append("a[href$='wiki/Wikipedistka:" + urllib.parse.quote(user.replace(' ', '_')) + "']")
 		rules.append("a[href$='Wikipedistka:" + urllib.parse.quote(user.replace(' ', '_')) + "&action=edit&redlink=1']")
 
-fcss = open('/data/project/urbanecmbot/mark-students/public/data/stylesheet.css', 'w+')
+fcss = open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/stylesheet.css', 'w+')
 fcss.write('@charset "utf-8";\n\n')
 fcss.write(",\n".join(rules))
 fcss.write("\n{ color: green !important; font-weight: bold !important; }\n\n")
 fcss.close()
-fcss = open('/data/project/urbanecmbot/mark-students/public/data/stylesheet.css', 'r+')
+fcss = open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/stylesheet.css', 'r+')
 page = pywikibot.Page(site, "Wikipedista:UrbanecmBot/Zvýrazňování studentů/stylesheet.css")
 page.text = fcss.read()
 page.save('Robot: Aktualizace CSS pravidel pro zvýrazňování')
