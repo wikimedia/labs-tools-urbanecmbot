@@ -49,6 +49,7 @@ for campaign in campaigns:
 			continue
 		users.append(user)
 	f = open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/' + campaign + '-users.txt', 'w')
+	users = list(set(users))
 	users.sort()
 	f.write("\n".join(users))
 	f.close()
