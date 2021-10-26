@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-from wmflabs import db
+import toolforge
 import requests
 import urllib
 import pywikibot
@@ -29,7 +29,7 @@ else:
 
 # Regenerate files campaign-users.txt in public iface
 rules = []
-conn = db.connect('cswiki')
+conn = toolforge.connect('cswiki')
 autopatrolled = []
 with conn.cursor() as cur:
 	sql = "select user_name from user where user_id in (select ug_user from user_groups where ug_group='autopatrolled');"
