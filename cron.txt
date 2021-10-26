@@ -60,7 +60,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 */3 * * * * /usr/bin/jsub -N patrolUndo -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
 */5 * * * * /usr/bin/jsub -N patrolDashboard -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
 */5 * * * * /usr/bin/jsub -N patrolFountain -once -quiet python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolFountain.py
-23 * * * * /usr/bin/jsub -N markStudents -once -quiet python3 /data/project/urbanecmbot/mark-students/cache.py
+23 * * * * /usr/bin/jsub -N markStudents -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/cache.sh
 23 * * * * /usr/bin/jsub -N markSocks -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/markSocks/updateCache.sh
 13 * * * * /usr/bin/jsub -N purgeKonecMazani -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh
 13 * * * * /usr/bin/jsub -N purgeMerchEnd -once -quiet bash /data/project/urbanecmbot/11bots/metawiki/purgeMerchEnd/purgeMerchEnd.sh
