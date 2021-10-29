@@ -12,7 +12,7 @@ args = pywikibot.handle_args()
 
 site = pywikibot.Site()
 
-minutes = int(args[0]) if args and args[0].isdigit() else 15
+minutes = int(args[0]) if args and args[0].isdigit() else 3600
 
 start = datetime.utcnow() - timedelta(minutes=minutes)
 starttime = start.strftime('%Y%m%d%H%M%S')
