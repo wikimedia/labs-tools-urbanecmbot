@@ -45,7 +45,8 @@ for campaign in campaigns:
 	for user in users_raw:
 		user = str(user)
 		user = user.encode('latin1').decode('utf-8')
-		if user in autopatrolled: continue
+		if user in autopatrolled:
+			continue
 		users.append(user)
 	f = open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/' + campaign + '-users.txt', 'w')
 	users.sort()
