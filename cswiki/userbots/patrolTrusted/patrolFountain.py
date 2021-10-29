@@ -17,7 +17,7 @@ minutes = int(args[0]) if args and args[0].isdigit() else 15
 start = datetime.utcnow() - timedelta(minutes=minutes)
 starttime = start.strftime('%Y%m%d%H%M%S')
 
-for rev in site.recentchanges(start=starttime, showBot=False, showPatrolled=False, reverse=True, tag='OAuth CID: 651'):
+for rev in site.recentchanges(start=starttime, bot=False, patrolled=False, reverse=True, tag='OAuth CID: 651'):
 	try:
 		p = site.patrol(revid=rev['revid'])
 		list(p)
