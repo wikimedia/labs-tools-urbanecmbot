@@ -3,6 +3,7 @@
 
 import toolforge
 import pywikibot
+import requests
 
 site = pywikibot.Site('meta', 'meta')
 
@@ -15,6 +16,10 @@ conn = toolforge.connect('centralauth')
 with conn.cursor() as cur:
 	cur.execute('select ws_wikis from wikiset where ws_id=7')
 	non_gs_wikis = cur.fetchall()[0][0].decode('utf-8').split(',')
+
+s = requests.Session()
+s.headers.update({'User-Agent': 'UrbanecmBot (meta.wikimedia.org; tools.urbanecmbot@tools.wmflabs.org)'})
+sysopData = s.get('https://analytics.wikimedia.org/published/datasets/one-off/urbanecm/humans-by-user-group/total-users-per-group.json').json().get('sysop', {})
 
 result = """{| class="wikitable sortable"
 |+
@@ -34,9 +39,7 @@ for speedy_item in speedy_items:
 	with conn.cursor() as cur:
 		cur.execute('select count(*) from categorylinks where cl_to=%s', cat)
 		numOfItems = cur.fetchall()[0][0]
-	with conn.cursor() as cur:
-		cur.execute('select count(*) from user_groups where ug_group="sysop";')
-		numOfSysops = cur.fetchall()[0][0]
+	numOfSysops = sysopData.get(dbname, 0)
 	conn = toolforge.connect('meta')
 	with conn.cursor() as cur:
 		cur.execute('select url, is_closed from wiki where dbname=%s', speedy_item[0].decode('utf-8'))
