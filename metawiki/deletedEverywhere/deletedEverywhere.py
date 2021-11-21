@@ -52,6 +52,9 @@ for speedy_item in speedy_items:
 	with conn.cursor() as cur:
 		cur.execute('select count(*) from categorylinks where cl_to=%s', cat)
 		numOfItems = cur.fetchall()[0][0]
+	if numOfItems == 0:
+		# nothing to delete, do not include
+		continue
 
 	numOfSysops = sysopData.get(dbname, 0)
 
