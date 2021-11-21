@@ -35,11 +35,7 @@ for speedy_item in speedy_items:
 	tmp = speedy_item[1].decode('utf-8').replace(' ', '_').split(':')
 	tmp.pop(0)
 	cat = ":".join(tmp)
-	conn = toolforge.connect(dbname)
-	with conn.cursor() as cur:
-		cur.execute('select count(*) from categorylinks where cl_to=%s', cat)
-		numOfItems = cur.fetchall()[0][0]
-	numOfSysops = sysopData.get(dbname, 0)
+
 	conn = toolforge.connect('meta')
 	with conn.cursor() as cur:
 		cur.execute('select url, is_closed from wiki where dbname=%s', speedy_item[0].decode('utf-8'))
@@ -51,6 +47,14 @@ for speedy_item in speedy_items:
 		is_closed = data[0][1]
 	if is_closed:
 		continue # do not process closed wikis
+
+	conn = toolforge.connect(dbname)
+	with conn.cursor() as cur:
+		cur.execute('select count(*) from categorylinks where cl_to=%s', cat)
+		numOfItems = cur.fetchall()[0][0]
+
+	numOfSysops = sysopData.get(dbname, 0)
+
 	if dbname in non_gs_wikis:
 		result += "|-\n"
 	else:
