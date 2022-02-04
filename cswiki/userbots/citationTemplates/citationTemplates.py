@@ -11,17 +11,18 @@ site = pywikibot.Site()
 conn = toolforge.connect('cswiki')
 
 templates = json.loads(pywikibot.Page(site, "Wikipedie:Citace/Anglické citační šablony.json").text)
+del(templates['dokumentace'])
 
 template_names = []
 template_names_query = []
 for template in templates:
-	if template != "dokumentace":
-		template_names.append(template.replace('_', ' ').lower())
-		template_names_query.append(template.replace(' ', '_')[0].upper() + template.replace(' ', '_')[1:].lower())
+	template_names.append(template.replace('_', ' ').lower())
+	template_names_query.append(template.replace(' ', '_')[0].upper() + template.replace(' ', '_')[1:].lower())
 
 with conn.cursor() as cur:
 	cur.execute('select page_title from templatelinks join page on tl_from=page_id where tl_title in (%s) and page_namespace=0 limit 1', ", ".join(template_names_query))
 	data = cur.fetchall()
+
 for row in data:
 	page = pywikibot.Page(site, row[0].decode('utf-8'))
 
