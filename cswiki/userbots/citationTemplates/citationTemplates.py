@@ -47,4 +47,4 @@ for row in data:
 		for parameter in templates[template]['parameters']:
 			page.text = re.sub(r"(\{\{%s[^}]*\| *)%s( *)=" % (template, parameter), r"\1%s\2=" % templates[template]['parameters'][parameter], page.text, flags=re.IGNORECASE)
 		page.text = re.sub(r"\{\{%s( *(\}\}|\|))" % template, r"{{%s\1" % templates[template]['local'], page.text, flags=re.IGNORECASE)
-	page.save('Robot: Nahrazení dočasné citačních šablon za české')
+	page.save('Robot: Nahrazení anglických citačních šablon za české')
