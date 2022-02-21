@@ -63,6 +63,10 @@ for campaign in campaigns:
 		rules.append("a[href$='Wikipedista:" + urllib.parse.quote(user.replace(' ', '_')) + "&action=edit&redlink=1']")
 		rules.append("a[href$='wiki/Wikipedistka:" + urllib.parse.quote(user.replace(' ', '_')) + "']")
 		rules.append("a[href$='Wikipedistka:" + urllib.parse.quote(user.replace(' ', '_')) + "&action=edit&redlink=1']")
+		rules.append("a[href$='wiki/Wikipedista:" + user.replace(' ', '_') + "']")
+		rules.append("a[href$='Wikipedista:" + user.replace(' ', '_') + "&action=edit&redlink=1']")
+		rules.append("a[href$='wiki/Wikipedistka:" + user.replace(' ', '_') + "']")
+		rules.append("a[href$='Wikipedistka:" + user.replace(' ', '_') + "&action=edit&redlink=1']")
 
 fcss = open('/data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/data/stylesheet.css', 'w+')
 fcss.write('@charset "utf-8";\n\n')
