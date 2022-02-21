@@ -44,7 +44,7 @@ def get_candidates(site):
 				voting_start_m = RE_SIGNATURE.search(voting.group(0))
 				voting_start = datetime(int(voting_start_m.group(6)), int(voting_start_m.group(5)), int(voting_start_m.group(4)))
 				voting_end = voting_start + timedelta(days=14) # votings usually lasts 14 days
-				voting_end = voting_end.strftime('%d. %-m.')
+				voting_end = voting_end.strftime('%-d. %-m.')
 			else:
 				voting_end = unusual_close.group(1).strip()
 			out["voting"].append({
