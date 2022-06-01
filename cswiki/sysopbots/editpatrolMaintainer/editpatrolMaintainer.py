@@ -26,5 +26,6 @@ for user in usersOrig:
 	if user not in autopatrolled:
 		users.append(user)
 
+users = list(set(users))
 page.text = '<pre>\n' + '\n'.join(czech_sort.sorted(users)) + '\n</pre>'
-page.save('Robot: Seřazení seznamu, odebrání prověřených uživatelů')
+page.save('Robot: Seřazení seznamu, odebrání prověřených uživatelů a duplicit')
