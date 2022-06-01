@@ -73,7 +73,7 @@ MAILTO=martin.urbanec@wikimedia.cz
 50 16 * * * /usr/bin/jsub -N orphan -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/orphan/orphan.sh
 #10 2 * * * /usr/bin/jsub -N restartPatrollingJobs -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/restartContinuousJobs.sh
 0 */2 * * * /usr/bin/jsub -N wikiSpeedyDelete -once -quiet bash /data/project/urbanecmbot/11bots/metawiki/deletedEverywhere/deletedEverywhere.sh
-13 14 * * * /usr/bin/jsub -N editPatrolSorter -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/editpatrolMaintainer/editpatrolMaintainer.sh
+13 14 * * * /usr/bin/jsub -N editPatrolSorter -release buster -once -quiet bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/editpatrolMaintainer/editpatrolMaintainer.sh
 
 # Ensure continuous jobs are running
 */5 * * * * jlocal /data/project/urbanecmbot/11bots/bigbrother.sh patrolTrusted /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolTrusted.sh
