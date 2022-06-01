@@ -3,6 +3,7 @@
 
 import toolforge
 import pywikibot
+import czech_sort
 
 site = pywikibot.Site()
 conn = toolforge.connect('cswiki', cluster='analytics')
@@ -19,12 +20,11 @@ page = pywikibot.Page(site, 'Wikipedista:UrbanecmBot/EditPatrol')
 usersOrig = page.text.split('\n')
 usersOrig.pop(0)
 usersOrig.pop()
-usersOrig.sort()
 
 users = []
 for user in usersOrig:
 	if user not in autopatrolled:
 		users.append(user)
 
-page.text = '<pre>\n' + '\n'.join(users) + '\n</pre>'
+page.text = '<pre>\n' + '\n'.join(czech_sort.sorted(users)) + '\n</pre>'
 page.save('Robot: Seřazení seznamu, odebrání prověřených uživatelů')
