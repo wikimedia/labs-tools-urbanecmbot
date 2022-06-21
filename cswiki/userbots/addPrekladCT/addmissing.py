@@ -45,6 +45,6 @@ for row in data:
 	else:
 		page.text = page.text + '\n\n== Reference ==\n' + template
 	try:
-		page.save('Robot: Přidání šablony Překlad')
+		page.save('Robot: Přidání šablony Překlad (pokud je toto chyba, přidejte prosím stránku na [[Wikipedista:UrbanecmBot/Nepřidávat šablonu překlad|seznam výjimek]])')
 	except Exception:
 		pass
