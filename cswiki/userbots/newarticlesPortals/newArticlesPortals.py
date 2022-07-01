@@ -45,6 +45,9 @@ for portal in config['portals']:
 	}
 	r = requests.get(BASEURL, params=payload)
 	data = r.json()
+	if 'error' in data:
+		print('ERROR: Error processing %s, error="%s"' % (portal, data['error']))
+		continue
 	for page in data['*'][0]['a']['*']:
 		with conn.cursor() as cur:
 			cur.execute(BASESQL, (page['title'], ))
