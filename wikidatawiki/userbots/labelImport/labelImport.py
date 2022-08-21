@@ -25,7 +25,9 @@ for title in titles:
 	except pywikibot.exceptions.NoPageError:
 		continue
 	if item.get().get('labels', {}).get('cs') is not None:
+		cswikiPage.touch()  # to remove the "no Wikidata label" category
 		continue
 
 	label = RE_BRACKETS.sub('', title).strip()
 	item.editLabels(labels={'cs': label}, summary='Add Czech label: %s' % label)
+	cswikiPage.touch()  # to remove the "no Wikidata label" category
