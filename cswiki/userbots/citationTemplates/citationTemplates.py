@@ -11,7 +11,7 @@ site = pywikibot.Site()
 conn = toolforge.connect('cswiki')
 
 templates = json.loads(pywikibot.Page(site, "Wikipedie:Citace/Anglické citační šablony.json").text)
-del(templates['dokumentace'])
+del templates['dokumentace']
 
 template_names = []
 template_names_query = []
