@@ -1,3 +1,5 @@
+#!/bin/bash
+
 python3 ~/pwb/scripts/replace.py -always -ns:0 -summary:'Robot: Odebrání odrážky před šablonou překlad' -search:'insource:/\* ?\{\{[Pp]řeklad/' -regex '\* ?\{\{[Pp]řeklad' '{{Překlad'
 python3 ~/pwb/scripts/replace.py -always -ns:0 -search:'insource:/===* *Zdroj *===*.\{\{[Pp]řeklad/' -summary:'Robot: Standardizace' '== Zdroj ==' '== Reference =='
 python3 ~/pwb/scripts/replace.py -always -ns:0 -search:'insource:/===* *Zdroje *===*.\{\{[Pp]řeklad/' -summary:'Robot: Standardizace' '== Zdroje ==' '== Reference =='
