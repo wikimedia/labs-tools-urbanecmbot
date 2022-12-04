@@ -21,6 +21,13 @@ with cur:
 	cur.execute(sql)
 	data = cur.fetchall()
 
+exceptions = pywikibot.Page(site, "User:UrbanecmBot/Záměrně přesměrovávací diskusní stránky").text.split('\n')
 for row in data:
 	page = pywikibot.Page(site, row[1].decode('utf-8'), ns=row[0])
+	if page.title() in exceptions:
+		print('Skipping %s, exempted' % page.title())
+		continue
+	if not page.exists():
+		print('Skipping %s, already deleted' % page.title())
+		continue
 	page.delete(reason=u"Robot: Relikt po přesunu", mark=True, prompt=False)
