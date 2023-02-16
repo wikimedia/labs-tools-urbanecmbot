@@ -8,12 +8,12 @@ yearweek = d.isocalendar()[:2]
 expiry = d + datetime.timedelta(days=7)
 
 pages = [ # různé články pro tento týden
-	u'Wikipedie:Článek týdne/%04d/%02d' % yearweek,
-	u'Wikipedie:Obrázek týdne/%04d/%02d' % yearweek,
-	u'Wikipedie:Zajímavosti/%04d/%02d' % yearweek,
+	'Wikipedie:Článek týdne/%04d/%02d' % yearweek,
+	'Wikipedie:Obrázek týdne/%04d/%02d' % yearweek,
+	'Wikipedie:Zajímavosti/%04d/%02d' % yearweek,
 ]
 
-site = pywikibot.getSite()
+site = pywikibot.Site()
 for pgname in pages: # pro každou stránku ze seznamu
 	page = pywikibot.Page(site, pgname) # najdu ji na wiki
 	if page.exists():
@@ -22,4 +22,3 @@ for pgname in pages: # pro každou stránku ze seznamu
 			protections={'edit': 'autoconfirmed', 'move': 'sysop'},
 			expiry=expiry.strftime('%Y-%m-%d 07:00:00')
 		)
-pywikibot.stopme() # dáme prostor i ostatním
