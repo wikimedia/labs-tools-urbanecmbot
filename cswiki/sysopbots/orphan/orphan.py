@@ -28,4 +28,8 @@ for row in data:
 	page = pywikibot.Page(site, namespaces[str(row[0])]['*'] + u':' + row[1].decode('utf-8'))
 	if page.title() in exceptions:
 		continue
-	page.delete(reason=u"Robot: Osiřelá diskusní stránka", mark=True, prompt=False)
+
+	summary = 'Robot: Osiřelá diskusní stránka'
+	if '{{svolení autora' in page.text.lower():
+		summary += ' [obsahuje svolení autora]'
+	page.delete(reason=summary, mark=True, prompt=False)
