@@ -94,18 +94,4 @@ AND CASE WHEN p1.page_namespace = 2301
                    FROM page AS p2
                    WHERE p2.page_namespace = 2300
                    AND p1.page_title = p2.page_title)
-  ELSE 1 END
-AND p1.page_id NOT IN (SELECT
-                         page_id
-                       FROM page
-                       JOIN templatelinks
-                       ON page_id = tl_from
-                       WHERE tl_title="G8-exempt"
-                       AND tl_namespace = 10)
-AND p1.page_id NOT IN (SELECT
-                         page_id
-                       FROM page
-                       JOIN templatelinks
-                       ON page_id = tl_from
-                       WHERE tl_title="Rtd"
-                       AND tl_namespace = 10);
+  ELSE 1 END;
