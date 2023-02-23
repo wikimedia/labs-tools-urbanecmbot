@@ -23,7 +23,7 @@ def rreplace(s, old, new, occurrence):
 conn = toolforge.connect('cswiki', cluster='analytics')
 
 with conn.cursor() as cur:
-	cur.execute("select lt_namespace, lt_title, pr_level, count(*) from templatelinks join linktarget on lt_id=tl_target_id left join page on ((lt_namespace=page_namespace) and (lt_title=page_title)) left join page_restrictions on ((pr_type='edit') and (page_id=pr_page)) where page_id is not null and pr_level is null group by lt_namespace, lt_title order by count(*) desc")
+	cur.execute("select lt_namespace, lt_title, pr_level, count(*) from templatelinks join linktarget on lt_id=tl_target_id left join page on ((lt_namespace=page_namespace) and (lt_title=page_title)) left join page_restrictions on ((pr_type='edit') and (page_id=pr_page)) where page_id is not null and pr_level is null and page_is_redirect=0 group by lt_namespace, lt_title order by count(*) desc")
 	data = cur.fetchall()
 
 site = pywikibot.Site()
