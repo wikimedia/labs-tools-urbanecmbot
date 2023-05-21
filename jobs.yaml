@@ -91,17 +91,17 @@
   schedule: "14 12 * * *"
   emails: onfailure
 - name: most-linked-disambigs
-  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py
+  command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py
   image: tf-python39
   schedule: "42 16 * * *"
   emails: onfailure
 - name: most-linked-redirs
-  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedRedirs/mostLinkedRedirs.py
+  command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedRedirs/mostLinkedRedirs.py
   image: tf-python39
   schedule: "42 16 1 * *"
   emails: onfailure
 - name: archivebot
-  command: python3 /shared/pywikipedia/core/scripts/archivebot.py Archivace
+  command: ~/venv/bin/python3 ~/pwb/scripts/archivebot.py Archivace
   image: tf-python39
   schedule: "14 22 * * 1"
   emails: onfailure
@@ -136,17 +136,17 @@
   schedule: "*/5 * * * *"
   emails: onfailure
 - name: patrol-undo
-  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
+  command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
   image: tf-python39
   schedule: "*/3 * * * *"
   emails: onfailure
 - name: patrol-dashboard
-  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
+  command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
   image: tf-python39
   schedule: "*/5 * * * *"
   emails: onfailure
 - name: patrol-fountain
-  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolFountain.py
+  command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolFountain.py
   image: tf-python39
   schedule: "*/5 * * * *"
   emails: onfailure
