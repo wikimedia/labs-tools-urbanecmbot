@@ -14,8 +14,8 @@ if __name__ == "__main__":
 		site = pywikibot.Site()
 		stream = EventStreams(streams=['recentchange'])
 		stream.register_filter(server_name='cs.wikipedia.org')
-
 		while True:
+			change = next(iter(stream))
 			if 'log_type' not in change:
 				continue
 			if change['log_type'] == "patrol" and change["log_params"]["previd"] == "0":
@@ -29,3 +29,4 @@ if __name__ == "__main__":
 					list(site.patrol(rcid=int(row[0])))
 	except Exception:
 		logging.exception('Unknown error occured')
+		raise
