@@ -1,0 +1,217 @@
+# Toolforge Jobs declarations
+# https://wikitech.wikimedia.org/wiki/Help:Toolforge/Jobs_framework
+- name: afd-announcer
+  command: ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/afd.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: spory-announcer
+  command: ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/spory.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: zops-announcer
+  command: ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/zops.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: par-announcer
+  command: ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/par.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: zok-announcer
+  command: ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/zok.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: nnc-announcer
+  command: ~/bin/oznamovatelbot /data/project/urbanecmbot/11bots/cswiki/userbots/announcers/nnc.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: clean-sandbox
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/cleanSandbox/clean_and_patrol.sh
+  image: tf-python39
+  schedule: "*/10 * * * *"
+  emails: onfailure
+- name: standardization
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/standardization/standardization.sh
+  image: tf-python39
+  schedule: "54 23 * * *"
+  emails: onfailure
+- name: export-wd
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.sh
+  image: tf-python39
+  schedule: "54 9 * * *"
+  emails: onfailure
+- name: add-preklad-ct
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/addPrekladCT/run.sh
+  image: tf-python39
+  schedule: "14 12 * * *"
+  emails: onfailure
+- name: wikidata-coor-import
+  command: bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/wikidataCoorImport/run.sh
+  image: tf-python39
+  schedule: "6 3 * * *"
+  emails: onfailure
+- name: wikidata-label-import
+  command: bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/labelImport/labelImport.sh
+  image: tf-python39
+  schedule: "3 4 * * *"
+  emails: onfailure
+- name: relikty
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/relikty/deletethem.sh
+  image: tf-python39
+  schedule: "59 8 * * *"
+  emails: onfailure
+- name: badprotecttemplates
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/badProtectTemplates/badprotecttemplates.sh
+  image: tf-python39
+  schedule: "26 3 * * *"
+  emails: onfailure
+- name: ukoly-add-priority
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/ukoly/addPriority.sh
+  image: tf-python39
+  schedule: "54 14 * * 1"
+  emails: onfailure
+- name: ukoly-bez-podstranky
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/bezPodstranky.sh
+  image: tf-python39
+  schedule: "30 0 * * 1"
+  emails: onfailure
+- name: ukoly-resolved
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/resolved.sh
+  image: tf-python39
+  schedule: "0 0 * * 1"
+  emails: onfailure
+- name: new-articles-portals
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/newarticlesPortals/newArticlesPortals.sh
+  image: tf-python39
+  schedule: "14 12 * * *"
+  emails: onfailure
+- name: most-linked-disambigs
+  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py
+  image: tf-python39
+  schedule: "42 16 * * *"
+  emails: onfailure
+- name: most-linked-redirs
+  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedRedirs/mostLinkedRedirs.py
+  image: tf-python39
+  schedule: "42 16 1 * *"
+  emails: onfailure
+- name: archivebot
+  command: python3 /shared/pywikipedia/core/scripts/archivebot.py Archivace
+  image: tf-python39
+  schedule: "14 22 * * 1"
+  emails: onfailure
+- name: did-youknow
+  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/didYouKnow/did_you_know.py -current
+  image: tf-python39
+  schedule: "18 23 * * 1"
+  emails: onfailure
+- name: autoprotect-daily
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/daily.sh
+  image: tf-python39
+  schedule: "5 12 * * *"
+  emails: onfailure
+- name: autoprotect-weekly
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/autoprotect/weekly.sh
+  image: tf-python39
+  schedule: "10 12 * * 0"
+  emails: onfailure
+- name: patrol-autopatrolled
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/autopatrol.sh
+  image: tf-python39
+  schedule: "13 * * * *"
+  emails: onfailure
+- name: patrol-autopatrolled-meta
+  command: bash /data/project/urbanecmbot/11bots/metawiki/patrolAutopatrolled/autopatrol.sh
+  image: tf-python39
+  schedule: "13 * * * *"
+  emails: onfailure
+- name: trusted-patrol-get-users
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/getUsers.sh
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: patrol-undo
+  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolUndo.py
+  image: tf-python39
+  schedule: "*/3 * * * *"
+  emails: onfailure
+- name: patrol-dashboard
+  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolDashboard.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: patrol-fountain
+  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolFountain.py
+  image: tf-python39
+  schedule: "*/5 * * * *"
+  emails: onfailure
+- name: mark-students
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/markStudents/cache.sh
+  image: tf-python39
+  schedule: "23 * * * *"
+  emails: onfailure
+- name: mark-socks
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/markSocks/updateCache.sh
+  image: tf-python39
+  schedule: "23 * * * *"
+  emails: onfailure
+- name: purge-konec-mazani
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/purgeKonecMazani/purgeKonecMazani.sh
+  image: tf-python39
+  schedule: "13 * * * *"
+  emails: onfailure
+- name: purge-merch-end
+  command: bash /data/project/urbanecmbot/11bots/metawiki/purgeMerchEnd/purgeMerchEnd.sh
+  image: tf-python39
+  schedule: "13 * * * *"
+  emails: onfailure
+- name: empty-talkpages
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/emptyTalkpages/emptyTalkpages.sh
+  image: tf-python39
+  schedule: "47 23 * * *"
+  emails: onfailure
+- name: empty-course-pages
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/emptyCoursePages/emptyCoursePages.sh
+  image: tf-python39
+  schedule: "50 23 * * *"
+  emails: onfailure
+- name: fa-deadlink
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/faDeadlink/faDeadlink.sh
+  image: tf-python39
+  schedule: "40 14 * * *"
+  emails: onfailure
+- name: seniori-articles
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/senioriArticles/senioriArticles.sh
+  image: tf-python39
+  schedule: "57 13 * * *"
+  emails: onfailure
+- name: zamky-hrady-bot
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/zamkyHradyBot/zamkyHradyBot.sh
+  image: tf-python39
+  schedule: "17 8 * * *"
+  emails: onfailure
+- name: neklavesove-znaky-bot
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/neklavesoveZnakyBot/neklavesoveZnakyBot.sh
+  image: tf-python39
+  schedule: "17 9 * * *"
+  emails: onfailure
+- name: orphan
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/orphan/orphan.sh
+  image: tf-python39
+  schedule: "50 16 * * *"
+  emails: onfailure
+- name: wiki-speedy-delete
+  command: bash /data/project/urbanecmbot/11bots/metawiki/deletedEverywhere/deletedEverywhere.sh
+  image: tf-python39
+  schedule: "0 */2 * * *"
+  emails: onfailure
+- name: edit-patrol-sorter
+  command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/editpatrolMaintainer/editpatrolMaintainer.sh
+  image: tf-python39
+  schedule: "13 14 * * *"
+  emails: onfailure
