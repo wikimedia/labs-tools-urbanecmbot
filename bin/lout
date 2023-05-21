@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ls ~/*.out ~/*.err 2> /dev/null

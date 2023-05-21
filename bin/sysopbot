@@ -1,0 +1,3 @@
+#!/bin/bash
+source ~/venv/bin/activate
+PYWIKIBOT_DIR=$HOME/.pywikibot/sysop python3 "$@"

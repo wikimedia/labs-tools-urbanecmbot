@@ -1,0 +1,4 @@
+#!/bin/bash
+. ~/.bashrc
+source ~/venv/bin/activate
+PYWIKIBOT_DIR=$HOME/.pywikibot/oznamovatel python3 "$@"

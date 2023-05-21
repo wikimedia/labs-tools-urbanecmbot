@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir /tmp/$$
+# Find the current encoding of the file
+encoding=$(file -i "$2" | sed "s/.*charset=\(.*\)$/\1/")
+
+if [ ! "$1" == "${encoding}" ]
+then
+# Encodings differ, we have to encode
+echo "recoding from ${encoding} to $1 file : $2"
+cp $2 /tmp/$$/input
+iconv -f ${encoding} -t $1 /tmp/$$/input > $2
+fi
+rm -r /tmp/$$
