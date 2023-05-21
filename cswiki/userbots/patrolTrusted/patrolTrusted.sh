@@ -1,4 +1,4 @@
 #!/bin/bash
 
-source ~/11bots/cswiki/userbots/patrolTrusted/venv/bin/activate
+source ~/venv/bin/activate
 python ~/11bots/cswiki/userbots/patrolTrusted/patrolTrusted.py
