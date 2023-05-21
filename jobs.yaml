@@ -215,3 +215,18 @@
   image: tf-python39
   schedule: "13 14 * * *"
   emails: onfailure
+- name: patrol-trusted
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolTrusted.sh
+  continuous: true
+  image: tf-python39
+  emails: onfailure
+- name: patrol-after-patrol
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolEditsAfterArticle.sh
+  continuous: true
+  image: tf-python39
+  emails: onfailure
+- name: patrol-sandbox
+  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolSandbox.sh
+  continuous: true
+  image: tf-python39
+  emails: onfailure
