@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd ~/11bots/cswiki/userbots/addPrekladCT
-source ~/toolforge/bin/activate
+source ~/venv/bin/activate
 python3 addmissing.py

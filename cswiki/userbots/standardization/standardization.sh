@@ -9,5 +9,5 @@ python3 ~/pwb/scripts/replace.py -always -summary:"Robot: Standardizace" -ns:0 -
 python3 ~/pwb/scripts/replace.py -always -ns:0 -summary:"Robot: Standardizace" -search:'insource:/== ?Odkazy ?==..references ?../' -regex '(== ?)Odkazy( ?==)\n<references ?/>' '\1Reference\2\n<references />'
 
 # custom standardizations
-source ~/toolforge/bin/activate
+source ~/venv/bin/activate
 python3 ~/11bots/cswiki/userbots/standardization/replace-reflist.py

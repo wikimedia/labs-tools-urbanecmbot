@@ -1,11 +1,3 @@
-certifi==2018.11.29
-chardet==3.0.4
-idna==2.8
-oauthlib==3.0.1
-pkg-resources==0.0.0
-PyMySQL==0.9.3
-requests==2.21.0
-requests-oauthlib==1.2.0
-toolforge==4.4.0
-urllib3==1.24.1
-lxml
+toolforge
+requests-oauthlib
+PyMySQL

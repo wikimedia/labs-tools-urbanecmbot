@@ -1,4 +1,4 @@
 #!/bin/bash
 
-source ~/toolforge/bin/activate
+source ~/venv/bin/activate
 python ~/11bots/wikidatawiki/userbots/labelImport/labelImport.py
