@@ -30,6 +30,8 @@ for row in data:
 		continue
 
 	summary = 'Robot: Osiřelá diskusní stránka'
+	if page.title().endswith('/Úkoly'):
+		summary = 'Robot: Osiřelá stránka s úkoly'
 	if '{{svolení autora' in page.text.lower():
 		summary += ' [obsahuje svolení autora]'
 	page.delete(reason=summary, mark=True, prompt=False)

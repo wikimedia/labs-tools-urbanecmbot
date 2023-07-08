@@ -1,3 +1,16 @@
+WITH task_subpages AS (
+	SELECT
+		page_namespace - 1 AS new_namespace,
+		REPLACE(page_title, '/Úkoly', '') AS new_title,
+		page_id AS task_id,
+		page_namespace AS task_namespace,
+		page_title AS task_title
+	FROM page
+	WHERE
+			page_namespace % 2 = 1
+		AND page_title LIKE '%/Úkoly'
+)
+
 SELECT
   p1.page_namespace,
   p1.page_title
@@ -94,4 +107,12 @@ AND CASE WHEN p1.page_namespace = 2301
                    FROM page AS p2
                    WHERE p2.page_namespace = 2300
                    AND p1.page_title = p2.page_title)
-  ELSE 1 END;
+  ELSE 1 END
+
+UNION SELECT
+	task_namespace,
+	task_title
+FROM task_subpages
+LEFT JOIN page ON ((new_namespace = page_namespace) AND (new_title = page_title))
+WHERE page_id IS NULL
+LIMIT 10;
