@@ -200,7 +200,7 @@ def handle_page(page, force=False):
             new_text = template + '\n' + talkpage.text.lstrip()
             summary = 'uvedení [[%s|zajímavosti]]' % link
         pywikibot.showDiff(talkpage.text, new_text)
-        talkpage.put(new_text, summary=summary, apply_cosmetic_changes=False)
+        talkpage.put(new_text, summary=summary, minor=False, apply_cosmetic_changes=False)
 
 
 def run(gen, force=False):
