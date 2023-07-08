@@ -2,3 +2,4 @@ toolforge
 requests-oauthlib
 PyMySQL
 sseclient
+czech-sort
