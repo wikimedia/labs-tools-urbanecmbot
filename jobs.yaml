@@ -105,8 +105,8 @@
   image: tf-python39
   schedule: "14 22 * * 1"
   emails: onfailure
-- name: did-youknow
-  command: python3 /data/project/urbanecmbot/11bots/cswiki/userbots/didYouKnow/did_you_know.py -current
+- name: did-you-know
+  command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/didYouKnow/did_you_know.py -current
   image: tf-python39
   schedule: "18 23 * * 1"
   emails: onfailure
