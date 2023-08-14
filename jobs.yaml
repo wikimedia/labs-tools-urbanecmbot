@@ -215,6 +215,11 @@
   image: tf-python39
   schedule: "13 14 * * *"
   emails: onfailure
+- name: cswiki-broken-redirects
+  command: ~/bin/sysopbot ~/pwb/scripts/redirect.py -delete -always br
+  image: tf-python39
+  emails: onfailure
+  schedule: "56 10 * * 3"
 - name: patrol-trusted
   command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/patrolTrusted/patrolTrusted.sh
   continuous: true
