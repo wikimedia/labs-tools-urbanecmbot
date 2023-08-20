@@ -9,8 +9,7 @@ NS_MODULE = 828
 
 PROTECTION_TEMPLATES = {
 	'autoconfirmed': '{{polozamčeno}}',
-	'extendedconfirmed': '{{rozšířeně polozamčeno}}',
-	'sysop': '{{zamčeno}}'
+	'extendedconfirmed': '{{rozšířeně polozamčeno}}'
 }
 
 
@@ -38,7 +37,7 @@ for row in data:
 	# determine protection level
 	protection_level = None
 	if usages >= 5000:
-		protection_level = 'sysop'
+		protection_level = 'extendedconfirmed'  # used to be 'sysop', lowered per [[cs:special:Permalink/23075639#Zamčená šablona]]
 	elif usages >= 2500:
 		protection_level = 'extendedconfirmed'
 	elif usages >= 250:
