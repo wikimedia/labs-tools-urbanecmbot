@@ -14,10 +14,12 @@ PROTECTION_TEMPLATES = {
 	'sysop': 'Zamčeno'
 }
 
+
 def rreplace(s, old, new, occurrence):
 	# comes from https://stackoverflow.com/a/2556252
 	li = s.rsplit(old, occurrence)
 	return new.join(li)
+
 
 def add_docs_page(site, page, protection_level):
 	page_namespace = page.namespace().id
@@ -53,6 +55,7 @@ def add_docs_page(site, page, protection_level):
 				doc_page.text = '<includeonly>%s</includeonly>' % protection_template + '\n' + doc_page.text
 
 	doc_page.save('Robot: Přidání šablony %s' % new_protection_template)
+
 
 conn = toolforge.connect('cswiki', cluster='analytics')
 

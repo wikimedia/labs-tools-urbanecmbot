@@ -8,30 +8,30 @@ conn = toolforge.connect('cswiki', cluster='analytics')
 with conn.cursor() as cur:
 	cur.execute('''
 	WITH bot_protected_pages AS (
-	    SELECT
+		SELECT
 		log_page,
 		log_namespace,
 		log_title,
 		comment_text
-	    FROM logging
-	    JOIN actor ON actor_id=log_actor
-	    JOIN comment on comment_id=log_comment_id
-	    WHERE
-		    log_type = 'protect'
+		FROM logging
+		JOIN actor ON actor_id=log_actor
+		JOIN comment on comment_id=log_comment_id
+		WHERE
+			log_type = 'protect'
 		AND actor_name = 'UrbanecmSprávcoBot'
 		AND log_namespace = 10
 		AND comment_text LIKE 'velmi často používaná stránka%použití%'
 	)
 
 	SELECT
-	    log_namespace,
-	    log_title,
-	    comment_text
+		log_namespace,
+		log_title,
+		comment_text
 	FROM page_restrictions
 	JOIN bot_protected_pages ON pr_page = log_page
 	WHERE
 		pr_type = 'edit'
-	    AND pr_level = 'sysop'
+		AND pr_level = 'sysop'
 	''')
 	data = cur.fetchall()
 
