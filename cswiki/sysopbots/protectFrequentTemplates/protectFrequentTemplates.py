@@ -52,7 +52,10 @@ def add_docs_page(site, page, protection_level):
 				doc_page.text += '<noinclude>%s</noinclude>' % new_protection_template
 		elif page_namespace == NS_MODULE:
 			if doc_page.exists():
-				doc_page.text = '<includeonly>%s</includeonly>' % protection_template + '\n' + doc_page.text
+				if 'includeonly' in doc_page.text:
+					doc_page.text = rreplace(doc_page.text, '<includeonly>', '<includeonly>\n%s' % new_protection_template, 1)
+				else:
+					doc_page.text = '<includeonly>%s</includeonly>' % protection_template + '\n' + doc_page.text
 
 	doc_page.save('Robot: Přidání šablony %s' % new_protection_template)
 
