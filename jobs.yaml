@@ -41,7 +41,7 @@
   schedule: "54 23 * * *"
   emails: onfailure
 - name: export-wd
-  command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.sh
+  command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/exportWikidataModule/export.py
   image: tf-python39
   schedule: "54 9 * * *"
   emails: onfailure
