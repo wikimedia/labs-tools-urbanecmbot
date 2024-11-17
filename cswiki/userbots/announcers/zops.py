@@ -14,7 +14,7 @@ PAGE_PREFIX = "Wikipedie:Žádost o práva správce"
 PAGE_LIST = "Wikipedie:Žádost o práva správce"
 RE_SECTION = re.compile(r'^==[^=\n]+(|.*[^=\n]+)==\s*$', re.MULTILINE)
 RE_SUBPAGE = re.compile(r'\{\{[^\}\n]*/(?P<subpage>[^\}\n]+)\}\}')
-RE_CLOSE = re.compile(r"\* '''hlasování končí:''' ([0-9]+\. [0-9]+\.) [0-9]+")
+RE_CLOSE = re.compile(r"\* '''[hH]lasování končí:''' ([0-9]+\. [0-9]+\.) [0-9]+")
 
 
 def get_candidates(site):
