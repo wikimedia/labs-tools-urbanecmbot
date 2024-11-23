@@ -57,7 +57,7 @@ for portal in config['portals']:
 	dateofcreations.sort()
 	if portal_config['ordering'] == 'desc':
 		dateofcreations.reverse()
-	wikicode = "<!-- Prosím, nepřepisujte tuto stránku, příští noc budou změny přepsány botem -->\n\n"
+	wikicode = "<!-- Prosím, nepřepisujte tuto stránku, příští noc budou změny přepsány botem; nastavení najdete na [[%s]] -->\n\n" % CONFIG_PAGE
 	for dateofcreationraw in dateofcreations:
 		page = pages[dateofcreationraw]
 		dateofcreation = datetime.datetime.strptime(dateofcreationraw, '%Y%m%d%H%M%S')
@@ -70,4 +70,4 @@ for portal in config['portals']:
 		wikicode += '\n'
 	portalpage = pywikibot.Page(site, portal_config.get('target_page', 'Portál:%s/Nové články' % portal))
 	portalpage.text = wikicode
-	portalpage.save("Robot: Aktualizace novinek")
+	portalpage.save("Robot: Aktualizace novinek dle [[%s|nastavení]]" % CONFIG_PAGE)
