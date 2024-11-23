@@ -41,7 +41,7 @@ for row in data:
 		continue
 	cur = conn.cursor()
 	with cur:
-		sql = 'select count(*) from pagelinks where pl_title="' + row[0].decode('utf-8') + '"'
+		sql = 'select count(*) from pagelinks where pl_target_id in (select lt_id from linktarget where lt_namespace=%d and lt_title="%s")' % (row[1] - 1, row[0].decode('utf-8'))
 		cur.execute(sql)
 		links = cur.fetchall()[0][0]
 	priority = getPriority(links)
