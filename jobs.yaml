@@ -55,11 +55,6 @@
   image: tf-python39
   schedule: "6 3 * * *"
   emails: onfailure
-- name: wikidata-label-import
-  command: bash /data/project/urbanecmbot/11bots/wikidatawiki/userbots/labelImport/labelImport.sh
-  image: tf-python39
-  schedule: "3 4 * * *"
-  emails: onfailure
 - name: relikty
   command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/relikty/deletethem.sh
   image: tf-python39
