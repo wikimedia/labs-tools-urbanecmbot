@@ -75,6 +75,11 @@
   image: tf-python39
   schedule: "30 0 * * 1"
   emails: onfailure
+- name: ukoly-bez-nadstranky
+  command: ~/bin/sysopbot /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/bezNadstranky.py
+  image: tf-python39
+  schedule: "40 0 * * 1"
+  emails: onfailure
 - name: ukoly-resolved
   command: bash /data/project/urbanecmbot/11bots/cswiki/sysopbots/ukoly/resolved.sh
   image: tf-python39
