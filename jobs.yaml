@@ -88,7 +88,7 @@
 - name: new-articles-portals
   command: bash /data/project/urbanecmbot/11bots/cswiki/userbots/newarticlesPortals/newArticlesPortals.sh
   image: tf-python39
-  schedule: "14 12 * * *"
+  schedule: "14 * * * *"
   emails: onfailure
 - name: most-linked-disambigs
   command: ~/venv/bin/python3 /data/project/urbanecmbot/11bots/cswiki/userbots/mostLinkedDisambigs/mostLinkedDisambigs.py
