@@ -1,21 +1,23 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-import pywikibot
+#!/usr/bin/env python
+import itertools
 import re
 
+from collections import OrderedDict
 from datetime import date, timedelta
+
+import pywikibot
 
 from pywikibot import textlib
 from pywikibot.pagegenerators import GeneratorFactory, PrefixingPageGenerator
-from collections import OrderedDict
 
 args = pywikibot.handle_args()
 
 site = pywikibot.Site('cs', 'wikipedia')
 
 lineR = re.compile(r'^\* *(.*)', re.M)
-titleR = re.compile(r"'''\[\[([^]|[]+)(?:\|([^]|[]+))?\]\]'''")
+titleR = re.compile(
+    fr"'''\[\[([^]|[#]+)(?:#[^]|[]*)?(?:\|([^]|[]+))?\]\]({site.linktrail()})'''"
+)
 
 pattern = '''{{Zajímavost
  | zajímavost = %(text)s
@@ -46,7 +48,7 @@ def find_templates(text):
     result = []
 
     for match in textlib.NESTED_TEMPLATE_REGEX.finditer(text):
-        name, params = match.group(1), match.group(2)
+        name, params = match.group(1, 2)
         if name and name.strip().lower() != 'zajímavost':
             continue
 
@@ -61,7 +63,7 @@ def find_templates(text):
                 else:
                     i += 1
 
-        numbered_param_identifiers = iter(range(1, len(params) + 1))
+        numbered_param_identifiers = itertools.count(1)
 
         params = OrderedDict(
             arg.split('=', 1)
@@ -87,7 +89,7 @@ def localized(date, omit=None):
 def get_date(split):
     '''Get localized date span for given ISO week.'''
     _, year, week = split
-    # ISO week 01 is the one with 4th January
+    # ISO week 01 is the one with January 4th
     fourth_Jan = date(int(year), 1, 4)
     week_delta = int(week) - 1
     monday = fourth_Jan + timedelta(days=week_delta * 7)
@@ -143,17 +145,17 @@ def handle_page(page, force=False):
     if len(split) != 3:
         return
     for match in lineR.finditer(page.text):
-        text = match.group(1)
+        text = match[1]
         titleM = titleR.search(text)
         if not titleM:
             continue
-        article = pywikibot.Page(site, titleM.group(1))
+        article = pywikibot.Page(site, titleM[1])
         if not article.exists() or article.isRedirectPage():
             continue
         talkpage = article.toggleTalkPage()
         if talkpage.site != site:
             continue
-        text = titleR.sub(lambda m: m.group(2) or m.group(1), text, count=1)
+        text = titleR.sub(lambda m: (m[2] or m[1]) + m[3], text, count=1)
         text = text.lstrip('.…')
         text = text.replace(" ''(na obrázku)''", '')
         text = text.replace(" (''na obrázku'')", '')
@@ -168,10 +170,10 @@ def handle_page(page, force=False):
             }
             span, params = same
             data = {}
-            for key in mapping:
-                val = my_get(params, key)
+            for arg, key in mapping.items():
+                val = my_get(params, arg)
                 if val:
-                    data[mapping[key]] = val.strip()
+                    data[key] = val.strip()
             change = False
             if force or ('since' not in data or 'until' not in data):
                 since, until = get_date(split)
@@ -189,18 +191,19 @@ def handle_page(page, force=False):
             new = pattern % data
             old_sort = my_get(params, 'sort')
             if old_sort:
-                new = (new[:-3]  # 3 chars: newline and two end braces
-                       + ' | sort = %s\n}}' % old_sort.strip())
+                new = new.removesuffix('}}') \
+                      + ' | sort = %s\n}}' % old_sort.strip()
             new_text = talkpage.text[:start] + new + talkpage.text[end:]
-            summary = 'doplnění [[%s|zajímavosti]]' % link
+            summary = f'doplnění [[{link}|zajímavosti]]'
         else:
             since, until = get_date(split)
-            data = {'text': text, 'link': link, 'since': since, 'until': until}
+            data = {'text': text.strip(), 'link': link, 'since': since, 'until': until}
             template = pattern % data
             new_text = template + '\n' + talkpage.text.lstrip()
-            summary = 'uvedení [[%s|zajímavosti]]' % link
-        pywikibot.showDiff(talkpage.text, new_text)
-        talkpage.put(new_text, summary=summary, minor=False, apply_cosmetic_changes=False)
+            summary = f'uvedení [[{link}|zajímavosti]]'
+        #pywikibot.showDiff(talkpage.text, new_text)
+        talkpage.text = new_text
+        talkpage.save(summary=summary, apply_cosmetic_changes=False)
 
 
 def run(gen, force=False):
@@ -210,23 +213,18 @@ def run(gen, force=False):
 
 if __name__ == '__main__':
     if '-current' in args:
-        # ISO week is the one with 4th January
-        # workaround needed for < 3.6
-        # XXX: what happens before 4th January?
-        day = date.today()
-        if day.replace(month=1, day=4).strftime('%W') == '00':
-            day += timedelta(days=7)
-        suffix = day.strftime('%Y/%W')
-        pywikibot.output('Doing week: ' + suffix)
-        handle_page(pywikibot.Page(site, 'Wikipedie:Zajímavosti/' + suffix),
+        suffix = date.today().strftime('%G/%V')  # ISO year and week
+        pywikibot.output(f'Doing week: {suffix}')
+        handle_page(pywikibot.Page(site, f'Wikipedie:Zajímavosti/{suffix}'),
                     force='-force' in args)
     else:
         genFactory = GeneratorFactory(site=site)
-        for arg in args:
-            genFactory.handleArg(arg)
+        genFactory.handle_args(args)
         gen = genFactory.getCombinedGenerator(preload=True)
         if not gen:
             gen = PrefixingPageGenerator(
-                'Wikipedie:Zajímavosti/20', includeredirects=False, site=site,
+                'Wikipedie:Zajímavosti/20',
+                filterredir=False,
+                site=site,
                 content=True)
         run(gen, force='-force' in args)
