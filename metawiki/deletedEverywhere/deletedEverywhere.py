@@ -52,7 +52,7 @@ for speedy_item in speedy_items:
 
 	conn = toolforge.connect(dbname)
 	with conn.cursor() as cur:
-		cur.execute('select count(*) from categorylinks where cl_to=%s', cat)
+		cur.execute('select count(*) from categorylinks join linktarget on lt_id=cl_target_id where lt_namespace=14 and lt_title=%s', cat)
 		numOfItems = cur.fetchall()[0][0]
 	if numOfItems == 0:
 		# nothing to delete, do not include
