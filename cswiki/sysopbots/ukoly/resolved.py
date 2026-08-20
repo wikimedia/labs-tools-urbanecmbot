@@ -9,7 +9,7 @@ conn = toolforge.connect('cswiki', cluster='analytics')
 site = pywikibot.Site()
 
 with conn.cursor() as cur:
-	cur.execute('select page_title, page_namespace from categorylinks join page on cl_from=page_id where cl_to="Údržba:Stránky_ke_smazání" and page_namespace%2=1 and page_title like "%/Úkoly";')
+	cur.execute('select page_title, page_namespace from categorylinks join page on cl_from=page_id where cl_target_id in (select lt_id from linktarget where lt_namespace=14 and lt_title="Údržba:Stránky_ke_smazání") and page_namespace%2=1 and page_title like "%/Úkoly"')
 	data = cur.fetchall()
 
 for row in data:

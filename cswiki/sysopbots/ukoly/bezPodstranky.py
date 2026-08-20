@@ -10,7 +10,7 @@ conn = toolforge.connect('cswiki', cluster='analytics')
 
 cur = conn.cursor()
 with cur:
-	sql = 'select page_title, page_namespace from categorylinks join page on cl_from=page_id where cl_to="Údržba:Šablona_Úkoly_bez_podstránky" and page_namespace%2=1'
+	sql = 'select page_title, page_namespace from categorylinks join page on cl_from=page_id where cl_target_id in (select lt_id from linktarget where lt_namespace=14 and lt_title="Údržba:Šablona_Úkoly_bez_podstránky") and page_namespace%2=1'
 	cur.execute(sql)
 	data = cur.fetchall()
 

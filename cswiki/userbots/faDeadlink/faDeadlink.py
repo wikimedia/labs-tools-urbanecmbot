@@ -8,7 +8,7 @@ conn = toolforge.connect('cswiki')
 site = pywikibot.Site()
 
 with conn.cursor() as cur:
-	cur.execute('select page_id, page_title from categorylinks join page on cl_from=page_id where cl_to in ("Wikipedie:Nejlepší_články", "Wikipedie:Dobré_články") and cl_type="page" and cl_from in (select cl_from from categorylinks where cl_to="Údržba:Články_obsahující_odkazy_na_nedostupné_zdroje");')
+	cur.execute('select page_id, page_title from categorylinks join page on cl_from=page_id where cl_target_id in (select lt_id from linktarget where lt_namespace=14 and lt_title in ("Wikipedie:Nejlepší_články", "Wikipedie:Dobré_články")) and cl_type="page" and cl_from in (select cl_from from categorylinks where cl_target_id in (select lt_id from linktarget where lt_namespace=14 and lt_title="Údržba:Články_obsahující_odkazy_na_nedostupné_zdroje"));')
 	data = cur.fetchall()
 
 page = pywikibot.Page(site, "Wikipedie:Údržbové seznamy/Nejlepší či dobré články s nedostupnými zdroji/seznam")

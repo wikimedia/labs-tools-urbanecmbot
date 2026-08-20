@@ -10,7 +10,7 @@ site = pywikibot.Site()
 page = pywikibot.Page(site, "User:UrbanecmBot/Zývrazňování loutek.css")
 
 with conn.cursor() as cur:
-	cur.execute('select page_title from categorylinks join page on page_id=cl_from where cl_to="Wikipedie:Podezřelé_loutkové_účty" and page_namespace=2')
+	cur.execute('select page_title from categorylinks join page on page_id=cl_from where cl_target_id in (select lt_id from linktarget where lt_namespace=14 and lt_title="Wikipedie:Podezřelé_loutkové_účty") and page_namespace=2')
 	data = cur.fetchall()
 
 rules = []
