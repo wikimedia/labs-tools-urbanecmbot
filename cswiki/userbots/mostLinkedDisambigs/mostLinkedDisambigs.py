@@ -5,7 +5,7 @@ import toolforge
 import pywikibot
 site = pywikibot.Site()
 
-sql = 'select count(*), lt_title from pagelinks join linktarget on lt_id=pl_target_id where lt_namespace = 0 and pl_from_namespace = 0 and lt_title in (select page_title from page where page_id in (select cl_from from categorylinks where cl_to="Wikipedie:Rozcestníky") and page_namespace=0) group by lt_title order by count(*) desc, lt_title limit 500;'
+sql = 'select count(*), lt_title from pagelinks join linktarget on lt_id=pl_target_id where lt_namespace = 0 and pl_from_namespace = 0 and lt_title in (select page_title from page where page_id in (select pp_page from page_props where pp_propname="disambiguation") and page_namespace=0) group by lt_title order by count(*) desc, lt_title limit 500;'
 conn = toolforge.connect('cswiki')
 cur = conn.cursor()
 with cur:
