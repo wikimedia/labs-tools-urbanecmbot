@@ -7,23 +7,28 @@ import csv
 import pywikibot
 import datetime
 import toolforge
+import time
 import simplejson as json
 
 # Init
 site = pywikibot.Site()
 conn = toolforge.connect('cswiki')
+s = requests.Session()
+s.headers.update({'User-Agent': 'User:UrbanecmBot (tools.urbanecmbot@toolforge.org)'})
 
 # Config
 CONFIG_PAGE = "Wikipedie:Automatická aktualizace nových článků portálu/konfigurace.json"
 config = json.loads(pywikibot.Page(site, CONFIG_PAGE).text)
 
-BASEURL = 'https://petscan.wmflabs.org/'
+BASEURL = 'https://petscan.wmcloud.org/'
 BASESQL = 'select rev_timestamp from revision where rev_page in (select page_id from page where page_title=%s and page_namespace=0) and rev_parent_id=0;'
 
 # Code
 for portal in config['portals']:
 	portal_config = {**config['defaults'], **config['portals'][portal]}
 	print("Processing %s" % portal)
+	portalpage = pywikibot.Page(site, portal_config.get('target_page', 'Portál:%s/Nové články' % portal))
+
 	pages = {}
 	payload = {
 		'language': 'cs',
@@ -43,11 +48,24 @@ for portal in config['portals']:
 		'format': 'json',
 		'doit': 'doit'
 	}
-	r = requests.get(BASEURL, params=payload)
-	data = r.json()
+	r = s.post(BASEURL, data=payload)
+	time.sleep(3)
+
+	try:
+		data = r.json()
+	except Exception as e:
+		errorMsg = repr(e)
+		print(f'ERROR: Error processing {portal}: {errorMsg}')
+		portalpage.text = f'CHYBA: Zpracování se nepodařilo z důvodu chyby {errorMsg}'
+		portalpage.save("Robot: Aktualizace novinek se nezdařila, hlášení chyby ([[%s|nastavení]])" % CONFIG_PAGE)
+		continue
+
 	if 'error' in data:
 		print('ERROR: Error processing %s, error="%s"' % (portal, data['error']))
+		portalpage.text = 'CHYBA: Zpracování se nepodařilo z důvodu chyby %s' % data['error']
+		portalpage.save("Robot: Aktualizace novinek se nezdařila, hlášení chyby ([[%s|nastavení]])" % CONFIG_PAGE)
 		continue
+
 	for page in data['*'][0]['a']['*']:
 		with conn.cursor() as cur:
 			cur.execute(BASESQL, (page['title'], ))
@@ -68,6 +86,5 @@ for portal in config['portals']:
 			"title": page.replace('_', ' ')
 		}
 		wikicode += '\n'
-	portalpage = pywikibot.Page(site, portal_config.get('target_page', 'Portál:%s/Nové články' % portal))
 	portalpage.text = wikicode
 	portalpage.save("Robot: Aktualizace novinek dle [[%s|nastavení]]" % CONFIG_PAGE)
