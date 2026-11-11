@@ -20,7 +20,7 @@ s.headers.update({'User-Agent': 'User:UrbanecmBot (tools.urbanecmbot@toolforge.o
 CONFIG_PAGE = "Wikipedie:Automatická aktualizace nových článků portálu/konfigurace.json"
 config = json.loads(pywikibot.Page(site, CONFIG_PAGE).text)
 
-BASEURL = 'https://petscan.wmcloud.org/'
+BASEURL = 'https://petscan.toolforge.org/'
 BASESQL = 'select rev_timestamp from revision where rev_page in (select page_id from page where page_title=%s and page_namespace=0) and rev_parent_id=0;'
 
 # Code
@@ -48,10 +48,13 @@ for portal in config['portals']:
 		'format': 'json',
 		'doit': 'doit'
 	}
-	r = s.post(BASEURL, data=payload)
+	r = s.post(BASEURL, data=payload, allow_redirects=False)
 	time.sleep(3)
 
 	try:
+		r.raise_for_status()
+		if r.is_redirect:
+			raise RuntimeError(f'PetScan redirected to {r.headers.get("Location")}')
 		data = r.json()
 	except Exception as e:
 		errorMsg = repr(e)
